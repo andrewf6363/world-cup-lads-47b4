@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>World Cup Lads — 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5ECDB;--paper-2:#FCF6EA;--paper-3:#EEE3CF;--ink:#1B1A16;--ink-soft:#48422F;
+    --muted:#8A7F6C;--faint:#B6AB95;--line:#E1D7C3;--line-2:#ECE3D2;
+    --band:#123A28;--band-2:#0D2C1E;--grass:#1E9E4A;--grass-deep:#15813B;
+    --red:#D6442C;--red-deep:#B5331D;--gold:#E3A52A;--gold-deep:#C2871A;
+    --silver:#A7ADB2;--bronze:#BE7B3D;--navy:#16314C;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font-family:"Hanken Grotesk",-apple-system,system-ui,sans-serif;font-size:16px;line-height:1.45;
+    -webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1,"lnum" 1;}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.045;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+  .display{font-family:"Anton",Impact,sans-serif;font-weight:400;letter-spacing:.01em;}
+  .tnum{font-variant-numeric:tabular-nums;}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 22px 84px;}
+  .flag{width:25px;height:17px;border-radius:3px;object-fit:cover;box-shadow:0 0 0 1px rgba(0,0,0,.16);vertical-align:middle;flex:0 0 auto;background:var(--paper-3);}
+  .flag.sm{width:21px;height:14px;}
+
+  .stripe{height:6px;background:linear-gradient(90deg,var(--red) 0 33%,var(--gold) 33% 66%,var(--grass) 66% 100%);}
+  .band{background:repeating-linear-gradient(180deg,rgba(255,255,255,.022) 0 38px,rgba(0,0,0,.045) 38px 76px),
+      radial-gradient(120% 150% at 78% -20%,rgba(227,165,42,.20),transparent 55%),
+      linear-gradient(180deg,var(--band),var(--band-2));color:#F4ECD9;}
+  .band-in{max-width:1040px;margin:0 auto;padding:26px 22px 24px;}
+  .overline{font-size:11.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);font-weight:700;}
+  .mh{display:flex;align-items:flex-end;justify-content:space-between;gap:22px;flex-wrap:wrap;margin-top:8px;}
+  h1.title{font-family:"Anton",Impact,sans-serif;font-weight:400;color:#F7F0E1;
+    font-size:clamp(46px,8.5vw,92px);line-height:.86;letter-spacing:.005em;margin:0;text-transform:uppercase;}
+  h1.title .yr{color:var(--gold);}
+  .crest{display:flex;gap:22px;color:rgba(244,236,217,.78);}
+  .crest .c{text-align:center;}
+  .crest .c b{display:block;font-family:"Anton",sans-serif;font-size:26px;color:#F7F0E1;letter-spacing:.02em;line-height:1;}
+  .crest .c span{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;}
+  .mh-foot{display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin-top:18px;font-size:12.5px;color:rgba(244,236,217,.74);letter-spacing:.02em;}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:#23170a;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;font-weight:800;padding:6px 12px;border-radius:100px;}
+  .pill .dot{width:7px;height:7px;border-radius:50%;background:#23170a;}
+  .mh-foot .sep{opacity:.4;}
+
+  .spotlight{margin-top:22px;display:flex;align-items:stretch;border-radius:12px;overflow:hidden;
+    background:linear-gradient(180deg,#16432E,#10311F);color:#F4ECD9;box-shadow:0 14px 34px -20px rgba(18,58,40,.8);}
+  .sl-l{padding:20px 22px;flex:1;display:flex;flex-direction:column;justify-content:center;gap:7px;border-left:5px solid var(--gold);}
+  .sl-tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:800;}
+  .sl-name{font-family:"Anton",sans-serif;font-size:34px;line-height:.95;color:#F7F0E1;text-transform:uppercase;letter-spacing:.01em;}
+  .sl-meta{display:flex;align-items:center;gap:9px;font-size:13.5px;color:rgba(244,236,217,.82);}
+  .sl-r{padding:18px 26px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(0,0,0,.18);min-width:168px;}
+  .sl-total{font-family:"Anton",sans-serif;font-size:54px;line-height:.88;color:var(--gold);}
+  .sl-u{font-size:11px;letter-spacing:.24em;color:rgba(244,236,217,.7);font-weight:700;margin-top:2px;}
+  .sl-lead{margin-top:8px;font-size:12px;font-weight:700;color:#9fe0b4;background:rgba(30,158,74,.18);padding:3px 10px;border-radius:100px;}
+
+  .sec{margin-top:40px;}
+  .sec-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:14px;}
+  .sec-head h2{font-family:"Anton",sans-serif;font-weight:400;font-size:24px;letter-spacing:.04em;text-transform:uppercase;margin:0;display:flex;align-items:center;gap:11px;}
+  .sec-head h2::before{content:"";width:13px;height:24px;background:var(--red);border-radius:2px;display:inline-block;}
+  .sec-head .meta{font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;font-weight:700;}
+
+  .board{background:var(--paper-2);border:1px solid var(--line);border-radius:12px;overflow:hidden;}
+  .row{display:grid;grid-template-columns:42px 1fr auto;align-items:center;gap:15px;padding:13px 16px;border-bottom:1px solid var(--line-2);position:relative;}
+  .row:last-child{border-bottom:0;}
+  .rankb{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:16px;background:var(--paper-3);color:var(--muted);}
+  .rankb.g1{background:linear-gradient(180deg,#EAB13A,#CF8E18);color:#3a2607;box-shadow:0 3px 9px -3px rgba(207,142,24,.7);}
+  .rankb.g2{background:linear-gradient(180deg,#BFC4C8,#9AA0A5);color:#2b2d2f;}
+  .rankb.g3{background:linear-gradient(180deg,#CB8A4F,#A96A30);color:#2e1a08;}
+  .who{min-width:0;}
+  .who .name{font-weight:800;font-size:18px;letter-spacing:-.01em;line-height:1.1;}
+  .who .pick{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);margin-top:4px;}
+  .who .pick b{color:var(--ink-soft);font-weight:700;}
+  .pts{text-align:right;display:flex;flex-direction:column;align-items:flex-end;}
+  .pts .total{font-weight:800;font-size:26px;letter-spacing:-.02em;line-height:1;}
+  .pts .total .u{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.08em;margin-left:4px;}
+  .pts .move{font-size:12px;font-weight:800;margin-top:5px;color:var(--faint);}
+  .pts .move.up{color:var(--grass-deep);} .pts .move.down{color:var(--red);}
+  .meters{grid-column:2 / -1;margin-top:11px;display:flex;flex-direction:column;gap:6px;}
+  .meter{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:11px;}
+  .ml{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+  .mtrack{height:7px;border-radius:100px;background:var(--paper-3);overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.05);}
+  .mtrack i{display:block;height:100%;border-radius:100px;}
+  .mtrack i.g{background:linear-gradient(90deg,#15813b,#27b257);}
+  .mtrack i.k{background:linear-gradient(90deg,#b5331d,#e4502f);}
+  .mv{font-size:12.5px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--ink-soft);white-space:nowrap;}
+  .mv i{font-style:normal;color:var(--faint);font-weight:700;font-size:11px;margin-left:1px;}
+  .row.leader{background:linear-gradient(90deg,rgba(227,165,42,.13),rgba(227,165,42,.02));}
+  .row.leader::after{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--gold);}
+  .tag{display:inline-block;font-size:9.5px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:#7a5208;background:var(--gold);border-radius:4px;padding:2px 6px;margin-left:8px;vertical-align:2px;}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .rcard{background:var(--paper-2);border:1px solid var(--line);border-radius:11px;padding:13px 15px;border-top:3px solid var(--accent,#ccc);}
+  .rc-top{display:flex;align-items:center;justify-content:space-between;gap:10px;}
+  .rc-team{display:flex;align-items:center;gap:9px;min-width:0;font-size:15.5px;color:var(--muted);font-weight:600;}
+  .rc-team.w{color:var(--ink);font-weight:800;}
+  .rc-team .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .rc-score{font-family:"Anton",sans-serif;font-size:23px;color:#fff;background:var(--ink);border-radius:8px;padding:2px 12px;letter-spacing:.04em;white-space:nowrap;}
+  .rc-foot{display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;}
+  .rc-pen{color:var(--red);font-weight:800;}
+  .empty{background:var(--paper-2);border:1px dashed var(--line);border-radius:11px;padding:22px;text-align:center;color:var(--muted);font-size:14px;}
+
+  details{background:var(--paper-2);border:1px solid var(--line);border-radius:11px;margin-bottom:9px;overflow:hidden;}
+  summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:13px;padding:14px 16px;}
+  summary::-webkit-details-marker{display:none;}
+  summary .l{display:flex;align-items:center;gap:11px;}
+  summary .nm{font-weight:800;font-size:16px;}
+  summary .r{display:flex;align-items:center;gap:13px;}
+  summary .rt{font-weight:800;font-size:16px;}summary .rt .u{font-size:10px;color:var(--muted);letter-spacing:.08em;margin-left:3px;font-weight:800;}
+  summary .chev{color:var(--faint);font-weight:800;transition:transform .2s;}
+  details[open] summary .chev{transform:rotate(90deg);color:var(--red);}
+  details[open] summary{border-bottom:1px solid var(--line-2);}
+  .dbody{padding:14px 16px 17px;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--paper);min-width:70px;text-align:center;}
+  .chip .lab{font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);font-weight:800;}
+  .chip .val{font-family:"Anton",sans-serif;font-size:19px;margin-top:3px;}
+  .chip.on{border-color:rgba(30,158,74,.5);background:rgba(30,158,74,.07);} .chip.on .val{color:var(--grass-deep);}
+  .chip.off .val{color:var(--faint);}
+
+  .scrollhint{font-size:11px;color:var(--muted);margin:-4px 0 10px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;}
+  .bracket{display:flex;gap:14px;overflow-x:auto;padding:2px 2px 12px;scroll-snap-type:x proximity;}
+  .col{min-width:194px;flex:0 0 auto;scroll-snap-align:start;}
+  .col h3{font-family:"Hanken Grotesk",sans-serif;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-weight:800;margin:0 0 12px;padding:7px 11px;border-radius:7px;background:var(--navy);display:flex;justify-content:space-between;align-items:center;}
+  .col h3 .v{color:var(--gold);font-family:"Anton",sans-serif;font-size:14px;}
+  .col.r1 h3{background:#1f5d3f;}.col.r2 h3{background:#1d5275;}.col.r3 h3{background:#7a4416;}
+  .col.r4 h3{background:#6a2740;}.col.fin h3{background:linear-gradient(90deg,var(--gold-deep),var(--gold));color:#23170a;}
+  .col.fin h3 .v{color:#23170a;}
+  .matches{display:flex;flex-direction:column;justify-content:space-around;gap:9px;height:calc(100% - 36px);}
+  .m{background:var(--paper-2);border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .side{display:flex;align-items:center;gap:8px;padding:7px 9px;font-size:13px;color:var(--muted);}
+  .side + .side{border-top:1px solid var(--line-2);}
+  .side .nm{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;}
+  .side .s{font-weight:800;font-variant-numeric:tabular-nums;color:var(--faint);}
+  .side.win{color:var(--ink);background:var(--wintint,rgba(30,158,74,.08));border-left:3px solid var(--wincol,var(--grass));padding-left:6px;}
+  .side.win .nm{font-weight:800;}.side.win .s{color:var(--ink);}
+  .m.tbd .side{color:var(--faint);font-style:italic;}.m.tbd .flag{opacity:.3;}
+  .champ{margin-top:13px;border-radius:9px;padding:15px 12px;text-align:center;background:linear-gradient(180deg,rgba(227,165,42,.18),rgba(227,165,42,.04));border:1.5px solid var(--gold);}
+  .champ .lab{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-deep);font-weight:800;}
+  .champ .nm{font-family:"Anton",sans-serif;font-size:17px;margin-top:5px;color:var(--faint);}
+
+  footer{margin-top:50px;border-top:2px solid var(--ink);padding-top:16px;font-size:12.5px;color:var(--muted);line-height:1.6;}
+  footer b{color:var(--ink-soft);font-weight:700;}
+  .scoretable{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;}
+  .st{background:var(--paper-2);border:1px solid var(--line);border-radius:7px;padding:6px 11px;font-size:12px;font-weight:700;color:var(--ink-soft);}
+  .st b{font-family:"Anton",sans-serif;color:var(--red);font-weight:400;margin-left:5px;font-size:14px;}
+
+  @media (max-width:640px){
+    .wrap{padding:0 14px 64px;}.band-in{padding:22px 16px 20px;}.crest{display:none;}
+    h1.title{font-size:52px;}.spotlight{flex-direction:column;}
+    .sl-r{min-width:0;flex-direction:row;gap:10px;align-items:baseline;justify-content:center;padding:14px;}
+    .sl-total{font-size:44px;}.grid2{grid-template-columns:1fr;}
+    .row{grid-template-columns:34px 1fr auto;gap:11px;padding:12px 13px;}
+    .who .name{font-size:16px;}.pts .total{font-size:22px;}
+  }
+</style>
+</head>
+<body>
+<div class="stripe"></div>
+<div class="band"><div class="band-in">
+  <div class="overline" id="ovl"></div>
+  <div class="mh"><h1 class="title" id="title"></h1><div class="crest" id="crest"></div></div>
+  <div class="mh-foot" id="foot"></div>
+</div></div>
+
+<div class="wrap">
+  <div class="spotlight" id="spotlight"></div>
+  <section class="sec"><div class="sec-head"><h2>Standings</h2><span class="meta" id="standMeta"></span></div><div class="board" id="standings"></div></section>
+  <section class="sec"><div class="sec-head"><h2>Latest Results</h2><span class="meta">Auto-updated</span></div><div id="results"></div></section>
+  <section class="sec"><div class="sec-head"><h2>By the Manager</h2><span class="meta">Tap to expand</span></div><div id="players"></div></section>
+  <section class="sec"><div class="sec-head"><h2>The Bracket</h2><span class="meta">R32 → Final</span></div><div id="bracketWrap"></div></section>
+  <footer>
+    <b>How it works.</b> Group stage — pick every match (win / draw / win), 100 pts each correct.
+    Knockout — fill the bracket fresh, doubling every round:
+    <div class="scoretable"><span class="st">R32<b>100</b></span><span class="st">R16<b>200</b></span><span class="st">QF<b>400</b></span><span class="st">SF<b>800</b></span><span class="st">Final<b>1,600</b></span></div>
+    Picks lock at kickoff. Tiebreaker: closest guess on the Final's total goals. Updates run automatically.
+  </footer>
+</div>
+
+<script>
+const DATA = __DATA__;
+const TEAM = {
+ "Mexico":["mx","#1B7A3D"],"South Africa":["za","#007749"],"South Korea":["kr","#C8102E"],"Korea Rep.":["kr","#C8102E"],"Czechia":["cz","#11457E"],
+ "Canada":["ca","#D52B1E"],"Bosnia-Herzegovina":["ba","#002F6C"],"Qatar":["qa","#8A1538"],"Switzerland":["ch","#D8232A"],
+ "Brazil":["br","#1E9E4A"],"Morocco":["ma","#C1272D"],"Haiti":["ht","#00209F"],"Scotland":["gb-sct","#0A3B7C"],
+ "USA":["us","#1A2A6C"],"Paraguay":["py","#D52B1E"],"Australia":["au","#00843D"],"Türkiye":["tr","#E30A17"],
+ "Germany":["de","#1c1c1c"],"Curacao":["cw","#002B7F"],"Côte d'Ivoire":["ci","#FF8200"],"Ecuador":["ec","#D9A400"],
+ "Netherlands":["nl","#FF6900"],"Japan":["jp","#BC002D"],"Sweden":["se","#006AA7"],"Tunisia":["tn","#E70013"],
+ "Belgium":["be","#C8102E"],"Egypt":["eg","#CE1126"],"IR Iran":["ir","#239F40"],"Iran":["ir","#239F40"],"New Zealand":["nz","#1c1c1c"],
+ "Spain":["es","#C60B1E"],"Cabo Verde":["cv","#003893"],"Saudi Arabia":["sa","#006C35"],"Uruguay":["uy","#0038A8"],
+ "France":["fr","#0055A4"],"Senegal":["sn","#00853F"],"Iraq":["iq","#CE1126"],"Norway":["no","#BA0C2F"],
+ "Argentina":["ar","#5BA3D0"],"Algeria":["dz","#006233"],"Austria":["at","#ED2939"],"Jordan":["jo","#007A3D"],
+ "Portugal":["pt","#DA291C"],"Congo DR":["cd","#2BA9E0"],"Uzbekistan":["uz","#1EB53A"],"Colombia":["co","#B98A00"],
+ "England":["gb-eng","#CF081F"],"Croatia":["hr","#D6122E"],"Ghana":["gh","#1E7A47"],"Panama":["pa","#D21034"]
+};
+const code=t=>(TEAM[t]||["",""])[0], col=t=>(TEAM[t]||["","#999"])[1];
+const flag=(t,c="flag")=>code(t)?`<img class="${c}" src="https://flagcdn.com/w80/${code(t)}.png" alt="">`:`<span class="${c}" style="display:inline-block"></span>`;
+const fmt=n=>(n==null?"–":Number(n).toLocaleString("en-US"));
+
+function meta(){
+  const m=DATA.meta;
+  document.getElementById("ovl").textContent=m.overline;
+  const parts=(m.name||"World Cup Lads").split(" "), last=parts.pop();
+  document.getElementById("title").innerHTML=(parts.join(" ")+' <span class="yr">'+last+"</span>").trim();
+  document.getElementById("crest").innerHTML=
+    `<div class="c"><b>${m.managers}</b><span>Managers</span></div>`+
+    `<div class="c"><b>$${m.pot}</b><span>Pot</span></div>`+
+    `<div class="c"><b>1</b><span>Winner</span></div>`;
+  document.getElementById("foot").innerHTML=
+    `<span>${m.hosts}</span><span class="sep">—</span>`+
+    `<span class="pill"><span class="dot"></span>${m.phase}</span>`+
+    `<span class="sep">·</span><span>Updated ${m.updated}</span>`;
+}
+
+function spotlight(){
+  const L=DATA.leader, sp=document.getElementById("spotlight");
+  if(!L){sp.style.display="none";return;}
+  let metaLine, lead;
+  if(L.total===0){metaLine="Picks are in — first match kicks off June 11"; lead="Let's go";}
+  else{
+    metaLine = L.champ ? `Riding with ${flag(L.champ)} <b style="color:#F7F0E1">${L.champ}</b> to lift the cup`
+                       : `${L.correct}/72 group picks correct so far`;
+    lead = L.lead>0 ? `+${fmt(L.lead)} on 2nd` : "Tied at the top";
+  }
+  sp.innerHTML=`<div class="sl-l"><div class="sl-tag">Current Leader · ${DATA.meta.phase}</div>`+
+    `<div class="sl-name">${L.name}</div><div class="sl-meta">${metaLine}</div></div>`+
+    `<div class="sl-r"><div class="sl-total">${fmt(L.total)}</div><div class="sl-u">POINTS</div>`+
+    `<div class="sl-lead">${lead}</div></div>`;
+}
+
+function standings(){
+  const el=document.getElementById("standings"), GMAX=7200, KMAX=8000;
+  document.getElementById("standMeta").textContent=`${DATA.players.length} of ${DATA.meta.managers} reporting`;
+  if(!DATA.players.length){el.innerHTML='<div class="empty">No picks submitted yet — the leaderboard fills in as sheets come back.</div>';return;}
+  DATA.players.forEach(p=>{
+    const gW=Math.round(p.grp/GMAX*100), kW=Math.round(p.ko/KMAX*100);
+    const mv=p.move>0?`▲ +${p.move}`:p.move<0?`▼ ${p.move}`:"— 0";
+    const mvc=p.move>0?"up":p.move<0?"down":"";
+    const rb=p.rank<=3?`rankb g${p.rank}`:"rankb";
+    const pick=p.champ
+      ? `${flag(p.champ,"flag sm")} <span>Champion · <b>${p.champ}</b></span> · ${p.correct}/72 group`
+      : `<span>${p.correct}/72 group correct</span>`;
+    const row=document.createElement("div"); row.className="row"+(p.rank===1&&p.total>0?" leader":"");
+    row.innerHTML=`
+      <div class="${rb}">${p.rank}</div>
+      <div class="who"><div class="name">${p.name}${(p.rank===1&&p.total>0)?'<span class="tag">Leader</span>':''}</div>
+        <div class="pick">${pick}</div></div>
+      <div class="pts"><div class="total tnum">${fmt(p.total)}<span class="u">PTS</span></div><div class="move ${mvc}">${mv}</div></div>
+      <div class="meters">
+        <div class="meter"><span class="ml">Group</span><span class="mtrack"><i class="g" style="width:${gW}%"></i></span><span class="mv">${fmt(p.grp)}<i>/7,200</i></span></div>
+        <div class="meter"><span class="ml">Knockout</span><span class="mtrack"><i class="k" style="width:${kW}%"></i></span><span class="mv">${fmt(p.ko)}<i>/8,000</i></span></div>
+      </div>`;
+    el.appendChild(row);
+  });
+}
+
+function results(){
+  const el=document.getElementById("results");
+  if(!DATA.results||!DATA.results.length){el.innerHTML='<div class="empty">No results yet — first match kicks off June 11. Scores will appear here automatically.</div>';return;}
+  const g=document.createElement("div");g.className="grid2";
+  DATA.results.forEach(r=>{
+    const aw=r.sa>r.sb,bw=r.sb>r.sa,ac=aw?col(r.a):bw?col(r.b):"#c9bfa9";
+    const d=document.createElement("div");d.className="rcard";d.style.setProperty("--accent",ac);
+    d.innerHTML=`<div class="rc-top">
+        <div class="rc-team ${aw?'w':''}">${flag(r.a)}<span class="nm">${r.a}</span></div>
+        <div class="rc-score tnum">${r.sa}–${r.sb}</div>
+        <div class="rc-team ${bw?'w':''}" style="justify-content:flex-end"><span class="nm">${r.b}</span>${flag(r.b)}</div>
+      </div>
+      <div class="rc-foot"><span>${r.round}</span><span>${r.pen?`<span class="rc-pen">${r.pen}</span> · `:''}${r.date}</span></div>`;
+    g.appendChild(d);
+  });
+  el.appendChild(g);
+}
+
+function players(){
+  const el=document.getElementById("players");
+  DATA.players.forEach((p,i)=>{
+    const r=p.rounds||{R32:0,R16:0,QF:0,SF:0,F:0};
+    const chip=(l,v)=>`<div class="chip ${v>0?'on':'off'}"><div class="lab">${l}</div><div class="val tnum">${fmt(v)}</div></div>`;
+    const d=document.createElement("details"); if(i===0)d.open=true;
+    d.innerHTML=`<summary><span class="l">${p.champ?flag(p.champ):''}<span class="nm">${p.name}</span></span>
+        <span class="r"><span class="rt tnum">${fmt(p.total)}<span class="u">PTS</span></span><span class="chev">›</span></span></summary>
+      <div class="dbody"><div class="chips">${chip("Group",p.grp)}${chip("R32",r.R32)}${chip("R16",r.R16)}${chip("QF",r.QF)}${chip("SF",r.SF)}${chip("Final",r.F)}</div></div>`;
+    el.appendChild(d);
+  });
+}
+
+function bracket(){
+  const wrap=document.getElementById("bracketWrap"), b=DATA.bracket;
+  if(!b||!Object.keys(b).length){wrap.innerHTML='<div class="empty">The knockout bracket unlocks after the group stage — June 28. Fill it then.</div>';return;}
+  wrap.innerHTML='<div class="scrollhint">Swipe sideways to follow the draw →</div><div class="bracket" id="bk"></div>';
+  const el=document.getElementById("bk");
+  const pts={"Round of 32":100,"Round of 16":200,"Quarterfinals":400,"Semifinals":800,"Final":1600};
+  const cls={"Round of 32":"r1","Round of 16":"r2","Quarterfinals":"r3","Semifinals":"r4","Final":"fin"};
+  Object.entries(b).forEach(([round,ms])=>{
+    const c=document.createElement("div");c.className="col "+(cls[round]||"");
+    c.innerHTML=`<h3>${round}<span class="v">${fmt(pts[round]||0)}</span></h3>`;
+    const w=document.createElement("div");w.className="matches";
+    ms.forEach(m=>{
+      const played=m.w!==null&&m.w!==undefined; const mb=document.createElement("div");mb.className="m"+(played?"":" tbd");
+      const side=idx=>{const win=m.w===idx,t=m.t[idx];
+        const sc=(m.s&&m.s[idx]!=null)?`<span class="s">${m.s[idx]}${(m.pen&&win)?' (P)':''}</span>`:`<span class="s"></span>`;
+        const sty=win?`style="--wincol:${col(t)};--wintint:${col(t)}14"`:"";
+        return `<div class="side ${win?'win':''}" ${sty}>${flag(t,"flag sm")}<span class="nm">${t}</span>${sc}</div>`;};
+      mb.innerHTML=side(0)+side(1);w.appendChild(mb);
+    });
+    c.appendChild(w);
+    if(round==="Final"){const ch=document.createElement("div");ch.className="champ";
+      ch.innerHTML=`<div class="lab">Champion</div><div class="nm">${DATA.championName||"To be crowned"}</div>`;c.appendChild(ch);}
+    el.appendChild(c);
+  });
+}
+
+meta();spotlight();standings();results();players();bracket();
+</script>
+</body>
+</html>

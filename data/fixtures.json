@@ -1,0 +1,1517 @@
+{
+  "group_stage": [
+    {
+      "id": "G-A-1",
+      "phase": "group",
+      "group": "A",
+      "matchday": 1,
+      "team1": "Mexico",
+      "team2": "South Africa",
+      "kickoff_et": "2026-06-11T15:00:00-04:00",
+      "kickoff_utc": "2026-06-11T19:00:00Z",
+      "pick_cells": [
+        [
+          12,
+          2
+        ],
+        [
+          12,
+          3
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-A-2",
+      "phase": "group",
+      "group": "A",
+      "matchday": 2,
+      "team1": "South Korea",
+      "team2": "Czechia",
+      "kickoff_et": "2026-06-11T22:00:00-04:00",
+      "kickoff_utc": "2026-06-12T02:00:00Z",
+      "pick_cells": [
+        [
+          17,
+          2
+        ],
+        [
+          17,
+          3
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-A-3",
+      "phase": "group",
+      "group": "A",
+      "matchday": 3,
+      "team1": "Czechia",
+      "team2": "South Africa",
+      "kickoff_et": "2026-06-18T12:00:00-04:00",
+      "kickoff_utc": "2026-06-18T16:00:00Z",
+      "pick_cells": [
+        [
+          22,
+          2
+        ],
+        [
+          22,
+          3
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-A-4",
+      "phase": "group",
+      "group": "A",
+      "matchday": 4,
+      "team1": "Mexico",
+      "team2": "South Korea",
+      "kickoff_et": "2026-06-18T21:00:00-04:00",
+      "kickoff_utc": "2026-06-19T01:00:00Z",
+      "pick_cells": [
+        [
+          27,
+          2
+        ],
+        [
+          27,
+          3
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-A-5",
+      "phase": "group",
+      "group": "A",
+      "matchday": 5,
+      "team1": "Czechia",
+      "team2": "Mexico",
+      "kickoff_et": "2026-06-24T21:00:00-04:00",
+      "kickoff_utc": "2026-06-25T01:00:00Z",
+      "pick_cells": [
+        [
+          32,
+          2
+        ],
+        [
+          32,
+          3
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-A-6",
+      "phase": "group",
+      "group": "A",
+      "matchday": 6,
+      "team1": "South Africa",
+      "team2": "South Korea",
+      "kickoff_et": "2026-06-24T21:00:00-04:00",
+      "kickoff_utc": "2026-06-25T01:00:00Z",
+      "pick_cells": [
+        [
+          37,
+          2
+        ],
+        [
+          37,
+          3
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-B-1",
+      "phase": "group",
+      "group": "B",
+      "matchday": 1,
+      "team1": "Canada",
+      "team2": "Bosnia-Herzegovina",
+      "kickoff_et": "2026-06-12T15:00:00-04:00",
+      "kickoff_utc": "2026-06-12T19:00:00Z",
+      "pick_cells": [
+        [
+          12,
+          5
+        ],
+        [
+          12,
+          6
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-B-2",
+      "phase": "group",
+      "group": "B",
+      "matchday": 2,
+      "team1": "Qatar",
+      "team2": "Switzerland",
+      "kickoff_et": "2026-06-13T15:00:00-04:00",
+      "kickoff_utc": "2026-06-13T19:00:00Z",
+      "pick_cells": [
+        [
+          17,
+          5
+        ],
+        [
+          17,
+          6
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-B-3",
+      "phase": "group",
+      "group": "B",
+      "matchday": 3,
+      "team1": "Switzerland",
+      "team2": "Bosnia-Herzegovina",
+      "kickoff_et": "2026-06-18T15:00:00-04:00",
+      "kickoff_utc": "2026-06-18T19:00:00Z",
+      "pick_cells": [
+        [
+          22,
+          5
+        ],
+        [
+          22,
+          6
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-B-4",
+      "phase": "group",
+      "group": "B",
+      "matchday": 4,
+      "team1": "Canada",
+      "team2": "Qatar",
+      "kickoff_et": "2026-06-18T18:00:00-04:00",
+      "kickoff_utc": "2026-06-18T22:00:00Z",
+      "pick_cells": [
+        [
+          27,
+          5
+        ],
+        [
+          27,
+          6
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-B-5",
+      "phase": "group",
+      "group": "B",
+      "matchday": 5,
+      "team1": "Switzerland",
+      "team2": "Canada",
+      "kickoff_et": "2026-06-24T15:00:00-04:00",
+      "kickoff_utc": "2026-06-24T19:00:00Z",
+      "pick_cells": [
+        [
+          32,
+          5
+        ],
+        [
+          32,
+          6
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-B-6",
+      "phase": "group",
+      "group": "B",
+      "matchday": 6,
+      "team1": "Bosnia-Herzegovina",
+      "team2": "Qatar",
+      "kickoff_et": "2026-06-24T15:00:00-04:00",
+      "kickoff_utc": "2026-06-24T19:00:00Z",
+      "pick_cells": [
+        [
+          37,
+          5
+        ],
+        [
+          37,
+          6
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-C-1",
+      "phase": "group",
+      "group": "C",
+      "matchday": 1,
+      "team1": "Brazil",
+      "team2": "Morocco",
+      "kickoff_et": "2026-06-13T18:00:00-04:00",
+      "kickoff_utc": "2026-06-13T22:00:00Z",
+      "pick_cells": [
+        [
+          12,
+          8
+        ],
+        [
+          12,
+          9
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-C-2",
+      "phase": "group",
+      "group": "C",
+      "matchday": 2,
+      "team1": "Haiti",
+      "team2": "Scotland",
+      "kickoff_et": "2026-06-13T21:00:00-04:00",
+      "kickoff_utc": "2026-06-14T01:00:00Z",
+      "pick_cells": [
+        [
+          17,
+          8
+        ],
+        [
+          17,
+          9
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-C-3",
+      "phase": "group",
+      "group": "C",
+      "matchday": 3,
+      "team1": "Scotland",
+      "team2": "Morocco",
+      "kickoff_et": "2026-06-19T18:00:00-04:00",
+      "kickoff_utc": "2026-06-19T22:00:00Z",
+      "pick_cells": [
+        [
+          22,
+          8
+        ],
+        [
+          22,
+          9
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-C-4",
+      "phase": "group",
+      "group": "C",
+      "matchday": 4,
+      "team1": "Brazil",
+      "team2": "Haiti",
+      "kickoff_et": "2026-06-19T21:00:00-04:00",
+      "kickoff_utc": "2026-06-20T01:00:00Z",
+      "pick_cells": [
+        [
+          27,
+          8
+        ],
+        [
+          27,
+          9
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-C-5",
+      "phase": "group",
+      "group": "C",
+      "matchday": 5,
+      "team1": "Scotland",
+      "team2": "Brazil",
+      "kickoff_et": "2026-06-24T18:00:00-04:00",
+      "kickoff_utc": "2026-06-24T22:00:00Z",
+      "pick_cells": [
+        [
+          32,
+          8
+        ],
+        [
+          32,
+          9
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-C-6",
+      "phase": "group",
+      "group": "C",
+      "matchday": 6,
+      "team1": "Morocco",
+      "team2": "Haiti",
+      "kickoff_et": "2026-06-24T18:00:00-04:00",
+      "kickoff_utc": "2026-06-24T22:00:00Z",
+      "pick_cells": [
+        [
+          37,
+          8
+        ],
+        [
+          37,
+          9
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-D-1",
+      "phase": "group",
+      "group": "D",
+      "matchday": 1,
+      "team1": "USA",
+      "team2": "Paraguay",
+      "kickoff_et": "2026-06-12T21:00:00-04:00",
+      "kickoff_utc": "2026-06-13T01:00:00Z",
+      "pick_cells": [
+        [
+          12,
+          11
+        ],
+        [
+          12,
+          12
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-D-2",
+      "phase": "group",
+      "group": "D",
+      "matchday": 2,
+      "team1": "Australia",
+      "team2": "Türkiye",
+      "kickoff_et": "2026-06-13T00:00:00-04:00",
+      "kickoff_utc": "2026-06-13T04:00:00Z",
+      "pick_cells": [
+        [
+          17,
+          11
+        ],
+        [
+          17,
+          12
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-D-3",
+      "phase": "group",
+      "group": "D",
+      "matchday": 3,
+      "team1": "USA",
+      "team2": "Australia",
+      "kickoff_et": "2026-06-19T15:00:00-04:00",
+      "kickoff_utc": "2026-06-19T19:00:00Z",
+      "pick_cells": [
+        [
+          22,
+          11
+        ],
+        [
+          22,
+          12
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-D-4",
+      "phase": "group",
+      "group": "D",
+      "matchday": 4,
+      "team1": "Türkiye",
+      "team2": "Paraguay",
+      "kickoff_et": "2026-06-19T00:00:00-04:00",
+      "kickoff_utc": "2026-06-19T04:00:00Z",
+      "pick_cells": [
+        [
+          27,
+          11
+        ],
+        [
+          27,
+          12
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-D-5",
+      "phase": "group",
+      "group": "D",
+      "matchday": 5,
+      "team1": "Türkiye",
+      "team2": "USA",
+      "kickoff_et": "2026-06-25T22:00:00-04:00",
+      "kickoff_utc": "2026-06-26T02:00:00Z",
+      "pick_cells": [
+        [
+          32,
+          11
+        ],
+        [
+          32,
+          12
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-D-6",
+      "phase": "group",
+      "group": "D",
+      "matchday": 6,
+      "team1": "Paraguay",
+      "team2": "Australia",
+      "kickoff_et": "2026-06-25T22:00:00-04:00",
+      "kickoff_utc": "2026-06-26T02:00:00Z",
+      "pick_cells": [
+        [
+          37,
+          11
+        ],
+        [
+          37,
+          12
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-E-1",
+      "phase": "group",
+      "group": "E",
+      "matchday": 1,
+      "team1": "Germany",
+      "team2": "Curacao",
+      "kickoff_et": "2026-06-14T13:00:00-04:00",
+      "kickoff_utc": "2026-06-14T17:00:00Z",
+      "pick_cells": [
+        [
+          12,
+          14
+        ],
+        [
+          12,
+          15
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-E-2",
+      "phase": "group",
+      "group": "E",
+      "matchday": 2,
+      "team1": "Côte d'Ivoire",
+      "team2": "Ecuador",
+      "kickoff_et": "2026-06-14T19:00:00-04:00",
+      "kickoff_utc": "2026-06-14T23:00:00Z",
+      "pick_cells": [
+        [
+          17,
+          14
+        ],
+        [
+          17,
+          15
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-E-3",
+      "phase": "group",
+      "group": "E",
+      "matchday": 3,
+      "team1": "Germany",
+      "team2": "Côte d'Ivoire",
+      "kickoff_et": "2026-06-20T16:00:00-04:00",
+      "kickoff_utc": "2026-06-20T20:00:00Z",
+      "pick_cells": [
+        [
+          22,
+          14
+        ],
+        [
+          22,
+          15
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-E-4",
+      "phase": "group",
+      "group": "E",
+      "matchday": 4,
+      "team1": "Ecuador",
+      "team2": "Curacao",
+      "kickoff_et": "2026-06-20T20:00:00-04:00",
+      "kickoff_utc": "2026-06-21T00:00:00Z",
+      "pick_cells": [
+        [
+          27,
+          14
+        ],
+        [
+          27,
+          15
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-E-5",
+      "phase": "group",
+      "group": "E",
+      "matchday": 5,
+      "team1": "Curacao",
+      "team2": "Côte d'Ivoire",
+      "kickoff_et": "2026-06-25T16:00:00-04:00",
+      "kickoff_utc": "2026-06-25T20:00:00Z",
+      "pick_cells": [
+        [
+          32,
+          14
+        ],
+        [
+          32,
+          15
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-E-6",
+      "phase": "group",
+      "group": "E",
+      "matchday": 6,
+      "team1": "Ecuador",
+      "team2": "Germany",
+      "kickoff_et": "2026-06-25T16:00:00-04:00",
+      "kickoff_utc": "2026-06-25T20:00:00Z",
+      "pick_cells": [
+        [
+          37,
+          14
+        ],
+        [
+          37,
+          15
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-F-1",
+      "phase": "group",
+      "group": "F",
+      "matchday": 1,
+      "team1": "Netherlands",
+      "team2": "Japan",
+      "kickoff_et": "2026-06-14T16:00:00-04:00",
+      "kickoff_utc": "2026-06-14T20:00:00Z",
+      "pick_cells": [
+        [
+          12,
+          17
+        ],
+        [
+          12,
+          18
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-F-2",
+      "phase": "group",
+      "group": "F",
+      "matchday": 2,
+      "team1": "Sweden",
+      "team2": "Tunisia",
+      "kickoff_et": "2026-06-14T22:00:00-04:00",
+      "kickoff_utc": "2026-06-15T02:00:00Z",
+      "pick_cells": [
+        [
+          17,
+          17
+        ],
+        [
+          17,
+          18
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-F-3",
+      "phase": "group",
+      "group": "F",
+      "matchday": 3,
+      "team1": "Netherlands",
+      "team2": "Sweden",
+      "kickoff_et": "2026-06-20T13:00:00-04:00",
+      "kickoff_utc": "2026-06-20T17:00:00Z",
+      "pick_cells": [
+        [
+          22,
+          17
+        ],
+        [
+          22,
+          18
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-F-4",
+      "phase": "group",
+      "group": "F",
+      "matchday": 4,
+      "team1": "Tunisia",
+      "team2": "Japan",
+      "kickoff_et": "2026-06-20T00:00:00-04:00",
+      "kickoff_utc": "2026-06-20T04:00:00Z",
+      "pick_cells": [
+        [
+          27,
+          17
+        ],
+        [
+          27,
+          18
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-F-5",
+      "phase": "group",
+      "group": "F",
+      "matchday": 5,
+      "team1": "Japan",
+      "team2": "Sweden",
+      "kickoff_et": "2026-06-25T19:00:00-04:00",
+      "kickoff_utc": "2026-06-25T23:00:00Z",
+      "pick_cells": [
+        [
+          32,
+          17
+        ],
+        [
+          32,
+          18
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-F-6",
+      "phase": "group",
+      "group": "F",
+      "matchday": 6,
+      "team1": "Tunisia",
+      "team2": "Netherlands",
+      "kickoff_et": "2026-06-25T19:00:00-04:00",
+      "kickoff_utc": "2026-06-25T23:00:00Z",
+      "pick_cells": [
+        [
+          37,
+          17
+        ],
+        [
+          37,
+          18
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-G-1",
+      "phase": "group",
+      "group": "G",
+      "matchday": 1,
+      "team1": "Belgium",
+      "team2": "Egypt",
+      "kickoff_et": "2026-06-15T15:00:00-04:00",
+      "kickoff_utc": "2026-06-15T19:00:00Z",
+      "pick_cells": [
+        [
+          12,
+          20
+        ],
+        [
+          12,
+          21
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-G-2",
+      "phase": "group",
+      "group": "G",
+      "matchday": 2,
+      "team1": "IR Iran",
+      "team2": "New Zealand",
+      "kickoff_et": "2026-06-15T21:00:00-04:00",
+      "kickoff_utc": "2026-06-16T01:00:00Z",
+      "pick_cells": [
+        [
+          17,
+          20
+        ],
+        [
+          17,
+          21
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-G-3",
+      "phase": "group",
+      "group": "G",
+      "matchday": 3,
+      "team1": "Belgium",
+      "team2": "IR Iran",
+      "kickoff_et": "2026-06-21T15:00:00-04:00",
+      "kickoff_utc": "2026-06-21T19:00:00Z",
+      "pick_cells": [
+        [
+          22,
+          20
+        ],
+        [
+          22,
+          21
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-G-4",
+      "phase": "group",
+      "group": "G",
+      "matchday": 4,
+      "team1": "New Zealand",
+      "team2": "Egypt",
+      "kickoff_et": "2026-06-21T21:00:00-04:00",
+      "kickoff_utc": "2026-06-22T01:00:00Z",
+      "pick_cells": [
+        [
+          27,
+          20
+        ],
+        [
+          27,
+          21
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-G-5",
+      "phase": "group",
+      "group": "G",
+      "matchday": 5,
+      "team1": "Egypt",
+      "team2": "IR Iran",
+      "kickoff_et": "2026-06-26T23:00:00-04:00",
+      "kickoff_utc": "2026-06-27T03:00:00Z",
+      "pick_cells": [
+        [
+          32,
+          20
+        ],
+        [
+          32,
+          21
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-G-6",
+      "phase": "group",
+      "group": "G",
+      "matchday": 6,
+      "team1": "New Zealand",
+      "team2": "Belgium",
+      "kickoff_et": "2026-06-26T23:00:00-04:00",
+      "kickoff_utc": "2026-06-27T03:00:00Z",
+      "pick_cells": [
+        [
+          37,
+          20
+        ],
+        [
+          37,
+          21
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-H-1",
+      "phase": "group",
+      "group": "H",
+      "matchday": 1,
+      "team1": "Spain",
+      "team2": "Cabo Verde",
+      "kickoff_et": "2026-06-15T12:00:00-04:00",
+      "kickoff_utc": "2026-06-15T16:00:00Z",
+      "pick_cells": [
+        [
+          12,
+          23
+        ],
+        [
+          12,
+          24
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-H-2",
+      "phase": "group",
+      "group": "H",
+      "matchday": 2,
+      "team1": "Saudi Arabia",
+      "team2": "Uruguay",
+      "kickoff_et": "2026-06-15T18:00:00-04:00",
+      "kickoff_utc": "2026-06-15T22:00:00Z",
+      "pick_cells": [
+        [
+          17,
+          23
+        ],
+        [
+          17,
+          24
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-H-3",
+      "phase": "group",
+      "group": "H",
+      "matchday": 3,
+      "team1": "Spain",
+      "team2": "Saudi Arabia",
+      "kickoff_et": "2026-06-21T12:00:00-04:00",
+      "kickoff_utc": "2026-06-21T16:00:00Z",
+      "pick_cells": [
+        [
+          22,
+          23
+        ],
+        [
+          22,
+          24
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-H-4",
+      "phase": "group",
+      "group": "H",
+      "matchday": 4,
+      "team1": "Uruguay",
+      "team2": "Cabo Verde",
+      "kickoff_et": "2026-06-21T18:00:00-04:00",
+      "kickoff_utc": "2026-06-21T22:00:00Z",
+      "pick_cells": [
+        [
+          27,
+          23
+        ],
+        [
+          27,
+          24
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-H-5",
+      "phase": "group",
+      "group": "H",
+      "matchday": 5,
+      "team1": "Cabo Verde",
+      "team2": "Saudi Arabia",
+      "kickoff_et": "2026-06-26T20:00:00-04:00",
+      "kickoff_utc": "2026-06-27T00:00:00Z",
+      "pick_cells": [
+        [
+          32,
+          23
+        ],
+        [
+          32,
+          24
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-H-6",
+      "phase": "group",
+      "group": "H",
+      "matchday": 6,
+      "team1": "Uruguay",
+      "team2": "Spain",
+      "kickoff_et": "2026-06-26T20:00:00-04:00",
+      "kickoff_utc": "2026-06-27T00:00:00Z",
+      "pick_cells": [
+        [
+          37,
+          23
+        ],
+        [
+          37,
+          24
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-I-1",
+      "phase": "group",
+      "group": "I",
+      "matchday": 1,
+      "team1": "France",
+      "team2": "Senegal",
+      "kickoff_et": "2026-06-16T15:00:00-04:00",
+      "kickoff_utc": "2026-06-16T19:00:00Z",
+      "pick_cells": [
+        [
+          12,
+          26
+        ],
+        [
+          12,
+          27
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-I-2",
+      "phase": "group",
+      "group": "I",
+      "matchday": 2,
+      "team1": "Iraq",
+      "team2": "Norway",
+      "kickoff_et": "2026-06-16T18:00:00-04:00",
+      "kickoff_utc": "2026-06-16T22:00:00Z",
+      "pick_cells": [
+        [
+          17,
+          26
+        ],
+        [
+          17,
+          27
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-I-3",
+      "phase": "group",
+      "group": "I",
+      "matchday": 3,
+      "team1": "France",
+      "team2": "Iraq",
+      "kickoff_et": "2026-06-22T17:00:00-04:00",
+      "kickoff_utc": "2026-06-22T21:00:00Z",
+      "pick_cells": [
+        [
+          22,
+          26
+        ],
+        [
+          22,
+          27
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-I-4",
+      "phase": "group",
+      "group": "I",
+      "matchday": 4,
+      "team1": "Norway",
+      "team2": "Senegal",
+      "kickoff_et": "2026-06-22T20:00:00-04:00",
+      "kickoff_utc": "2026-06-23T00:00:00Z",
+      "pick_cells": [
+        [
+          27,
+          26
+        ],
+        [
+          27,
+          27
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-I-5",
+      "phase": "group",
+      "group": "I",
+      "matchday": 5,
+      "team1": "Norway",
+      "team2": "France",
+      "kickoff_et": "2026-06-26T15:00:00-04:00",
+      "kickoff_utc": "2026-06-26T19:00:00Z",
+      "pick_cells": [
+        [
+          32,
+          26
+        ],
+        [
+          32,
+          27
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-I-6",
+      "phase": "group",
+      "group": "I",
+      "matchday": 6,
+      "team1": "Senegal",
+      "team2": "Iraq",
+      "kickoff_et": "2026-06-26T15:00:00-04:00",
+      "kickoff_utc": "2026-06-26T19:00:00Z",
+      "pick_cells": [
+        [
+          37,
+          26
+        ],
+        [
+          37,
+          27
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-J-1",
+      "phase": "group",
+      "group": "J",
+      "matchday": 1,
+      "team1": "Argentina",
+      "team2": "Algeria",
+      "kickoff_et": "2026-06-16T21:00:00-04:00",
+      "kickoff_utc": "2026-06-17T01:00:00Z",
+      "pick_cells": [
+        [
+          12,
+          29
+        ],
+        [
+          12,
+          30
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-J-2",
+      "phase": "group",
+      "group": "J",
+      "matchday": 2,
+      "team1": "Austria",
+      "team2": "Jordan",
+      "kickoff_et": "2026-06-16T00:00:00-04:00",
+      "kickoff_utc": "2026-06-16T04:00:00Z",
+      "pick_cells": [
+        [
+          17,
+          29
+        ],
+        [
+          17,
+          30
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-J-3",
+      "phase": "group",
+      "group": "J",
+      "matchday": 3,
+      "team1": "Argentina",
+      "team2": "Austria",
+      "kickoff_et": "2026-06-22T13:00:00-04:00",
+      "kickoff_utc": "2026-06-22T17:00:00Z",
+      "pick_cells": [
+        [
+          22,
+          29
+        ],
+        [
+          22,
+          30
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-J-4",
+      "phase": "group",
+      "group": "J",
+      "matchday": 4,
+      "team1": "Jordan",
+      "team2": "Algeria",
+      "kickoff_et": "2026-06-22T23:00:00-04:00",
+      "kickoff_utc": "2026-06-23T03:00:00Z",
+      "pick_cells": [
+        [
+          27,
+          29
+        ],
+        [
+          27,
+          30
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-J-5",
+      "phase": "group",
+      "group": "J",
+      "matchday": 5,
+      "team1": "Algeria",
+      "team2": "Austria",
+      "kickoff_et": "2026-06-27T22:00:00-04:00",
+      "kickoff_utc": "2026-06-28T02:00:00Z",
+      "pick_cells": [
+        [
+          32,
+          29
+        ],
+        [
+          32,
+          30
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-J-6",
+      "phase": "group",
+      "group": "J",
+      "matchday": 6,
+      "team1": "Jordan",
+      "team2": "Argentina",
+      "kickoff_et": "2026-06-27T22:00:00-04:00",
+      "kickoff_utc": "2026-06-28T02:00:00Z",
+      "pick_cells": [
+        [
+          37,
+          29
+        ],
+        [
+          37,
+          30
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-K-1",
+      "phase": "group",
+      "group": "K",
+      "matchday": 1,
+      "team1": "Portugal",
+      "team2": "Congo DR",
+      "kickoff_et": "2026-06-17T13:00:00-04:00",
+      "kickoff_utc": "2026-06-17T17:00:00Z",
+      "pick_cells": [
+        [
+          12,
+          32
+        ],
+        [
+          12,
+          33
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-K-2",
+      "phase": "group",
+      "group": "K",
+      "matchday": 2,
+      "team1": "Uzbekistan",
+      "team2": "Colombia",
+      "kickoff_et": "2026-06-17T22:00:00-04:00",
+      "kickoff_utc": "2026-06-18T02:00:00Z",
+      "pick_cells": [
+        [
+          17,
+          32
+        ],
+        [
+          17,
+          33
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-K-3",
+      "phase": "group",
+      "group": "K",
+      "matchday": 3,
+      "team1": "Portugal",
+      "team2": "Uzbekistan",
+      "kickoff_et": "2026-06-23T13:00:00-04:00",
+      "kickoff_utc": "2026-06-23T17:00:00Z",
+      "pick_cells": [
+        [
+          22,
+          32
+        ],
+        [
+          22,
+          33
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-K-4",
+      "phase": "group",
+      "group": "K",
+      "matchday": 4,
+      "team1": "Colombia",
+      "team2": "Congo DR",
+      "kickoff_et": "2026-06-23T22:00:00-04:00",
+      "kickoff_utc": "2026-06-24T02:00:00Z",
+      "pick_cells": [
+        [
+          27,
+          32
+        ],
+        [
+          27,
+          33
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-K-5",
+      "phase": "group",
+      "group": "K",
+      "matchday": 5,
+      "team1": "Colombia",
+      "team2": "Portugal",
+      "kickoff_et": "2026-06-27T19:30:00-04:00",
+      "kickoff_utc": "2026-06-27T23:30:00Z",
+      "pick_cells": [
+        [
+          32,
+          32
+        ],
+        [
+          32,
+          33
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-K-6",
+      "phase": "group",
+      "group": "K",
+      "matchday": 6,
+      "team1": "Congo DR",
+      "team2": "Uzbekistan",
+      "kickoff_et": "2026-06-27T19:30:00-04:00",
+      "kickoff_utc": "2026-06-27T23:30:00Z",
+      "pick_cells": [
+        [
+          37,
+          32
+        ],
+        [
+          37,
+          33
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-L-1",
+      "phase": "group",
+      "group": "L",
+      "matchday": 1,
+      "team1": "England",
+      "team2": "Croatia",
+      "kickoff_et": "2026-06-17T16:00:00-04:00",
+      "kickoff_utc": "2026-06-17T20:00:00Z",
+      "pick_cells": [
+        [
+          12,
+          35
+        ],
+        [
+          12,
+          36
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-L-2",
+      "phase": "group",
+      "group": "L",
+      "matchday": 2,
+      "team1": "Ghana",
+      "team2": "Panama",
+      "kickoff_et": "2026-06-17T19:00:00-04:00",
+      "kickoff_utc": "2026-06-17T23:00:00Z",
+      "pick_cells": [
+        [
+          17,
+          35
+        ],
+        [
+          17,
+          36
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-L-3",
+      "phase": "group",
+      "group": "L",
+      "matchday": 3,
+      "team1": "England",
+      "team2": "Ghana",
+      "kickoff_et": "2026-06-23T16:00:00-04:00",
+      "kickoff_utc": "2026-06-23T20:00:00Z",
+      "pick_cells": [
+        [
+          22,
+          35
+        ],
+        [
+          22,
+          36
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-L-4",
+      "phase": "group",
+      "group": "L",
+      "matchday": 4,
+      "team1": "Panama",
+      "team2": "Croatia",
+      "kickoff_et": "2026-06-23T19:00:00-04:00",
+      "kickoff_utc": "2026-06-23T23:00:00Z",
+      "pick_cells": [
+        [
+          27,
+          35
+        ],
+        [
+          27,
+          36
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-L-5",
+      "phase": "group",
+      "group": "L",
+      "matchday": 5,
+      "team1": "Panama",
+      "team2": "England",
+      "kickoff_et": "2026-06-27T17:00:00-04:00",
+      "kickoff_utc": "2026-06-27T21:00:00Z",
+      "pick_cells": [
+        [
+          32,
+          35
+        ],
+        [
+          32,
+          36
+        ]
+      ],
+      "result": null
+    },
+    {
+      "id": "G-L-6",
+      "phase": "group",
+      "group": "L",
+      "matchday": 6,
+      "team1": "Croatia",
+      "team2": "Ghana",
+      "kickoff_et": "2026-06-27T17:00:00-04:00",
+      "kickoff_utc": "2026-06-27T21:00:00Z",
+      "pick_cells": [
+        [
+          37,
+          35
+        ],
+        [
+          37,
+          36
+        ]
+      ],
+      "result": null
+    }
+  ],
+  "knockout": []
+}
