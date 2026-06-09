@@ -106,6 +106,14 @@ def main():
     for f in fixtures["group_stage"]:
         group_fx.setdefault(f["group"], []).append(f)
     pmap = {p["name"]: p for p in picks["players"]}
+    # how the league split on each match (over submitted players who picked it)
+    dist = {}
+    for f in fixtures["group_stage"]:
+        c = {"team1": 0, "draw": 0, "team2": 0}
+        for p in picks["players"]:
+            o = p.get("group_picks", {}).get(f["id"])
+            if o in c: c[o] += 1
+        dist[f["id"]] = c
     def pick_breakdown(name):
         gp = pmap.get(name, {}).get("group_picks", {})
         out = []
@@ -116,7 +124,11 @@ def main():
                 status = "pending"
                 if res.get("status") == "final" and pk:
                     status = "correct" if pk == res.get("outcome") else "wrong"
-                ms.append({"t1": f["team1"], "t2": f["team2"], "pick": pk, "status": status})
+                c = dist[f["id"]]; tot = c["team1"] + c["draw"] + c["team2"]; mx = max(c.values()) if tot else 0
+                contra = bool(pk) and tot > 1 and c.get(pk, 0) < mx       # not with the plurality
+                solo = bool(pk) and tot > 1 and c.get(pk, 0) == 1         # only one who picked it
+                ms.append({"t1": f["team1"], "t2": f["team2"], "pick": pk, "status": status,
+                           "contra": contra, "solo": solo})
             out.append({"group": letter, "matches": ms})
         return out
 
@@ -128,18 +140,15 @@ def main():
         "picks": pick_breakdown(r["name"]),
     } for r in rows]
 
+    for pl in players:
+        ms = [m for g in pl["picks"] for m in g["matches"]]
+        pl["contra"] = sum(1 for m in ms if m["contra"])
+        pl["solo"] = sum(1 for m in ms if m["solo"])
+
     roster = load("roster.json", [r["name"] for r in rows])
     pending = [{"name": nm} for nm in roster if nm.lower() not in {r["name"].lower() for r in rows}]
 
     # ---- Group-table predictor: a table per group from consensus picks (or live/actual results) ----
-    dist = {}
-    for f in fixtures["group_stage"]:
-        c = {"team1": 0, "draw": 0, "team2": 0}
-        for p in picks["players"]:
-            o = p.get("group_picks", {}).get(f["id"])
-            if o in c: c[o] += 1
-        dist[f["id"]] = c
-
     def consensus_outcome(f):
         res = M.get(f["id"])
         if res and res.get("status") == "final": return res.get("outcome")
@@ -177,6 +186,15 @@ def main():
             return o if o else ("team1" if rank(f["team1"]) <= rank(f["team2"]) else "team2")
         pl["qualifiers"] = {t["group"]: [r["team"] for r in t["rows"][:2]] for t in build_table(psrc)}
 
+    # league splits: matches the group didn't see the same way (most-divided first)
+    splits = []
+    for f in fixtures["group_stage"]:
+        c = dist[f["id"]]; tot = c["team1"] + c["draw"] + c["team2"]
+        if tot >= 2 and sum(1 for k in c if c[k] > 0) >= 2:
+            splits.append({"t1": f["team1"], "t2": f["team2"], "group": f["group"], "c": c, "total": tot})
+    splits.sort(key=lambda s: (max(s["c"].values()) / s["total"], -s["total"]))
+    splits = splits[:12]
+
     leader = None
     if rows:
         second = rows[1]["total"] if len(rows) > 1 else 0
@@ -187,7 +205,7 @@ def main():
         "meta": {"name": LEAGUE_NAME, "overline": "The Friends League", "hosts": HOSTS,
                  "phase": phase(fixtures, results), "updated": et_now(),
                  "managers": len(roster), "pot": len(roster)*25, "submitted": len(players)},
-        "leader": leader, "players": players, "pending": pending, "groups": group_tables,
+        "leader": leader, "players": players, "pending": pending, "groups": group_tables, "splits": splits,
         "results": results_feed(fixtures, results), "bracket": bracket_view(fixtures, results),
         "championName": (M.get("K-104",{}) or {}).get("winner"),
     }
