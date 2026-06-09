@@ -285,6 +285,18 @@ def main():
                          "label": f"Group {f['group']}"})
         if len(upcoming) >= 8: break
 
+    # ---- Champion watch (predicted cup winners + still-alive) ----
+    elim = set()
+    for kx in fixtures.get("knockout", []):
+        res = M.get(kx["id"], {})
+        if res.get("status") == "final" and res.get("winner"):
+            for t in (kx.get("team1"), kx.get("team2")):
+                if t and t != res["winner"]: elim.add(t)
+    champions = [{"name": pl["name"],
+                  "champ": (pmap.get(pl["name"], {}).get("knockout_picks", {}) or {}).get("K-104")} for pl in players]
+    for c in champions:
+        c["alive"] = (c["champ"] not in elim) if c["champ"] else None
+
     leader = None
     if rows:
         second = rows[1]["total"] if len(rows) > 1 else 0
@@ -297,6 +309,7 @@ def main():
                  "managers": len(roster), "pot": len(roster)*25, "submitted": len(players)},
         "leader": leader, "players": players, "pending": pending, "groups": group_tables, "splits": splits,
         "daily": daily, "race": race, "upcoming": upcoming, "knockoutStart": "2026-06-28T16:00:00Z",
+        "champions": champions,
         "results": results_feed(fixtures, results), "bracket": bracket_view(fixtures, results),
         "championName": (M.get("K-104",{}) or {}).get("winner"),
     }

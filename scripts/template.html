@@ -195,6 +195,15 @@
   .today .t-cd{font-weight:800;font-variant-numeric:tabular-nums;color:var(--clay);background:var(--paper-3);padding:3px 10px;border-radius:100px;font-size:12px;white-space:nowrap;}
   .today .t-ko{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap;flex:0 0 auto;}
   @media(max-width:640px){.today .t-list{flex-direction:column;gap:8px;}}
+  /* champion watch */
+  .champ-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;}
+  .champ-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line-2);}
+  .champ-row .cn{font-weight:700;color:var(--ink-soft);min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .champ-row .ct{display:flex;align-items:center;gap:7px;font-weight:800;color:var(--ink);white-space:nowrap;}
+  .champ-row.out .ct .nm{text-decoration:line-through;color:var(--faint);}
+  .champ-row.out .ct .flag{opacity:.4;}
+  .outtag{font-size:9px;font-weight:800;letter-spacing:.08em;color:#fff;background:var(--red);border-radius:4px;padding:2px 6px;}
+  @media(max-width:640px){.champ-grid{grid-template-columns:1fr;}}
   /* race chart */
   .race svg{width:100%;height:auto;display:block;}
   .race-legend{display:flex;flex-wrap:wrap;gap:9px 16px;margin-top:10px;font-size:11.5px;color:var(--ink-soft);font-weight:700;}
@@ -242,10 +251,12 @@
     .row{grid-template-columns:34px 1fr auto;gap:11px;padding:12px 13px;}
     .who .name{font-size:16px;}.pts .total{font-size:22px;}
   }
-  /* ---- cinematic polish ---- */
-  .reveal{opacity:0;transform:translateY(14px);}
-  .reveal.in{opacity:1;transform:none;transition:opacity .55s ease, transform .6s cubic-bezier(.2,.7,.2,1);}
-  @media (prefers-reduced-motion: reduce){ .reveal,.reveal.in{opacity:1;transform:none;transition:none;} }
+  /* ---- cinematic polish (safe CSS load-in; nothing ever stays hidden) ---- */
+  @keyframes rise{from{opacity:0;transform:translateY(13px);}to{opacity:1;transform:none;}}
+  .today,.spotlight,.daily,.board,#raceSec,#champSec{animation:rise .55s ease both;}
+  .spotlight{animation-delay:.05s;} .daily{animation-delay:.10s;} .board{animation-delay:.15s;}
+  #raceSec{animation-delay:.20s;} #champSec{animation-delay:.24s;}
+  @media (prefers-reduced-motion: reduce){ .today,.spotlight,.daily,.board,#raceSec,#champSec{animation:none;} }
   .gt,.rcard,.split,.daily{transition:transform .14s ease, box-shadow .14s ease;}
   .gt:hover,.rcard:hover{transform:translateY(-2px);box-shadow:0 12px 26px -18px rgba(0,0,0,.4);}
   .row{transition:background .2s ease;}
@@ -277,6 +288,7 @@
   <div class="daily" id="daily"></div>
   <section class="sec"><div class="sec-head"><h2>Standings</h2><span class="meta" id="standMeta"></span></div><div class="board" id="standings"></div></section>
   <section class="sec" id="raceSec"><div class="sec-head"><h2>The Race</h2><span class="meta">points over time</span></div><div class="race" id="race"></div></section>
+  <section class="sec" id="champSec"><div class="sec-head"><h2>Champion Watch</h2><span class="meta">predicted cup winners</span></div><div id="champ"></div></section>
   <section class="sec"><div class="sec-head"><h2>Latest Results</h2><span class="meta">Auto-updated</span></div><div id="results"></div></section>
   <section class="sec"><div class="sec-head"><h2>Group Tables</h2><span class="meta" id="gtMeta"></span></div><div class="groups" id="groups"></div></section>
   <section class="sec"><div class="sec-head"><h2>By the Manager</h2><span class="meta">Tap to expand</span></div><div id="players"></div></section>
@@ -486,6 +498,13 @@ function race(){
   el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet"><line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${H-pad}" stroke="#e1d7c3"/>${paths}</svg>`+
     `<div class="race-legend">${r.series.map((s,si)=>`<span><i style="background:${cols[si%cols.length]}"></i>${s.name}</span>`).join('')}</div>`;
 }
+function champ(){
+  const el=document.getElementById("champ"), cs=DATA.champions||[];
+  if(!cs.some(c=>c.champ)){el.innerHTML='<div class="empty">Everyone\'s pick to lift the cup lands here when the knockout bracket opens — June 28. Eliminated champions get struck through as it plays out.</div>';return;}
+  el.innerHTML='<div class="champ-grid">'+cs.filter(c=>c.champ).map(c=>
+    `<div class="champ-row ${c.alive===false?'out':''}"><span class="cn">${c.name}</span>`+
+    `<span class="ct">${flag(c.champ,'flag sm')}<span class="nm">${c.champ}</span>${c.alive===false?'<span class="outtag">Out</span>':''}</span></div>`).join('')+'</div>';
+}
 function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
 async function shareCard(name){
   const url='cards/'+slug(name)+'.png';
@@ -523,11 +542,6 @@ function enhance(){
     requestAnimationFrame(function st(t){ s=s||t; const p=Math.min(1,(t-s)/dur), e=1-Math.pow(1-p,3);
       el.textContent=Math.round(v*e).toLocaleString('en-US'); if(p<1)requestAnimationFrame(st); });
   });
-  const els=document.querySelectorAll('.sec, .daily, .spotlight'); // staggered scroll reveals
-  els.forEach(el=>el.classList.add('reveal'));
-  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.08});
-  els.forEach(el=>io.observe(el));
-  setTimeout(()=>els.forEach(el=>el.classList.add('in')),1600);  // safety net if observer never fires
   const root=document.documentElement, tb=document.getElementById('themeBtn'); // dark "stadium" theme
   const saved=localStorage.getItem('wcl-theme'); if(saved)root.setAttribute('data-theme',saved);
   const lbl=()=>tb.textContent=root.getAttribute('data-theme')==='dark'?'Light':'Dark'; lbl();
@@ -537,7 +551,7 @@ function enhance(){
     if(last&&last!==L.name) confetti({particleCount:130,spread:75,origin:{y:.3}});
     localStorage.setItem('wcl-leader',L.name);} }catch(e){}
 }
-meta();today();daily();spotlight();standings();race();results();groups();players();splits();bracket();enhance();
+meta();today();daily();spotlight();standings();race();champ();results();groups();players();splits();bracket();enhance();
 </script>
 </body>
 </html>
