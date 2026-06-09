@@ -41,6 +41,38 @@ something changed** (no empty commits, safe to run repeatedly). Run it manually 
 scheduled Claude Code **Routine** run it a few times a day during the tournament — that runs in the
 cloud, so it updates the leaderboard even with your laptop closed.
 
+## Calendar file
+
+`build.py` also writes `wc26-group-stage.ics` (all 72 group matches, correct ET times) to the site
+root. Friends tap **Add to Cal** on the dashboard (or the footer link) and import once — the fixtures
+never change, so there's nothing to maintain.
+
+## iMessage recap bot (runs on this Mac)
+
+Apple allows no cloud path into iMessage, so the nightly recap posts from this machine via
+Messages.app. The site's **Copy** button on the Daily card is the from-your-phone fallback.
+
+```bash
+# One-time: pick which chat gets the recaps (start with a chat to yourself, to test)
+python3 scripts/setup_imessage.py
+
+# Test / preview / post
+python3 scripts/post_imessage.py --test      # sends a fixed hello message
+python3 scripts/post_imessage.py --dry-run   # prints the real recap, sends nothing
+python3 scripts/post_imessage.py             # posts if there's a new recap (dedupes)
+```
+
+- Posts only once per new recap (state in `~/.wc26-imessage-state`); nothing posts before June 11.
+- First run asks permission for Terminal to control Messages — click **Allow**
+  (System Settings → Privacy & Security → Automation if you missed the prompt).
+- Scheduled nightly at **10:45 PM** by `~/Library/LaunchAgents/com.wc26.recap.plist`
+  (`launchctl unload` that file to stop it; logs in `/tmp/wc26-recap.log`). If the Mac is asleep at
+  10:45 it posts on next wake. If a scheduled post ever doesn't arrive, check for a one-time
+  Automation permission prompt for the first scheduled (non-Terminal) run.
+- When you're happy with the test, re-run `setup_imessage.py` and point it at the lads' group.
+- **After the Final (July 19):** `launchctl unload ~/Library/LaunchAgents/com.wc26.recap.plist`
+  and disable the GitHub Actions workflow.
+
 ## What's in here
 
 | Path | What it is |

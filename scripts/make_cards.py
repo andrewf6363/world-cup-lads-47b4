@@ -47,4 +47,46 @@ for p in players:
         d.text((bx + 18, y + 11), b.upper(), font=bf, fill=GOLD); bx += bw + 52
     d.text((pad, Hh - 86), "andrewf6363.github.io/world-cup-lads-47b4", font=F("Barlow-SemiBold.ttf", 26), fill=MUT)
     img.save(os.path.join(OUT, slug(p["name"]) + ".png"))
-print(f"generated {len(players)} card(s) -> cards/")
+
+# ---- league-level renders: og.png (link unfurl image) + apple-touch-icon.png ----
+def gradient(w, h):
+    img = Image.new("RGB", (w, h), GREEN); d = ImageDraw.Draw(img)
+    for i in range(h):
+        t = i / h; d.line([(0, i), (w, i)], fill=(int(15-5*t), int(46-13*t), int(32-9*t)))
+    return img, d
+
+def render_og():
+    W2, H2 = 1200, 630; img, d = gradient(W2, H2)
+    d.rectangle([0, 0, W2//3, 16], fill=CLAY); d.rectangle([W2//3, 0, 2*W2//3, 16], fill=GOLD); d.rectangle([2*W2//3, 0, W2, 16], fill=GRASS)
+    pad = 84
+    d.text((pad, 84), "THE FRIENDS LEAGUE · 2026", font=F("Barlow-Bold.ttf", 32), fill=MUT)
+    d.text((pad, 132), "WORLD CUP LADS", font=F("Anton-Regular.ttf", 124), fill=INK)
+    if meta.get("started") and players:
+        sub = f"{players[0]['name'].upper()} LEADS — {meta.get('phase','').upper()}"
+    else:
+        sub = f"KICKS OFF JUNE 11 · ${meta.get('pot', 200)} POT · WINNER TAKES ALL"
+    d.text((pad, 312), sub, font=F("Barlow-Bold.ttf", 44), fill=GOLD)
+    y = 402
+    if meta.get("started") and players:
+        for p in players[:3]:
+            d.text((pad, y), f"{p['rank']}. {p['name'].upper()}", font=F("Barlow-Bold.ttf", 36), fill=INK)
+            d.text((pad + 560, y), f"{p['total']:,} PTS", font=F("Barlow-Bold.ttf", 36), fill=MUT); y += 56
+    else:
+        for ln in (f"{meta.get('managers', 8)} MANAGERS · ALL 72 GROUP MATCHES PICKED",
+                   "100 PTS A CORRECT PICK · KNOCKOUT POINTS DOUBLE EVERY ROUND"):
+            d.text((pad, y), ln, font=F("Barlow-Bold.ttf", 34), fill=INK); y += 56
+    d.text((pad, H2 - 84), "andrewf6363.github.io/world-cup-lads-47b4", font=F("Barlow-SemiBold.ttf", 28), fill=MUT)
+    img.save(os.path.join(OUT, "og.png"))
+
+def render_touch_icon():
+    import math
+    S = 180; img, d = gradient(S, S)
+    cx = cy = S / 2
+    d.ellipse([cx-50, cy-50, cx+50, cy+50], fill=GOLD)
+    pts = [(cx + 24*math.cos(math.radians(a)), cy - 24*math.sin(math.radians(a))) for a in (90, 162, 234, 306, 18)]
+    d.polygon(pts, fill=GREEN)
+    img.save(os.path.join(ROOT, "apple-touch-icon.png"))
+
+render_og()
+render_touch_icon()
+print(f"generated {len(players)} card(s) + og.png + apple-touch-icon.png")

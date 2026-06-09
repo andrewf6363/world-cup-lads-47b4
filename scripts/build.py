@@ -14,6 +14,7 @@ ROOT = os.path.join(HERE, "..")
 LEAGUE_NAME = "World Cup Lads"
 LEAGUE_SIZE = 8                 # players in the pool ($25 each -> $200)
 HOSTS = "2026 · United States · Canada · México"
+BASE_URL = "https://andrewf6363.github.io/world-cup-lads-47b4"
 ROUND_LABEL = {"R32":"Round of 32","R16":"Round of 16","QF":"Quarterfinals","SF":"Semifinals","Final":"Final","3P":"Third place"}
 # FIFA ranks (June 2026) — used as a tiebreaker for predicted tables and the win-probability model
 RANK = {
@@ -114,6 +115,46 @@ def bracket_view(fixtures, results):
             w = 0 if res.get("winner") == t1 else (1 if res.get("winner") == t2 else None)
         out.setdefault(label, []).append({"t":[t1,t2],"s":s,"w":w,"pen":bool(res.get("pens"))})
     return out
+
+def _ics_esc(s):
+    return s.replace("\\", "\\\\").replace(";", "\\;").replace(",", "\\,").replace("\n", "\\n")
+
+def _ics_fold(line):
+    """RFC 5545 folding: physical lines ≤75 octets, continuations start with one space,
+    and breaks only land on UTF-8 character boundaries (Google Calendar import is strict)."""
+    b = line.encode("utf-8"); out = []; first = True
+    while True:
+        cap = 74 if first else 73                      # leave room for the continuation space
+        if len(b) <= cap:
+            out.append(("" if first else " ") + b.decode("utf-8")); return out
+        i = cap
+        while (b[i] & 0xC0) == 0x80: i -= 1            # back off to a character boundary
+        out.append(("" if first else " ") + b[:i].decode("utf-8"))
+        b = b[i:]; first = False
+
+def write_ics(fixtures):
+    """All 72 group matches as a one-time-import calendar file at the site root.
+    DTSTAMP is a constant so the file is byte-identical every build (no commit churn)."""
+    lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//World Cup Lads//WC26 Group Stage//EN",
+             "CALSCALE:GREGORIAN", "METHOD:PUBLISH", "X-WR-CALNAME:World Cup Lads — 2026 Group Stage"]
+    n = 0
+    for f in sorted(fixtures["group_stage"], key=lambda x: (x.get("kickoff_utc") or "", x["id"])):
+        iso = f.get("kickoff_utc")
+        if not iso: continue
+        dt = datetime.datetime.fromisoformat(iso.replace("Z", "+00:00"))
+        lines += ["BEGIN:VEVENT",
+                  f"UID:wc26-{f['id']}@world-cup-lads",
+                  "DTSTAMP:20260609T000000Z",
+                  f"DTSTART:{dt.strftime('%Y%m%dT%H%M%SZ')}",
+                  f"DTEND:{(dt + datetime.timedelta(hours=2)).strftime('%Y%m%dT%H%M%SZ')}",
+                  "SUMMARY:" + _ics_esc(f"{f['team1']} vs {f['team2']} — Group {f['group']} (World Cup Lads)"),
+                  "DESCRIPTION:" + _ics_esc(f"World Cup Lads live table: {BASE_URL}"),
+                  "END:VEVENT"]
+        n += 1
+    lines.append("END:VCALENDAR")
+    out = "\r\n".join(l for line in lines for l in _ics_fold(line)) + "\r\n"
+    open(os.path.join(ROOT, "wc26-group-stage.ics"), "w", encoding="utf-8", newline="").write(out)
+    return n
 
 def main():
     fixtures = load("fixtures.json", {"group_stage": [], "knockout": []})
@@ -315,15 +356,26 @@ def main():
         "championName": (M.get("K-104",{}) or {}).get("winner"),
     }
 
+    nev = write_ics(fixtures)
+
+    # social link preview (baked at build time; og.png is rendered by make_cards.py)
+    if data["meta"]["started"] and leader:
+        og_desc = f"{leader['name']} leads on {leader['total']:,} pts — {data['meta']['phase']}"
+    else:
+        og_desc = f"{len(players)} of {len(roster)} sheets in · ${len(roster)*25} pot · kicks off June 11"
+    og_desc = og_desc.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;")
+    og_v = datetime.datetime.utcnow().strftime("%Y%m%d%H%M")
+
     tpl = open(os.path.join(HERE, "template.html"), encoding="utf-8").read()
-    html = tpl.replace("__DATA__", json.dumps(data, ensure_ascii=False))
+    html = (tpl.replace("__DATA__", json.dumps(data, ensure_ascii=False))
+               .replace("__OG_DESC__", og_desc).replace("__OG_V__", og_v))
     open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(html)
     open(os.path.join(ROOT, "standings.json"), "w", encoding="utf-8").write(
         json.dumps({"generated_utc": datetime.datetime.utcnow().isoformat()+"Z",
                     "leaderboard": rows}, ensure_ascii=False, indent=2))
 
     top = ", ".join(f'{r["name"]} {r["total"]}' for r in rows[:3]) or "(no picks yet)"
-    print(f"Built index.html · {len(players)}/{len(roster)} managers in · phase: {data['meta']['phase']} · top: {top}")
+    print(f"Built index.html · {len(players)}/{len(roster)} managers in · phase: {data['meta']['phase']} · top: {top} · {nev} calendar events")
 
 if __name__ == "__main__":
     main()

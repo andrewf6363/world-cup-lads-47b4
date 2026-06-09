@@ -1,0 +1,655 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//World Cup Lads//WC26 Group Stage//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:World Cup Lads — 2026 Group Stage
+BEGIN:VEVENT
+UID:wc26-G-A-1@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260611T190000Z
+DTEND:20260611T210000Z
+SUMMARY:Mexico vs South Africa — Group A (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-A-2@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260612T020000Z
+DTEND:20260612T040000Z
+SUMMARY:South Korea vs Czechia — Group A (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-B-1@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260612T190000Z
+DTEND:20260612T210000Z
+SUMMARY:Canada vs Bosnia-Herzegovina — Group B (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-D-1@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260613T010000Z
+DTEND:20260613T030000Z
+SUMMARY:USA vs Paraguay — Group D (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-D-2@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260613T040000Z
+DTEND:20260613T060000Z
+SUMMARY:Australia vs Türkiye — Group D (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-B-2@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260613T190000Z
+DTEND:20260613T210000Z
+SUMMARY:Qatar vs Switzerland — Group B (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-C-1@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260613T220000Z
+DTEND:20260614T000000Z
+SUMMARY:Brazil vs Morocco — Group C (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-C-2@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260614T010000Z
+DTEND:20260614T030000Z
+SUMMARY:Haiti vs Scotland — Group C (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-E-1@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260614T170000Z
+DTEND:20260614T190000Z
+SUMMARY:Germany vs Curacao — Group E (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-F-1@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260614T200000Z
+DTEND:20260614T220000Z
+SUMMARY:Netherlands vs Japan — Group F (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-E-2@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260614T230000Z
+DTEND:20260615T010000Z
+SUMMARY:Côte d'Ivoire vs Ecuador — Group E (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-F-2@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260615T020000Z
+DTEND:20260615T040000Z
+SUMMARY:Sweden vs Tunisia — Group F (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-H-1@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260615T160000Z
+DTEND:20260615T180000Z
+SUMMARY:Spain vs Cabo Verde — Group H (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-G-1@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260615T190000Z
+DTEND:20260615T210000Z
+SUMMARY:Belgium vs Egypt — Group G (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-H-2@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260615T220000Z
+DTEND:20260616T000000Z
+SUMMARY:Saudi Arabia vs Uruguay — Group H (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-G-2@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260616T010000Z
+DTEND:20260616T030000Z
+SUMMARY:IR Iran vs New Zealand — Group G (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-J-2@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260616T040000Z
+DTEND:20260616T060000Z
+SUMMARY:Austria vs Jordan — Group J (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-I-1@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260616T190000Z
+DTEND:20260616T210000Z
+SUMMARY:France vs Senegal — Group I (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-I-2@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260616T220000Z
+DTEND:20260617T000000Z
+SUMMARY:Iraq vs Norway — Group I (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-J-1@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260617T010000Z
+DTEND:20260617T030000Z
+SUMMARY:Argentina vs Algeria — Group J (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-K-1@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260617T170000Z
+DTEND:20260617T190000Z
+SUMMARY:Portugal vs Congo DR — Group K (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-L-1@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260617T200000Z
+DTEND:20260617T220000Z
+SUMMARY:England vs Croatia — Group L (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-L-2@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260617T230000Z
+DTEND:20260618T010000Z
+SUMMARY:Ghana vs Panama — Group L (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-K-2@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260618T020000Z
+DTEND:20260618T040000Z
+SUMMARY:Uzbekistan vs Colombia — Group K (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-A-3@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260618T160000Z
+DTEND:20260618T180000Z
+SUMMARY:Czechia vs South Africa — Group A (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-B-3@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260618T190000Z
+DTEND:20260618T210000Z
+SUMMARY:Switzerland vs Bosnia-Herzegovina — Group B (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-B-4@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260618T220000Z
+DTEND:20260619T000000Z
+SUMMARY:Canada vs Qatar — Group B (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-A-4@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260619T010000Z
+DTEND:20260619T030000Z
+SUMMARY:Mexico vs South Korea — Group A (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-D-4@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260619T040000Z
+DTEND:20260619T060000Z
+SUMMARY:Türkiye vs Paraguay — Group D (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-D-3@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260619T190000Z
+DTEND:20260619T210000Z
+SUMMARY:USA vs Australia — Group D (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-C-3@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260619T220000Z
+DTEND:20260620T000000Z
+SUMMARY:Scotland vs Morocco — Group C (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-C-4@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260620T010000Z
+DTEND:20260620T030000Z
+SUMMARY:Brazil vs Haiti — Group C (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-F-4@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260620T040000Z
+DTEND:20260620T060000Z
+SUMMARY:Tunisia vs Japan — Group F (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-F-3@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260620T170000Z
+DTEND:20260620T190000Z
+SUMMARY:Netherlands vs Sweden — Group F (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-E-3@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260620T200000Z
+DTEND:20260620T220000Z
+SUMMARY:Germany vs Côte d'Ivoire — Group E (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-E-4@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260621T000000Z
+DTEND:20260621T020000Z
+SUMMARY:Ecuador vs Curacao — Group E (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-H-3@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260621T160000Z
+DTEND:20260621T180000Z
+SUMMARY:Spain vs Saudi Arabia — Group H (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-G-3@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260621T190000Z
+DTEND:20260621T210000Z
+SUMMARY:Belgium vs IR Iran — Group G (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-H-4@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260621T220000Z
+DTEND:20260622T000000Z
+SUMMARY:Uruguay vs Cabo Verde — Group H (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-G-4@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260622T010000Z
+DTEND:20260622T030000Z
+SUMMARY:New Zealand vs Egypt — Group G (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-J-3@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260622T170000Z
+DTEND:20260622T190000Z
+SUMMARY:Argentina vs Austria — Group J (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-I-3@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260622T210000Z
+DTEND:20260622T230000Z
+SUMMARY:France vs Iraq — Group I (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-I-4@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260623T000000Z
+DTEND:20260623T020000Z
+SUMMARY:Norway vs Senegal — Group I (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-J-4@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260623T030000Z
+DTEND:20260623T050000Z
+SUMMARY:Jordan vs Algeria — Group J (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-K-3@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260623T170000Z
+DTEND:20260623T190000Z
+SUMMARY:Portugal vs Uzbekistan — Group K (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-L-3@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260623T200000Z
+DTEND:20260623T220000Z
+SUMMARY:England vs Ghana — Group L (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-L-4@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260623T230000Z
+DTEND:20260624T010000Z
+SUMMARY:Panama vs Croatia — Group L (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-K-4@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260624T020000Z
+DTEND:20260624T040000Z
+SUMMARY:Colombia vs Congo DR — Group K (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-B-5@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260624T190000Z
+DTEND:20260624T210000Z
+SUMMARY:Switzerland vs Canada — Group B (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-B-6@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260624T190000Z
+DTEND:20260624T210000Z
+SUMMARY:Bosnia-Herzegovina vs Qatar — Group B (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-C-5@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260624T220000Z
+DTEND:20260625T000000Z
+SUMMARY:Scotland vs Brazil — Group C (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-C-6@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260624T220000Z
+DTEND:20260625T000000Z
+SUMMARY:Morocco vs Haiti — Group C (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-A-5@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260625T010000Z
+DTEND:20260625T030000Z
+SUMMARY:Czechia vs Mexico — Group A (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-A-6@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260625T010000Z
+DTEND:20260625T030000Z
+SUMMARY:South Africa vs South Korea — Group A (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-E-5@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260625T200000Z
+DTEND:20260625T220000Z
+SUMMARY:Curacao vs Côte d'Ivoire — Group E (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-E-6@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260625T200000Z
+DTEND:20260625T220000Z
+SUMMARY:Ecuador vs Germany — Group E (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-F-5@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260625T230000Z
+DTEND:20260626T010000Z
+SUMMARY:Japan vs Sweden — Group F (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-F-6@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260625T230000Z
+DTEND:20260626T010000Z
+SUMMARY:Tunisia vs Netherlands — Group F (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-D-5@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260626T020000Z
+DTEND:20260626T040000Z
+SUMMARY:Türkiye vs USA — Group D (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-D-6@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260626T020000Z
+DTEND:20260626T040000Z
+SUMMARY:Paraguay vs Australia — Group D (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-I-5@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260626T190000Z
+DTEND:20260626T210000Z
+SUMMARY:Norway vs France — Group I (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-I-6@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260626T190000Z
+DTEND:20260626T210000Z
+SUMMARY:Senegal vs Iraq — Group I (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-H-5@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260627T000000Z
+DTEND:20260627T020000Z
+SUMMARY:Cabo Verde vs Saudi Arabia — Group H (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-H-6@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260627T000000Z
+DTEND:20260627T020000Z
+SUMMARY:Uruguay vs Spain — Group H (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-G-5@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260627T030000Z
+DTEND:20260627T050000Z
+SUMMARY:Egypt vs IR Iran — Group G (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-G-6@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260627T030000Z
+DTEND:20260627T050000Z
+SUMMARY:New Zealand vs Belgium — Group G (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-L-5@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260627T210000Z
+DTEND:20260627T230000Z
+SUMMARY:Panama vs England — Group L (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-L-6@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260627T210000Z
+DTEND:20260627T230000Z
+SUMMARY:Croatia vs Ghana — Group L (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-K-5@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260627T233000Z
+DTEND:20260628T013000Z
+SUMMARY:Colombia vs Portugal — Group K (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-K-6@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260627T233000Z
+DTEND:20260628T013000Z
+SUMMARY:Congo DR vs Uzbekistan — Group K (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-J-5@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260628T020000Z
+DTEND:20260628T040000Z
+SUMMARY:Algeria vs Austria — Group J (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+BEGIN:VEVENT
+UID:wc26-G-J-6@world-cup-lads
+DTSTAMP:20260609T000000Z
+DTSTART:20260628T020000Z
+DTEND:20260628T040000Z
+SUMMARY:Jordan vs Argentina — Group J (World Cup Lads)
+DESCRIPTION:World Cup Lads live table: https://andrewf6363.github.io/world
+ -cup-lads-47b4
+END:VEVENT
+END:VCALENDAR
