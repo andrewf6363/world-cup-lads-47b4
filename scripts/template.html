@@ -194,7 +194,13 @@
   .today .t-tm .vs{color:var(--faint);font-weight:600;}
   .today .t-cd{font-weight:800;font-variant-numeric:tabular-nums;color:var(--clay);background:var(--paper-3);padding:3px 10px;border-radius:100px;font-size:12px;white-space:nowrap;}
   .today .t-ko{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap;flex:0 0 auto;}
-  @media(max-width:640px){.today .t-list{flex-direction:column;gap:8px;}}
+  @media(max-width:640px){
+    .today{flex-direction:column;align-items:stretch;gap:9px;}
+    .today .t-list{flex-direction:column;gap:8px;width:100%;}
+    .today .t-m{width:100%;justify-content:space-between;gap:10px;}
+    .today .t-tm{min-width:0;}
+    .today .t-ko{width:100%;}
+  }
   /* champion watch */
   .champ-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;}
   .champ-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line-2);}
