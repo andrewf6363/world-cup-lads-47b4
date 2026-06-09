@@ -1,0 +1,32 @@
+name: Update dashboard
+
+# Runs in the cloud on GitHub's servers (no laptop needed). Fetches the latest World Cup
+# results, recomputes scores, and publishes — but only commits when something changed.
+on:
+  schedule:
+    - cron: "17 */4 * * *"   # every 4 hours (UTC), off-minute
+  workflow_dispatch:           # lets you (or me) trigger a run by hand anytime
+
+permissions:
+  contents: write              # allow the run to push the rebuilt site back to the repo
+
+concurrency:
+  group: dashboard-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Configure git identity
+        run: |
+          git config user.name "wc-lads-bot"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Fetch results, recompute, and publish if changed
+        run: bash scripts/update.sh
