@@ -80,6 +80,8 @@
   .pts .total .u{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.08em;margin-left:4px;}
   .pts .move{font-size:12px;font-weight:800;margin-top:5px;color:var(--faint);}
   .pts .move.up{color:var(--grass-deep);} .pts .move.down{color:var(--red);}
+  .pts .wp{font-size:12px;font-weight:800;color:var(--navy);margin-top:6px;white-space:nowrap;}
+  .pts .wp span{color:var(--muted);font-weight:700;font-size:9px;letter-spacing:.05em;text-transform:uppercase;}
   .meters{grid-column:2 / -1;margin-top:11px;display:flex;flex-direction:column;gap:6px;}
   .meter{display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:11px;}
   .ml{font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
@@ -288,7 +290,7 @@ function spotlight(){
 
 function standings(){
   const el=document.getElementById("standings"), GMAX=7200, KMAX=8000;
-  document.getElementById("standMeta").textContent=`${DATA.players.length} of ${DATA.meta.managers} reporting`;
+  document.getElementById("standMeta").textContent=`${DATA.players.length} of ${DATA.meta.managers} reporting`+(DATA.players.length>1&&DATA.players.length<DATA.meta.managers?" · win% provisional":"");
   if(!DATA.players.length){el.innerHTML='<div class="empty">No picks submitted yet — the leaderboard fills in as sheets come back.</div>';return;}
   DATA.players.forEach(p=>{
     const gW=Math.round(p.grp/GMAX*100), kW=Math.round(p.ko/KMAX*100);
@@ -304,7 +306,7 @@ function standings(){
       <div class="${rb}">${p.rank}</div>
       <div class="who"><div class="name">${p.name}${(p.rank===1&&p.total>0)?'<span class="tag">Leader</span>':''}</div>
         <div class="pick">${pick}</div></div>
-      <div class="pts"><div class="total tnum">${fmt(p.total)}<span class="u">PTS</span></div><div class="move ${mvc}">${mv}</div></div>
+      <div class="pts"><div class="total tnum">${fmt(p.total)}<span class="u">PTS</span></div><div class="move ${mvc}">${mv}</div>${DATA.players.length>1?`<div class="wp">${p.winpct}%<span> to lead</span></div>`:''}</div>
       <div class="meters">
         <div class="meter"><span class="ml">Group</span><span class="mtrack"><i class="g" style="width:${gW}%"></i></span><span class="mv">${fmt(p.grp)}<i>/7,200</i></span></div>
         <div class="meter"><span class="ml">Knockout</span><span class="mtrack"><i class="k" style="width:${kW}%"></i></span><span class="mv">${fmt(p.ko)}<i>/8,000</i></span></div>

@@ -5,7 +5,7 @@ Reads data/{fixtures,picks,results,teams}.json, recomputes everything from scrat
 (deterministic / self-healing), and writes index.html using scripts/template.html.
 Run:  python3 scripts/build.py
 """
-import json, os, datetime
+import json, os, datetime, math, random
 import lib
 
 HERE = os.path.dirname(__file__)
@@ -26,6 +26,35 @@ RANK = {
  "Ghana":73,"Curacao":82,"Haiti":83,"New Zealand":85,
 }
 def rank(t): return RANK.get(t, 90)
+
+def match_probs(t1, t2):
+    """P(team1 win), P(draw), P(team2 win) from FIFA-rank difference. Tuned for realistic
+    international variance (lots of draws, frequent upsets) so win% isn't overconfident."""
+    diff = rank(t2) - rank(t1)                                   # >0 => team1 stronger
+    pdraw = max(0.16, min(0.32, 0.30 * math.exp(-abs(diff) / 55.0)))
+    p1_dec = 1 / (1 + 10 ** (-diff / 34.0))                      # team1 share of a decisive result
+    return (1 - pdraw) * p1_dec, pdraw, (1 - pdraw) * (1 - p1_dec)
+
+def win_probabilities(rows, group_stage, M, pmap, nsim=10000):
+    """Monte Carlo: simulate unplayed matches vs each manager's picks; % of sims they finish 1st."""
+    random.seed(20260611)                                        # deterministic for a given input
+    unplayed = [(f["id"], match_probs(f["team1"], f["team2"]))
+                for f in group_stage if M.get(f["id"], {}).get("status") != "final"]
+    names = [r["name"] for r in rows]
+    if not names: return {}
+    picks_by = {n: pmap.get(n, {}).get("group_picks", {}) for n in names}
+    base = {r["name"]: r["total"] for r in rows}                 # points already locked
+    wins = {n: 0.0 for n in names}
+    for _ in range(nsim):
+        tot = dict(base)
+        for fid, (p1, pd, p2) in unplayed:
+            r = random.random()
+            o = "team1" if r < p1 else ("draw" if r < p1 + pd else "team2")
+            for n in names:
+                if picks_by[n].get(fid) == o: tot[n] += 100
+        mx = max(tot.values()); lead = [n for n in names if tot[n] == mx]
+        for n in lead: wins[n] += 1.0 / len(lead)
+    return {n: round(wins[n] / nsim * 100) for n in names}
 
 def load(name, default):
     p = os.path.join(DATA, name)
@@ -194,6 +223,10 @@ def main():
             splits.append({"t1": f["team1"], "t2": f["team2"], "group": f["group"], "c": c, "total": tot})
     splits.sort(key=lambda s: (max(s["c"].values()) / s["total"], -s["total"]))
     splits = splits[:12]
+
+    wp = win_probabilities(rows, fixtures["group_stage"], M, pmap)
+    for pl in players:
+        pl["winpct"] = wp.get(pl["name"], 0)
 
     leader = None
     if rows:
