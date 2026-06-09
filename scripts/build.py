@@ -91,7 +91,7 @@ def main():
 
     players = [{
         "name": r["name"], "total": r["total"], "grp": r["grp"], "ko": r["ko"],
-        "correct": r["correct"], "rank": r["rank"], "move": r["move"], "champ": r["champ"],
+        "correct": r["correct"], "graded": r["graded"], "rank": r["rank"], "move": r["move"], "champ": r["champ"],
         "rounds": {"R32":r["rounds"]["R32"],"R16":r["rounds"]["R16"],"QF":r["rounds"]["QF"],
                    "SF":r["rounds"]["SF"],"F":r["rounds"]["Final"]},
     } for r in rows]
@@ -100,7 +100,7 @@ def main():
     if rows:
         second = rows[1]["total"] if len(rows) > 1 else 0
         leader = {"name":rows[0]["name"],"total":rows[0]["total"],"correct":rows[0]["correct"],
-                  "champ":rows[0]["champ"],"lead":rows[0]["total"]-second}
+                  "graded":rows[0]["graded"],"champ":rows[0]["champ"],"lead":rows[0]["total"]-second}
 
     n = len(players)
     data = {

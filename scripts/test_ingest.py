@@ -8,7 +8,7 @@ import ingest_picks as ing
 
 HERE = os.path.dirname(__file__)
 DATA = os.path.join(HERE, "..", "data")
-TEMPLATE = "/Users/andrewfahey/World Cup/World Cup Selections.xlsx"
+TEMPLATE = os.path.join(DATA, "blank-template.xlsx")
 fixtures = json.load(open(os.path.join(DATA, "fixtures.json")))["group_stage"]
 aliases  = json.load(open(os.path.join(DATA, "teams.json")))["aliases"]
 

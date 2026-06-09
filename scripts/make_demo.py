@@ -3,7 +3,7 @@
 real ingest->score->render pipeline and eyeball the dashboard. Demo only; reset_data.py clears it."""
 import os, json, openpyxl
 HERE=os.path.dirname(__file__); DATA=os.path.join(HERE,"..","data")
-TEMPLATE="/Users/andrewfahey/World Cup/World Cup Selections.xlsx"
+TEMPLATE=os.path.join(DATA,"blank-template.xlsx")
 fixtures=json.load(open(os.path.join(DATA,"fixtures.json")))["group_stage"]
 
 NAMES=["Andrew","Diego","Priya","Marcus","Liam","Sofia","Theo","Owen"]

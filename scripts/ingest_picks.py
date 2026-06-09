@@ -56,10 +56,29 @@ def resolve(raw, t1, t2, aliases):
         return ("team1" if r1 > r2 else "team2"), None
     return None, f"{s!r} did not clearly match '{t1}', '{t2}', or 'tie'"
 
+def _pick_sheet(wb, fixtures):
+    """Pick the sheet that looks like the filled template: most team-cell matches, then most picks.
+    Handles files with extra sheets (e.g. a 'Master'/reference tab) without guessing."""
+    best, best_key = None, (-1, -1)
+    for ws in wb.worksheets:
+        tmatch = filled = 0
+        for f in fixtures:
+            (pr, c1), (_, c2) = f["pick_cells"]; tr = pr - 1
+            if str(ws.cell(row=tr, column=c1).value).strip() == f["team1"] and \
+               str(ws.cell(row=tr, column=c2).value).strip() == f["team2"]:
+                tmatch += 1
+            v1 = ws.cell(row=pr, column=c1).value; v2 = ws.cell(row=pr, column=c2).value
+            if (v1 and str(v1).strip()) or (v2 and str(v2).strip()): filled += 1
+        if tmatch >= 60 and (tmatch, filled) > best_key:
+            best, best_key = ws, (tmatch, filled)
+    return best or wb.worksheets[0]
+
 def ingest_one(path, fixtures, aliases, override=None):
     name = player_name(path, override)
     wb = openpyxl.load_workbook(path, data_only=True)
-    ws = wb.worksheets[0]
+    ws = _pick_sheet(wb, fixtures)
+    if len(wb.worksheets) > 1:
+        print(f"    (multi-sheet {wb.sheetnames} -> using '{ws.title}')")
     picks, issues = {}, []
     read = 0
     for fx in fixtures:

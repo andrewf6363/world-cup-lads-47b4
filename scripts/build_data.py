@@ -6,8 +6,8 @@ Run:  python3 scripts/build_data.py
 import json, datetime, re, os
 import openpyxl
 
-TEMPLATE = "/Users/andrewfahey/World Cup/World Cup Selections.xlsx"
 OUT = os.path.join(os.path.dirname(__file__), "..", "data")
+TEMPLATE = os.path.join(OUT, "blank-template.xlsx")
 
 # group letter -> (team1 column, team2 column).  9th group's header is mislabeled "K" in the
 # sheet but is really Group I (France/Senegal/Iraq/Norway); we assign letters left-to-right.

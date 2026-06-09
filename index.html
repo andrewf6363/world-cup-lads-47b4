@@ -182,7 +182,7 @@
 </div>
 
 <script>
-const DATA = {"meta": {"name": "World Cup Lads", "overline": "The Friends League", "hosts": "2026 · United States · Canada · México", "phase": "Kicks Off June 11", "updated": "Jun 9, 1:32 PM ET", "managers": 8, "pot": 200, "submitted": 0}, "leader": null, "players": [], "results": [], "bracket": null, "championName": null};
+const DATA = {"meta": {"name": "World Cup Lads", "overline": "The Friends League", "hosts": "2026 · United States · Canada · México", "phase": "Kicks Off June 11", "updated": "Jun 9, 2:04 PM ET", "managers": 8, "pot": 200, "submitted": 2}, "leader": {"name": "Andrew Fahey", "total": 0, "correct": 0, "graded": 0, "champ": null, "lead": 0}, "players": [{"name": "Andrew Fahey", "total": 0, "grp": 0, "ko": 0, "correct": 0, "graded": 0, "rank": 1, "move": 0, "champ": null, "rounds": {"R32": 0, "R16": 0, "QF": 0, "SF": 0, "F": 0}}, {"name": "Keegan Ball", "total": 0, "grp": 0, "ko": 0, "correct": 0, "graded": 0, "rank": 1, "move": 0, "champ": null, "rounds": {"R32": 0, "R16": 0, "QF": 0, "SF": 0, "F": 0}}], "results": [], "bracket": null, "championName": null};
 const TEAM = {
  "Mexico":["mx","#1B7A3D"],"South Africa":["za","#007749"],"South Korea":["kr","#C8102E"],"Korea Rep.":["kr","#C8102E"],"Czechia":["cz","#11457E"],
  "Canada":["ca","#D52B1E"],"Bosnia-Herzegovina":["ba","#002F6C"],"Qatar":["qa","#8A1538"],"Switzerland":["ch","#D8232A"],
@@ -223,7 +223,7 @@ function spotlight(){
   if(L.total===0){metaLine="Picks are in — first match kicks off June 11"; lead="Let's go";}
   else{
     metaLine = L.champ ? `Riding with ${flag(L.champ)} <b style="color:#F7F0E1">${L.champ}</b> to lift the cup`
-                       : `${L.correct}/72 group picks correct so far`;
+                       : `${L.correct} of ${L.graded} group picks correct so far`;
     lead = L.lead>0 ? `+${fmt(L.lead)} on 2nd` : "Tied at the top";
   }
   sp.innerHTML=`<div class="sl-l"><div class="sl-tag">Current Leader · ${DATA.meta.phase}</div>`+
@@ -241,9 +241,10 @@ function standings(){
     const mv=p.move>0?`▲ +${p.move}`:p.move<0?`▼ ${p.move}`:"— 0";
     const mvc=p.move>0?"up":p.move<0?"down":"";
     const rb=p.rank<=3?`rankb g${p.rank}`:"rankb";
+    const gp=p.graded>0?`${p.correct}/${p.graded} correct`:'Picks in';
     const pick=p.champ
-      ? `${flag(p.champ,"flag sm")} <span>Champion · <b>${p.champ}</b></span> · ${p.correct}/72 group`
-      : `<span>${p.correct}/72 group correct</span>`;
+      ? `${flag(p.champ,"flag sm")} <span>Champion · <b>${p.champ}</b></span> · ${gp}`
+      : `<span>${gp}</span>`;
     const row=document.createElement("div"); row.className="row"+(p.rank===1&&p.total>0?" leader":"");
     row.innerHTML=`
       <div class="${rb}">${p.rank}</div>
