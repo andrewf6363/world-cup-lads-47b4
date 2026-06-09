@@ -103,14 +103,18 @@ def main():
     manual = load("results_manual.json", {"matches": {}}).get("matches", {})
     for mid, rec in manual.items():
         matches[mid] = rec
-
-    out = {"last_fetched_utc": datetime.datetime.utcnow().isoformat()+"Z", "source": used, "matches": matches}
-    json.dump(out, open(os.path.join(DATA, "results.json"), "w"), ensure_ascii=False, indent=2)
-    print(f"group feed matches mapped: {mapped}/72" + (f"  ({finals} final)" if finals else "  (none played yet)"))
     if unmatched:
         print("  UNMATCHED (add an alias):"); [print("   -", u) for u in unmatched[:12]]
-    print(f"+ {len(manual)} manual override(s)" if manual else "no manual overrides")
-    print(f"wrote data/results.json ({len(matches)} final result(s))")
+
+    # idempotent: only rewrite when the actual results changed (keeps auto-update from making empty commits)
+    if load("results.json", {}).get("matches") == matches:
+        print(f"group matches mapped {mapped}/72 — no change since last run (results.json untouched)")
+        return 0
+    out = {"last_fetched_utc": datetime.datetime.utcnow().isoformat()+"Z", "source": used, "matches": matches}
+    json.dump(out, open(os.path.join(DATA, "results.json"), "w"), ensure_ascii=False, indent=2)
+    print(f"group matches mapped {mapped}/72" + (f", {finals} final" if finals else ", none played yet")
+          + (f", +{len(manual)} manual" if manual else ""))
+    print(f"updated data/results.json ({len(matches)} final result(s))")
     return 0
 
 if __name__ == "__main__":

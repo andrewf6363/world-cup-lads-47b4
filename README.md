@@ -22,12 +22,12 @@ Run these from this folder (`wc26-league/`).
 python3 scripts/ingest_picks.py "/path/to/Brendan.xlsx"
 python3 scripts/ingest_picks.py picks_inbox/*.xlsx        # or a whole folder at once
 
-# 2. Rebuild the dashboard from current picks + results
-python3 scripts/build.py
-
-# 3. Publish (or let the scheduled Routine do this automatically)
-git add -A && git commit -m "update" && git push
+# 2. Publish: rebuild + commit + push (only if something changed)
+bash scripts/update.sh
 ```
+
+**Add a friend's picks:** drop their returned `.xlsx` anywhere, run command 1 on it (it auto-finds
+the right sheet even if their file has extra tabs), then run command 2. They appear on the board in ~1 min.
 
 - Ingest **prints a summary** and flags anything it can't read cleanly (e.g. a typo) so you can confirm —
   it never guesses. Re-ingesting the same person just updates their picks.
@@ -36,9 +36,10 @@ git add -A && git commit -m "update" && git push
 
 ## Auto-updates
 
-A scheduled Claude Code **Routine** runs a few times a day during the tournament: pull the latest
-results → recompute every score → rebuild → commit & push. Runs in the cloud, so it works with your
-laptop closed. (Set up separately; see the project notes.)
+`bash scripts/update.sh` runs the whole loop: pull → fetch results → recompute → publish **only if
+something changed** (no empty commits, safe to run repeatedly). Run it manually anytime, or let a
+scheduled Claude Code **Routine** run it a few times a day during the tournament — that runs in the
+cloud, so it updates the leaderboard even with your laptop closed.
 
 ## What's in here
 
