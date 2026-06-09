@@ -1,0 +1,4 @@
+{
+  "_comment": "Manual result overrides — these always win over the auto-feed. Format per match id, e.g. group: {\"G-A-1\":{\"status\":\"final\",\"outcome\":\"team1\",\"team1_goals\":2,\"team2_goals\":1}}  knockout: {\"K-73\":{\"status\":\"final\",\"winner\":\"France\",\"team1_goals\":1,\"team2_goals\":1,\"pens\":\"4–2 pens\"}}",
+  "matches": {}
+}
