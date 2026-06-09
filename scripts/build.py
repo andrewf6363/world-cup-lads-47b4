@@ -15,6 +15,17 @@ LEAGUE_NAME = "World Cup Lads"
 LEAGUE_SIZE = 8                 # players in the pool ($25 each -> $200)
 HOSTS = "2026 · United States · Canada · México"
 ROUND_LABEL = {"R32":"Round of 32","R16":"Round of 16","QF":"Quarterfinals","SF":"Semifinals","Final":"Final","3P":"Third place"}
+# FIFA ranks (June 2026) — used as a tiebreaker for predicted tables and the win-probability model
+RANK = {
+ "Argentina":1,"Spain":2,"France":3,"England":4,"Portugal":5,"Brazil":6,"Morocco":7,"Netherlands":8,
+ "Belgium":9,"Germany":10,"Croatia":11,"Colombia":13,"Mexico":14,"Senegal":15,"Uruguay":16,"USA":17,
+ "Japan":18,"Switzerland":19,"IR Iran":20,"Türkiye":22,"Ecuador":23,"Austria":24,"South Korea":25,
+ "Australia":27,"Algeria":28,"Egypt":29,"Canada":30,"Norway":31,"Côte d'Ivoire":33,"Panama":34,
+ "Czechia":39,"Paraguay":40,"Scotland":42,"Congo DR":45,"Tunisia":46,"Uzbekistan":48,"Iraq":56,
+ "Qatar":58,"Saudi Arabia":59,"South Africa":60,"Jordan":63,"Bosnia-Herzegovina":64,"Cabo Verde":67,
+ "Ghana":73,"Curacao":82,"Haiti":83,"New Zealand":85,
+}
+def rank(t): return RANK.get(t, 90)
 
 def load(name, default):
     p = os.path.join(DATA, name)
@@ -120,6 +131,52 @@ def main():
     roster = load("roster.json", [r["name"] for r in rows])
     pending = [{"name": nm} for nm in roster if nm.lower() not in {r["name"].lower() for r in rows}]
 
+    # ---- Group-table predictor: a table per group from consensus picks (or live/actual results) ----
+    dist = {}
+    for f in fixtures["group_stage"]:
+        c = {"team1": 0, "draw": 0, "team2": 0}
+        for p in picks["players"]:
+            o = p.get("group_picks", {}).get(f["id"])
+            if o in c: c[o] += 1
+        dist[f["id"]] = c
+
+    def consensus_outcome(f):
+        res = M.get(f["id"])
+        if res and res.get("status") == "final": return res.get("outcome")
+        c = dist[f["id"]]
+        if not (c["team1"] + c["draw"] + c["team2"]):
+            return "team1" if rank(f["team1"]) <= rank(f["team2"]) else "team2"
+        pref = {"team1": (c["team1"], -rank(f["team1"])), "team2": (c["team2"], -rank(f["team2"])),
+                "draw": (c["draw"], -1000)}
+        return max(pref, key=lambda o: pref[o])
+
+    def build_table(src):
+        tables = []
+        for letter, fxs in group_fx.items():
+            tm = {}
+            for f in fxs:
+                for t in (f["team1"], f["team2"]): tm.setdefault(t, {"team": t, "pts": 0, "w": 0, "d": 0, "l": 0})
+            nfinal = 0
+            for f in fxs:
+                if M.get(f["id"], {}).get("status") == "final": nfinal += 1
+                o = src(f); t1, t2 = f["team1"], f["team2"]
+                if o == "team1": tm[t1]["pts"] += 3; tm[t1]["w"] += 1; tm[t2]["l"] += 1
+                elif o == "team2": tm[t2]["pts"] += 3; tm[t2]["w"] += 1; tm[t1]["l"] += 1
+                else: tm[t1]["pts"] += 1; tm[t2]["pts"] += 1; tm[t1]["d"] += 1; tm[t2]["d"] += 1
+            rows_ = sorted(tm.values(), key=lambda r: (-r["pts"], rank(r["team"])))
+            status = "final" if nfinal == 6 else ("live" if nfinal else "predicted")
+            tables.append({"group": letter, "status": status,
+                           "rows": [{**r, "through": i < 2} for i, r in enumerate(rows_)]})
+        return tables
+
+    group_tables = build_table(consensus_outcome)
+    for pl in players:                       # each manager's predicted qualifiers (their own picks)
+        gp = pmap.get(pl["name"], {}).get("group_picks", {})
+        def psrc(f, gp=gp):
+            o = gp.get(f["id"])
+            return o if o else ("team1" if rank(f["team1"]) <= rank(f["team2"]) else "team2")
+        pl["qualifiers"] = {t["group"]: [r["team"] for r in t["rows"][:2]] for t in build_table(psrc)}
+
     leader = None
     if rows:
         second = rows[1]["total"] if len(rows) > 1 else 0
@@ -130,7 +187,7 @@ def main():
         "meta": {"name": LEAGUE_NAME, "overline": "The Friends League", "hosts": HOSTS,
                  "phase": phase(fixtures, results), "updated": et_now(),
                  "managers": len(roster), "pot": len(roster)*25, "submitted": len(players)},
-        "leader": leader, "players": players, "pending": pending,
+        "leader": leader, "players": players, "pending": pending, "groups": group_tables,
         "results": results_feed(fixtures, results), "bracket": bracket_view(fixtures, results),
         "championName": (M.get("K-104",{}) or {}).get("winner"),
     }

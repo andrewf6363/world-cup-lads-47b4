@@ -123,7 +123,9 @@
   .chip.off .val{color:var(--faint);}
   /* pick breakdown (expand a manager to see every pick) */
   .picks{display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;margin-top:18px;}
-  .pkg-h{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:800;padding:7px 0 5px;border-bottom:1px solid var(--line);}
+  .pkg-h{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:800;padding:7px 0 5px;border-bottom:1px solid var(--line);}
+  .pkg-h .q{display:flex;align-items:center;gap:3px;font-size:9.5px;font-weight:700;color:var(--muted);text-transform:none;letter-spacing:.02em;}
+  .pkg-h .q .flag{width:16px;height:11px;}
   .pk{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid var(--line-2);font-size:12.5px;}
   .pk:last-child{border-bottom:0;}
   .pk-t{display:flex;align-items:center;gap:5px;color:var(--faint);min-width:0;flex:1;}
@@ -140,6 +142,23 @@
   .pending-row .nm{font-weight:700;color:var(--muted);}
   .pending-row .st{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--faint);}
   @media (max-width:640px){ .picks{grid-template-columns:1fr;} }
+  /* group-table predictor */
+  .groups{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+  .gt{background:var(--paper-2);border:1px solid var(--line);border-radius:11px;overflow:hidden;}
+  .gt-h{display:flex;align-items:center;justify-content:space-between;padding:9px 13px;border-bottom:1px solid var(--line);}
+  .gt-h .g{font-family:"Anton",sans-serif;font-size:15px;letter-spacing:.04em;}
+  .gt-h .lab{font-size:9px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;}
+  .gt-h .lab.predicted{color:var(--clay);} .gt-h .lab.live{color:var(--grass-deep);} .gt-h .lab.final{color:var(--ink-soft);}
+  .gtr{display:grid;grid-template-columns:16px 1fr auto;align-items:center;gap:8px;padding:6px 13px;font-size:13px;border-bottom:1px solid var(--line-2);}
+  .gtr:nth-child(3){border-bottom:1.5px solid var(--line);}
+  .gt .gtr:last-child{border-bottom:0;}
+  .gtr .pos{color:var(--faint);font-weight:800;font-size:11px;}
+  .gtr .tm{display:flex;align-items:center;gap:7px;min-width:0;color:var(--muted);}
+  .gtr .tm .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .gtr.thru .tm{color:var(--ink);font-weight:700;} .gtr.thru .pos{color:var(--grass-deep);}
+  .gtr .pts{font-weight:800;font-variant-numeric:tabular-nums;}
+  @media(max-width:900px){.groups{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:560px){.groups{grid-template-columns:1fr;}}
 
   .scrollhint{font-size:11px;color:var(--muted);margin:-4px 0 10px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;}
   .bracket{display:flex;gap:14px;overflow-x:auto;padding:2px 2px 12px;scroll-snap-type:x proximity;}
@@ -190,6 +209,7 @@
   <div class="spotlight" id="spotlight"></div>
   <section class="sec"><div class="sec-head"><h2>Standings</h2><span class="meta" id="standMeta"></span></div><div class="board" id="standings"></div></section>
   <section class="sec"><div class="sec-head"><h2>Latest Results</h2><span class="meta">Auto-updated</span></div><div id="results"></div></section>
+  <section class="sec"><div class="sec-head"><h2>Group Tables</h2><span class="meta" id="gtMeta"></span></div><div class="groups" id="groups"></div></section>
   <section class="sec"><div class="sec-head"><h2>By the Manager</h2><span class="meta">Tap to expand</span></div><div id="players"></div></section>
   <section class="sec"><div class="sec-head"><h2>The Bracket</h2><span class="meta">R32 → Final</span></div><div id="bracketWrap"></div></section>
   <footer>
@@ -309,7 +329,9 @@ function players(){
           `<span class="pk-v">${draw?'DRAW':'v'}</span>`+
           `<span class="pk-t right ${b?'sel':''}"><span class="nm">${m.t2}</span>${flag(m.t2,'flag sm')}</span></div>`;
       }).join('');
-      return `<div class="pkgroup"><div class="pkg-h">Group ${g.group}</div>${rows}</div>`;
+      const q=(p.qualifiers||{})[g.group]||[];
+      const qh=q.length?`<span class="q">${flag(q[0],'flag sm')}${flag(q[1],'flag sm')}thru</span>`:'';
+      return `<div class="pkgroup"><div class="pkg-h"><span>Group ${g.group}</span>${qh}</div>${rows}</div>`;
     }).join('');
     const d=document.createElement("details");
     d.innerHTML=`<summary><span class="l">${p.champ?flag(p.champ):''}<span class="nm">${p.name}</span></span>
@@ -351,7 +373,19 @@ function bracket(){
   });
 }
 
-meta();spotlight();standings();results();players();bracket();
+function groups(){
+  const el=document.getElementById("groups"), gs=DATA.groups||[];
+  document.getElementById("gtMeta").textContent = gs.some(g=>g.status!=="predicted") ? "live + predicted" : "predicted from picks";
+  gs.forEach(g=>{
+    const lab=g.status==="final"?"Final":g.status==="live"?"Live":"Predicted";
+    const rows=g.rows.map((r,i)=>`<div class="gtr ${r.through?'thru':''}"><span class="pos">${i+1}</span>`+
+      `<span class="tm">${flag(r.team,'flag sm')}<span class="nm">${r.team}</span></span><span class="pts">${r.pts}</span></div>`).join('');
+    const c=document.createElement("div"); c.className="gt";
+    c.innerHTML=`<div class="gt-h"><span class="g">Group ${g.group}</span><span class="lab ${g.status}">${lab}</span></div>${rows}`;
+    el.appendChild(c);
+  });
+}
+meta();spotlight();standings();results();groups();players();bracket();
 </script>
 </body>
 </html>
