@@ -183,6 +183,16 @@
   .daily .hl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--muted);}
   .daily .ln{font-size:14px;color:var(--ink-soft);margin-top:5px;font-weight:600;}
   .daily ul{margin:9px 0 0;padding:0 0 0 17px;} .daily li{font-size:13px;color:var(--ink-soft);margin:3px 0;}
+  /* today / next live strip */
+  .today{margin:18px 0 0;background:var(--paper-2);border:1px solid var(--line);border-radius:11px;padding:12px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .today .t-lab{font-family:"Anton",sans-serif;font-size:14px;letter-spacing:.08em;text-transform:uppercase;color:var(--grass-deep);flex:0 0 auto;}
+  .today .t-list{display:flex;gap:20px;flex-wrap:wrap;flex:1;min-width:0;}
+  .today .t-m{display:flex;align-items:center;gap:10px;font-size:13.5px;}
+  .today .t-tm{display:flex;align-items:center;gap:6px;font-weight:700;color:var(--ink);}
+  .today .t-tm .vs{color:var(--faint);font-weight:600;}
+  .today .t-cd{font-weight:800;font-variant-numeric:tabular-nums;color:var(--clay);background:var(--paper-3);padding:3px 10px;border-radius:100px;font-size:12px;white-space:nowrap;}
+  .today .t-ko{font-size:10.5px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);white-space:nowrap;flex:0 0 auto;}
+  @media(max-width:640px){.today .t-list{flex-direction:column;gap:8px;}}
   /* race chart */
   .race svg{width:100%;height:auto;display:block;}
   .race-legend{display:flex;flex-wrap:wrap;gap:9px 16px;margin-top:10px;font-size:11.5px;color:var(--ink-soft);font-weight:700;}
@@ -260,6 +270,7 @@
 </div></div>
 
 <div class="wrap">
+  <div class="today" id="today"></div>
   <div class="spotlight" id="spotlight"></div>
   <div class="daily" id="daily"></div>
   <section class="sec"><div class="sec-head"><h2>Standings</h2><span class="meta" id="standMeta"></span></div><div class="board" id="standings"></div></section>
@@ -473,6 +484,24 @@ function race(){
   el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet"><line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${H-pad}" stroke="#e1d7c3"/>${paths}</svg>`+
     `<div class="race-legend">${r.series.map((s,si)=>`<span><i style="background:${cols[si%cols.length]}"></i>${s.name}</span>`).join('')}</div>`;
 }
+function today(){
+  const el=document.getElementById("today"), up=DATA.upcoming||[];
+  if(!up.length){el.style.display="none";return;}
+  const fmtCd=ms=>{ if(ms<=0)return "kicking off"; let s=Math.floor(ms/1000);
+    const d=Math.floor(s/86400);s%=86400;const h=Math.floor(s/3600);s%=3600;const m=Math.floor(s/60),ss=s%60;
+    return d>0?`${d}d ${h}h ${m}m`:h>0?`${h}h ${m}m`:`${m}m ${ss}s`; };
+  const now=Date.now(), isToday=iso=>{const k=new Date(iso),n=new Date();return k.toDateString()===n.toDateString();};
+  const todays=up.filter(u=>u.kickoff&&isToday(u.kickoff)&&new Date(u.kickoff).getTime()>now-2*3600*1000);
+  const list=todays.length?todays:up.slice(0,1), head=todays.length?"Today":"Next up";
+  const ko=DATA.knockoutStart?new Date(DATA.knockoutStart).getTime():0;
+  el.innerHTML=`<div class="t-lab">${head}</div><div class="t-list">`+
+    list.map(u=>`<div class="t-m"><span class="t-tm">${flag(u.t1,'flag sm')}${u.t1} <span class="vs">v</span> ${u.t2}${flag(u.t2,'flag sm')}</span>`+
+      `<span class="t-cd" data-k="${u.kickoff}">${fmtCd(new Date(u.kickoff).getTime()-now)}</span></div>`).join('')+
+    `</div>${(ko>now)?`<div class="t-ko">Knockout in ${fmtCd(ko-now)}</div>`:""}`;
+  setInterval(()=>{const n=Date.now();
+    el.querySelectorAll('.t-cd').forEach(c=>c.textContent=fmtCd(new Date(c.dataset.k).getTime()-n));
+    const k=el.querySelector('.t-ko'); if(k&&ko>n)k.textContent=`Knockout in ${fmtCd(ko-n)}`;},1000);
+}
 function enhance(){
   document.querySelectorAll('.cu').forEach(el=>{                 // count-up numbers
     const v=+el.dataset.v||0; if(v<=0)return; const dur=950; let s=null;
@@ -493,7 +522,7 @@ function enhance(){
     if(last&&last!==L.name) confetti({particleCount:130,spread:75,origin:{y:.3}});
     localStorage.setItem('wcl-leader',L.name);} }catch(e){}
 }
-meta();daily();spotlight();standings();race();results();groups();players();splits();bracket();enhance();
+meta();today();daily();spotlight();standings();race();results();groups();players();splits();bracket();enhance();
 </script>
 </body>
 </html>

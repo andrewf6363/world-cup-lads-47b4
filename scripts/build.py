@@ -277,6 +277,14 @@ def main():
         if pl["rank"] == 1 and pl["total"] > 0: b.append("Front-runner")
         pl["badges"] = b
 
+    # ---- Today / Next (live countdown strip) ----
+    upcoming = []
+    for f in sorted(fixtures["group_stage"], key=lambda x: (x.get("kickoff_utc") or "")):
+        if M.get(f["id"], {}).get("status") == "final": continue
+        upcoming.append({"t1": f["team1"], "t2": f["team2"], "kickoff": f.get("kickoff_utc"),
+                         "label": f"Group {f['group']}"})
+        if len(upcoming) >= 8: break
+
     leader = None
     if rows:
         second = rows[1]["total"] if len(rows) > 1 else 0
@@ -288,7 +296,7 @@ def main():
                  "phase": phase(fixtures, results), "updated": et_now(),
                  "managers": len(roster), "pot": len(roster)*25, "submitted": len(players)},
         "leader": leader, "players": players, "pending": pending, "groups": group_tables, "splits": splits,
-        "daily": daily, "race": race,
+        "daily": daily, "race": race, "upcoming": upcoming, "knockoutStart": "2026-06-28T16:00:00Z",
         "results": results_feed(fixtures, results), "bracket": bracket_view(fixtures, results),
         "championName": (M.get("K-104",{}) or {}).get("winner"),
     }
