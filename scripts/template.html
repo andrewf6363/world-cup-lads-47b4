@@ -361,7 +361,7 @@ function spotlight(){
 
 function standings(){
   const el=document.getElementById("standings"), GMAX=7200, KMAX=8000;
-  document.getElementById("standMeta").textContent=`${DATA.players.length} of ${DATA.meta.managers} reporting`+(DATA.players.length>1&&DATA.players.length<DATA.meta.managers?" · win% provisional":"");
+  document.getElementById("standMeta").textContent=`${DATA.players.length} of ${DATA.meta.managers} reporting`+(DATA.meta.started&&DATA.players.length>1&&DATA.players.length<DATA.meta.managers?" · win% provisional":"");
   if(!DATA.players.length){el.innerHTML='<div class="empty">No picks submitted yet — the leaderboard fills in as sheets come back.</div>';return;}
   DATA.players.forEach(p=>{
     const gW=Math.round(p.grp/GMAX*100), kW=Math.round(p.ko/KMAX*100);
@@ -377,7 +377,7 @@ function standings(){
       <div class="${rb}">${p.rank}</div>
       <div class="who"><div class="name">${p.name}${(p.rank===1&&p.total>0)?'<span class="tag">Leader</span>':''}</div>
         <div class="pick">${pick}</div></div>
-      <div class="pts"><div class="total tnum"><span class="cu" data-v="${p.total}">${fmt(p.total)}</span><span class="u">PTS</span></div><div class="move ${mvc}">${mv}</div>${DATA.players.length>1?`<div class="wp"><span class="cu" data-v="${p.winpct}">${p.winpct}</span>%<span> to lead</span></div>`:''}</div>
+      <div class="pts"><div class="total tnum"><span class="cu" data-v="${p.total}">${fmt(p.total)}</span><span class="u">PTS</span></div><div class="move ${mvc}">${mv}</div>${(DATA.meta.started&&DATA.players.length>1)?`<div class="wp"><span class="cu" data-v="${p.winpct}">${p.winpct}</span>%<span> to lead</span></div>`:''}</div>
       <div class="meters">
         <div class="meter"><span class="ml">Group</span><span class="mtrack"><i class="g" style="width:${gW}%"></i></span><span class="mv">${fmt(p.grp)}<i>/7,200</i></span></div>
         <div class="meter"><span class="ml">Knockout</span><span class="mtrack"><i class="k" style="width:${kW}%"></i></span><span class="mv">${fmt(p.ko)}<i>/8,000</i></span></div>
