@@ -117,6 +117,8 @@
   summary .chev{color:var(--faint);font-weight:800;transition:transform .2s;}
   details[open] summary .chev{transform:rotate(90deg);color:var(--red);}
   details[open] summary{border-bottom:1px solid var(--line-2);}
+  .sharebtn{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--clay);background:transparent;border:1px solid var(--clay);border-radius:100px;padding:4px 11px;cursor:pointer;transition:background .15s,color .15s;}
+  .sharebtn:hover{background:var(--clay);color:#fff;}
   .dbody{padding:14px 16px 17px;}
   .chips{display:flex;flex-wrap:wrap;gap:8px;}
   .chip{border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:var(--paper);min-width:70px;text-align:center;}
@@ -403,7 +405,7 @@ function players(){
     }).join('');
     const d=document.createElement("details");
     d.innerHTML=`<summary><span class="l">${p.champ?flag(p.champ):''}<span class="nm">${p.name}</span></span>
-        <span class="r"><span class="rt tnum">${fmt(p.total)}<span class="u">PTS</span></span><span class="chev">›</span></span></summary>
+        <span class="r"><button class="sharebtn" data-name="${p.name}">Share</button><span class="rt tnum">${fmt(p.total)}<span class="u">PTS</span></span><span class="chev">›</span></span></summary>
       <div class="dbody"><div class="chips">${chip("Group",p.grp)}${chip("R32",r.R32)}${chip("R16",r.R16)}${chip("QF",r.QF)}${chip("SF",r.SF)}${chip("Final",r.F)}</div>
       ${(p.solo||p.contra)?`<div class="diffline">${[p.solo?`${p.solo} unique`:'',p.contra?`${p.contra} against the grain`:''].filter(Boolean).join(' · ')}</div>`:''}
       ${(p.badges&&p.badges.length)?`<div class="badges">${p.badges.map(b=>`<span class="badge ${b==='Mr. Chalk'?'chalk':b==='Maverick'?'mav':b==='Front-runner'?'front':''}">${b}</span>`).join('')}</div>`:''}
@@ -484,6 +486,18 @@ function race(){
   el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet"><line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${H-pad}" stroke="#e1d7c3"/>${paths}</svg>`+
     `<div class="race-legend">${r.series.map((s,si)=>`<span><i style="background:${cols[si%cols.length]}"></i>${s.name}</span>`).join('')}</div>`;
 }
+function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
+async function shareCard(name){
+  const url='cards/'+slug(name)+'.png';
+  try{
+    const r=await fetch(url); if(!r.ok) throw 0; const blob=await r.blob();
+    const file=new File([blob],slug(name)+'.png',{type:'image/png'});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){
+      await navigator.share({files:[file],title:'World Cup Lads',text:name+' — World Cup Lads'}); return;
+    }
+  }catch(e){}
+  window.open(url,'_blank');
+}
 function today(){
   const el=document.getElementById("today"), up=DATA.upcoming||[];
   if(!up.length){el.style.display="none";return;}
@@ -503,6 +517,7 @@ function today(){
     const k=el.querySelector('.t-ko'); if(k&&ko>n)k.textContent=`Knockout in ${fmtCd(ko-n)}`;},1000);
 }
 function enhance(){
+  document.querySelectorAll('.sharebtn').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();shareCard(b.dataset.name);}));
   document.querySelectorAll('.cu').forEach(el=>{                 // count-up numbers
     const v=+el.dataset.v||0; if(v<=0)return; const dur=950; let s=null;
     requestAnimationFrame(function st(t){ s=s||t; const p=Math.min(1,(t-s)/dur), e=1-Math.pow(1-p,3);
