@@ -87,14 +87,38 @@ def main():
     fin = results.get("matches", {}).get("K-104", {})
     final_goals = (fin.get("team1_goals",0)+fin.get("team2_goals",0)) if fin.get("status")=="final" else None
 
-    rows = lib.standings(picks["players"], fixtures, results.get("matches", {}), prev_ranks, final_goals)
+    M = results.get("matches", {})
+    rows = lib.standings(picks["players"], fixtures, M, prev_ranks, final_goals)
+
+    # per-player group-pick breakdown (for the expandable "what did they pick" view)
+    group_fx = {}
+    for f in fixtures["group_stage"]:
+        group_fx.setdefault(f["group"], []).append(f)
+    pmap = {p["name"]: p for p in picks["players"]}
+    def pick_breakdown(name):
+        gp = pmap.get(name, {}).get("group_picks", {})
+        out = []
+        for letter, fxs in group_fx.items():
+            ms = []
+            for f in fxs:
+                pk = gp.get(f["id"]); res = M.get(f["id"], {})
+                status = "pending"
+                if res.get("status") == "final" and pk:
+                    status = "correct" if pk == res.get("outcome") else "wrong"
+                ms.append({"t1": f["team1"], "t2": f["team2"], "pick": pk, "status": status})
+            out.append({"group": letter, "matches": ms})
+        return out
 
     players = [{
         "name": r["name"], "total": r["total"], "grp": r["grp"], "ko": r["ko"],
         "correct": r["correct"], "graded": r["graded"], "rank": r["rank"], "move": r["move"], "champ": r["champ"],
         "rounds": {"R32":r["rounds"]["R32"],"R16":r["rounds"]["R16"],"QF":r["rounds"]["QF"],
                    "SF":r["rounds"]["SF"],"F":r["rounds"]["Final"]},
+        "picks": pick_breakdown(r["name"]),
     } for r in rows]
+
+    roster = load("roster.json", [r["name"] for r in rows])
+    pending = [{"name": nm} for nm in roster if nm.lower() not in {r["name"].lower() for r in rows}]
 
     leader = None
     if rows:
@@ -102,14 +126,13 @@ def main():
         leader = {"name":rows[0]["name"],"total":rows[0]["total"],"correct":rows[0]["correct"],
                   "graded":rows[0]["graded"],"champ":rows[0]["champ"],"lead":rows[0]["total"]-second}
 
-    n = len(players)
     data = {
         "meta": {"name": LEAGUE_NAME, "overline": "The Friends League", "hosts": HOSTS,
                  "phase": phase(fixtures, results), "updated": et_now(),
-                 "managers": LEAGUE_SIZE, "pot": LEAGUE_SIZE*25, "submitted": n},
-        "leader": leader, "players": players,
+                 "managers": len(roster), "pot": len(roster)*25, "submitted": len(players)},
+        "leader": leader, "players": players, "pending": pending,
         "results": results_feed(fixtures, results), "bracket": bracket_view(fixtures, results),
-        "championName": (results.get("matches",{}).get("K-104",{}) or {}).get("winner"),
+        "championName": (M.get("K-104",{}) or {}).get("winner"),
     }
 
     tpl = open(os.path.join(HERE, "template.html"), encoding="utf-8").read()
@@ -120,7 +143,7 @@ def main():
                     "leaderboard": rows}, ensure_ascii=False, indent=2))
 
     top = ", ".join(f'{r["name"]} {r["total"]}' for r in rows[:3]) or "(no picks yet)"
-    print(f"Built index.html · {n} managers · phase: {data['meta']['phase']} · top: {top}")
+    print(f"Built index.html · {len(players)}/{len(roster)} managers in · phase: {data['meta']['phase']} · top: {top}")
 
 if __name__ == "__main__":
     main()

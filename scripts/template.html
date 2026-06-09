@@ -121,6 +121,25 @@
   .chip .val{font-family:"Anton",sans-serif;font-size:19px;margin-top:3px;}
   .chip.on{border-color:rgba(30,158,74,.5);background:rgba(30,158,74,.07);} .chip.on .val{color:var(--grass-deep);}
   .chip.off .val{color:var(--faint);}
+  /* pick breakdown (expand a manager to see every pick) */
+  .picks{display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;margin-top:18px;}
+  .pkg-h{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:800;padding:7px 0 5px;border-bottom:1px solid var(--line);}
+  .pk{display:flex;align-items:center;gap:6px;padding:4px 0;border-bottom:1px solid var(--line-2);font-size:12.5px;}
+  .pk:last-child{border-bottom:0;}
+  .pk-t{display:flex;align-items:center;gap:5px;color:var(--faint);min-width:0;flex:1;}
+  .pk-t .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .pk-t.right{justify-content:flex-end;text-align:right;}
+  .pk-t.sel{color:var(--ink);font-weight:800;}
+  .pk-t .flag{opacity:.5;} .pk-t.sel .flag{opacity:1;}
+  .pk-v{font-size:9px;letter-spacing:.08em;color:var(--faint);font-weight:800;flex:0 0 auto;width:38px;text-align:center;}
+  .pk.draw .pk-t{color:var(--ink-soft);font-weight:700;} .pk.draw .pk-t .flag{opacity:1;} .pk.draw .pk-v{color:var(--clay);}
+  .pk.correct .pk-t.sel,.pk.correct .pk-v{color:var(--grass-deep);}
+  .pk.correct.draw .pk-t{color:var(--grass-deep);}
+  .pk.wrong .pk-t.sel{color:var(--red);text-decoration:line-through;} .pk.wrong.draw .pk-v{color:var(--red);}
+  .pending-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;background:var(--paper-2);border:1px dashed var(--line);border-radius:11px;margin-bottom:9px;}
+  .pending-row .nm{font-weight:700;color:var(--muted);}
+  .pending-row .st{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--faint);}
+  @media (max-width:640px){ .picks{grid-template-columns:1fr;} }
 
   .scrollhint{font-size:11px;color:var(--muted);margin:-4px 0 10px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;}
   .bracket{display:flex;gap:14px;overflow-x:auto;padding:2px 2px 12px;scroll-snap-type:x proximity;}
@@ -279,14 +298,30 @@ function results(){
 
 function players(){
   const el=document.getElementById("players");
-  DATA.players.forEach((p,i)=>{
+  (DATA.players||[]).forEach(p=>{
     const r=p.rounds||{R32:0,R16:0,QF:0,SF:0,F:0};
     const chip=(l,v)=>`<div class="chip ${v>0?'on':'off'}"><div class="lab">${l}</div><div class="val tnum">${fmt(v)}</div></div>`;
-    const d=document.createElement("details"); if(i===0)d.open=true;
+    const picksHtml=(p.picks||[]).map(g=>{
+      const rows=g.matches.map(m=>{
+        const a=m.pick==='team1', b=m.pick==='team2', draw=m.pick==='draw';
+        return `<div class="pk ${m.status}${draw?' draw':''}">`+
+          `<span class="pk-t ${a?'sel':''}">${flag(m.t1,'flag sm')}<span class="nm">${m.t1}</span></span>`+
+          `<span class="pk-v">${draw?'DRAW':'v'}</span>`+
+          `<span class="pk-t right ${b?'sel':''}"><span class="nm">${m.t2}</span>${flag(m.t2,'flag sm')}</span></div>`;
+      }).join('');
+      return `<div class="pkgroup"><div class="pkg-h">Group ${g.group}</div>${rows}</div>`;
+    }).join('');
+    const d=document.createElement("details");
     d.innerHTML=`<summary><span class="l">${p.champ?flag(p.champ):''}<span class="nm">${p.name}</span></span>
         <span class="r"><span class="rt tnum">${fmt(p.total)}<span class="u">PTS</span></span><span class="chev">›</span></span></summary>
-      <div class="dbody"><div class="chips">${chip("Group",p.grp)}${chip("R32",r.R32)}${chip("R16",r.R16)}${chip("QF",r.QF)}${chip("SF",r.SF)}${chip("Final",r.F)}</div></div>`;
+      <div class="dbody"><div class="chips">${chip("Group",p.grp)}${chip("R32",r.R32)}${chip("R16",r.R16)}${chip("QF",r.QF)}${chip("SF",r.SF)}${chip("Final",r.F)}</div>
+      ${picksHtml?`<div class="picks">${picksHtml}</div>`:''}</div>`;
     el.appendChild(d);
+  });
+  (DATA.pending||[]).forEach(pl=>{
+    const row=document.createElement("div"); row.className="pending-row";
+    row.innerHTML=`<span class="nm">${pl.name}</span><span class="st">Picks not in yet</span>`;
+    el.appendChild(row);
   });
 }
 
