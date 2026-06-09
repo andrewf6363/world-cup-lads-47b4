@@ -3,7 +3,7 @@
 An auto-updating leaderboard for our 8-person World Cup 2026 prediction pool ($25 each, winner takes all).
 The live page is published via GitHub Pages — share the link; no login needed to view.
 
-**Live URL:** _(filled in once Pages is enabled — see below)_
+**Live URL:** https://andrewf6363.github.io/world-cup-lads-47b4/
 
 ## How it works
 
