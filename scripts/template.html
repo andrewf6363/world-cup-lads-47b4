@@ -175,6 +175,24 @@
   .split .sbar i{display:block;height:100%;}
   .split .sbar .a{background:#1e9e4a;} .split .sbar .d{background:#b9ab8e;} .split .sbar .b{background:#d6442c;}
   @media(max-width:640px){.splits-wrap{grid-template-columns:1fr;}}
+  /* the daily recap */
+  .daily{margin-top:18px;background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--clay);border-radius:11px;padding:14px 18px;}
+  .daily .dh{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+  .daily .tag{font-family:"Anton",sans-serif;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--clay);}
+  .daily .hl{font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--muted);}
+  .daily .ln{font-size:14px;color:var(--ink-soft);margin-top:5px;font-weight:600;}
+  .daily ul{margin:9px 0 0;padding:0 0 0 17px;} .daily li{font-size:13px;color:var(--ink-soft);margin:3px 0;}
+  /* race chart */
+  .race svg{width:100%;height:auto;display:block;}
+  .race-legend{display:flex;flex-wrap:wrap;gap:9px 16px;margin-top:10px;font-size:11.5px;color:var(--ink-soft);font-weight:700;}
+  .race-legend span{display:inline-flex;align-items:center;gap:6px;}
+  .race-legend i{width:14px;height:3px;border-radius:2px;display:inline-block;}
+  /* badges */
+  .badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;}
+  .badge{font-size:10px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:100px;border:1px solid var(--line);color:var(--ink-soft);background:var(--paper);}
+  .badge.chalk{border-color:var(--navy);color:var(--navy);}
+  .badge.mav{border-color:var(--clay);color:var(--clay);}
+  .badge.front{border-color:var(--gold-deep);color:var(--gold-deep);background:rgba(227,165,42,.08);}
 
   .scrollhint{font-size:11px;color:var(--muted);margin:-4px 0 10px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;}
   .bracket{display:flex;gap:14px;overflow-x:auto;padding:2px 2px 12px;scroll-snap-type:x proximity;}
@@ -223,7 +241,9 @@
 
 <div class="wrap">
   <div class="spotlight" id="spotlight"></div>
+  <div class="daily" id="daily"></div>
   <section class="sec"><div class="sec-head"><h2>Standings</h2><span class="meta" id="standMeta"></span></div><div class="board" id="standings"></div></section>
+  <section class="sec" id="raceSec"><div class="sec-head"><h2>The Race</h2><span class="meta">points over time</span></div><div class="race" id="race"></div></section>
   <section class="sec"><div class="sec-head"><h2>Latest Results</h2><span class="meta">Auto-updated</span></div><div id="results"></div></section>
   <section class="sec"><div class="sec-head"><h2>Group Tables</h2><span class="meta" id="gtMeta"></span></div><div class="groups" id="groups"></div></section>
   <section class="sec"><div class="sec-head"><h2>By the Manager</h2><span class="meta">Tap to expand</span></div><div id="players"></div></section>
@@ -355,6 +375,7 @@ function players(){
         <span class="r"><span class="rt tnum">${fmt(p.total)}<span class="u">PTS</span></span><span class="chev">›</span></span></summary>
       <div class="dbody"><div class="chips">${chip("Group",p.grp)}${chip("R32",r.R32)}${chip("R16",r.R16)}${chip("QF",r.QF)}${chip("SF",r.SF)}${chip("Final",r.F)}</div>
       ${(p.solo||p.contra)?`<div class="diffline">${[p.solo?`${p.solo} unique`:'',p.contra?`${p.contra} against the grain`:''].filter(Boolean).join(' · ')}</div>`:''}
+      ${(p.badges&&p.badges.length)?`<div class="badges">${p.badges.map(b=>`<span class="badge ${b==='Mr. Chalk'?'chalk':b==='Maverick'?'mav':b==='Front-runner'?'front':''}">${b}</span>`).join('')}</div>`:''}
       ${picksHtml?`<div class="picks">${picksHtml}</div>`:''}</div>`;
     el.appendChild(d);
   });
@@ -416,7 +437,23 @@ function splits(){
     el.appendChild(row);
   });
 }
-meta();spotlight();standings();results();groups();players();splits();bracket();
+function daily(){
+  const d=DATA.daily, el=document.getElementById("daily");
+  if(!d){el.style.display="none";return;}
+  el.innerHTML=`<div class="dh"><span class="tag">The Daily</span><span class="hl">${d.headline}</span></div>`+
+    `<div class="ln">${d.line}</div>`+((d.items&&d.items.length)?`<ul>${d.items.map(i=>`<li>${i}</li>`).join('')}</ul>`:'');
+}
+function race(){
+  const el=document.getElementById("race"), r=DATA.race||{labels:[],series:[]};
+  if(!r.labels||r.labels.length<2){el.innerHTML='<div class="empty">The race chart fills in as points are scored — check back once games kick off.</div>';return;}
+  const W=900,H=300,pad=34,n=r.labels.length,mx=Math.max(100,...r.series.flatMap(s=>s.points).filter(v=>v!=null));
+  const X=i=>pad+(W-2*pad)*(n<=1?0:i/(n-1)), Y=v=>H-pad-(H-2*pad)*((v||0)/mx);
+  const cols=['#bc4b2b','#16314c','#1e9e4a','#e3a52a','#8a7f6c','#6a2740','#1d5275','#7a4416'];
+  const paths=r.series.map((s,si)=>`<polyline fill="none" stroke="${cols[si%cols.length]}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="${s.points.map((v,i)=>X(i)+','+Y(v)).join(' ')}"/>`).join('');
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet"><line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${H-pad}" stroke="#e1d7c3"/>${paths}</svg>`+
+    `<div class="race-legend">${r.series.map((s,si)=>`<span><i style="background:${cols[si%cols.length]}"></i>${s.name}</span>`).join('')}</div>`;
+}
+meta();daily();spotlight();standings();race();results();groups();players();splits();bracket();
 </script>
 </body>
 </html>

@@ -228,6 +228,55 @@ def main():
     for pl in players:
         pl["winpct"] = wp.get(pl["name"], 0)
 
+    # ---- The Daily (auto-written recap) ----
+    finals = [(f, M[f["id"]]) for f in fixtures["group_stage"] if M.get(f["id"], {}).get("status") == "final"]
+    if not finals:
+        daily = {"headline": "Kicks off June 11",
+                 "line": f"{len(players)} of {len(roster)} managers locked in — the first results and daily recaps land here once the tournament starts.",
+                 "items": []}
+    else:
+        finals.sort(key=lambda x: (x[0].get("kickoff_utc") or ""), reverse=True)
+        items = []
+        up = max(players, key=lambda p: p["move"]); dn = min(players, key=lambda p: p["move"])
+        if up["move"] > 0: items.append(f"Biggest riser — {up['name']}, up {up['move']} spot{'s' if up['move'] > 1 else ''}")
+        if dn["move"] < 0: items.append(f"Biggest faller — {dn['name']}, down {abs(dn['move'])}")
+        f0, r0 = min(finals[:8], key=lambda x: dist[x[0]["id"]].get(x[1].get("outcome"), 99))
+        n0 = dist[f0["id"]].get(r0.get("outcome"), 0)
+        items.append(f"Least-expected result — {f0['team1']} {r0.get('team1_goals','')}–{r0.get('team2_goals','')} {f0['team2']} ({n0}/{len(players)} called it)")
+        daily = {"headline": f"Latest · {date_label(finals[0][0].get('kickoff_utc'))}",
+                 "line": f"{len(finals)} match{'es' if len(finals) != 1 else ''} played · {players[0]['name']} leads on {players[0]['total']} pts",
+                 "items": items[:3]}
+
+    # ---- The Race (standings history snapshot for the chart) ----
+    hist = load("history.json", [])
+    today = et_now().split(",")[0]
+    cur = {p["name"]: p["total"] for p in players}
+    new_hist = list(hist)
+    if new_hist and new_hist[-1].get("t") == today:
+        new_hist[-1] = {"t": today, "totals": cur}
+    elif (not new_hist) or new_hist[-1].get("totals") != cur:
+        new_hist.append({"t": today, "totals": cur})
+    new_hist = new_hist[-60:]
+    if new_hist != hist:
+        json.dump(new_hist, open(os.path.join(DATA, "history.json"), "w"), ensure_ascii=False, indent=2)
+    race = {"labels": [h["t"] for h in new_hist],
+            "series": [{"name": p["name"], "points": [h["totals"].get(p["name"]) for h in new_hist]} for p in players]}
+
+    # ---- Badges ----
+    def chalk(f): return "team1" if rank(f["team1"]) <= rank(f["team2"]) else "team2"
+    for pl in players:
+        gp = pmap.get(pl["name"], {}).get("group_picks", {})
+        picked = [o for o in gp.values() if o]
+        nchalk = sum(1 for f in fixtures["group_stage"] if gp.get(f["id"]) == chalk(f))
+        ndraw = sum(1 for o in picked if o == "draw")
+        b = []
+        if picked:
+            if nchalk / max(1, len(picked)) >= 0.8: b.append("Mr. Chalk")
+            if pl["contra"] >= 12: b.append("Maverick")          # genuine minority picks (needs 3+ managers)
+            if ndraw >= 10: b.append("Draw Merchant")
+        if pl["rank"] == 1 and pl["total"] > 0: b.append("Front-runner")
+        pl["badges"] = b
+
     leader = None
     if rows:
         second = rows[1]["total"] if len(rows) > 1 else 0
@@ -239,6 +288,7 @@ def main():
                  "phase": phase(fixtures, results), "updated": et_now(),
                  "managers": len(roster), "pot": len(roster)*25, "submitted": len(players)},
         "leader": leader, "players": players, "pending": pending, "groups": group_tables, "splits": splits,
+        "daily": daily, "race": race,
         "results": results_feed(fixtures, results), "bracket": bracket_view(fixtures, results),
         "championName": (M.get("K-104",{}) or {}).get("winner"),
     }
