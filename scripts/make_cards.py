@@ -17,15 +17,15 @@ def F(name, size): return ImageFont.truetype(os.path.join(FD, name), size)
 def slug(s): return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 def ordn(n): return f"{n}{'TH' if 10 <= n % 100 <= 20 else {1:'ST',2:'ND',3:'RD'}.get(n % 10,'TH')}"
 
-INK=(247,240,225); GREEN=(15,46,32); GREEN2=(10,33,23); GOLD=(227,165,42)
-CLAY=(214,68,44); GRASS=(36,170,84); MUT=(150,160,140)
+INK=(247,240,225); NAVY=(16,36,58); GOLD=(227,165,42)
+GRASS=(36,170,84); MUT=(139,151,166)
 W = Hh = 1080
 
 for p in players:
-    img = Image.new("RGB", (W, Hh), GREEN); d = ImageDraw.Draw(img)
-    for i in range(Hh):                                   # vertical gradient
-        t = i / Hh; d.line([(0, i), (W, i)], fill=(int(15-5*t), int(46-13*t), int(32-9*t)))
-    d.rectangle([0, 0, W//3, 14], fill=CLAY); d.rectangle([W//3, 0, 2*W//3, 14], fill=GOLD); d.rectangle([2*W//3, 0, W, 14], fill=GRASS)
+    img = Image.new("RGB", (W, Hh), NAVY); d = ImageDraw.Draw(img)
+    for i in range(Hh):                                   # vertical gradient (midnight navy)
+        t = i / Hh; d.line([(0, i), (W, i)], fill=(int(16-7*t), int(36-14*t), int(58-21*t)))
+    d.rectangle([0, 0, W, 14], fill=GOLD)
     pad = 84
     d.text((pad, 70),  "WORLD CUP LADS", font=F("Barlow-Bold.ttf", 30), fill=GOLD)
     d.text((pad, 112), "FRIENDS LEAGUE · 2026", font=F("Barlow-SemiBold.ttf", 24), fill=MUT)
@@ -50,14 +50,14 @@ for p in players:
 
 # ---- league-level renders: og.png (link unfurl image) + apple-touch-icon.png ----
 def gradient(w, h):
-    img = Image.new("RGB", (w, h), GREEN); d = ImageDraw.Draw(img)
+    img = Image.new("RGB", (w, h), NAVY); d = ImageDraw.Draw(img)
     for i in range(h):
-        t = i / h; d.line([(0, i), (w, i)], fill=(int(15-5*t), int(46-13*t), int(32-9*t)))
+        t = i / h; d.line([(0, i), (w, i)], fill=(int(16-7*t), int(36-14*t), int(58-21*t)))
     return img, d
 
 def render_og():
     W2, H2 = 1200, 630; img, d = gradient(W2, H2)
-    d.rectangle([0, 0, W2//3, 16], fill=CLAY); d.rectangle([W2//3, 0, 2*W2//3, 16], fill=GOLD); d.rectangle([2*W2//3, 0, W2, 16], fill=GRASS)
+    d.rectangle([0, 0, W2, 16], fill=GOLD)
     pad = 84
     d.text((pad, 84), "THE FRIENDS LEAGUE · 2026", font=F("Barlow-Bold.ttf", 32), fill=MUT)
     d.text((pad, 132), "WORLD CUP LADS", font=F("Anton-Regular.ttf", 124), fill=INK)
@@ -84,7 +84,7 @@ def render_touch_icon():
     cx = cy = S / 2
     d.ellipse([cx-50, cy-50, cx+50, cy+50], fill=GOLD)
     pts = [(cx + 24*math.cos(math.radians(a)), cy - 24*math.sin(math.radians(a))) for a in (90, 162, 234, 306, 18)]
-    d.polygon(pts, fill=GREEN)
+    d.polygon(pts, fill=NAVY)
     img.save(os.path.join(ROOT, "apple-touch-icon.png"))
 
 render_og()
