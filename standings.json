@@ -1,8 +1,27 @@
 {
-  "generated_utc": "2026-06-10T12:45:55.118365Z",
+  "generated_utc": "2026-06-10T12:54:17.636373Z",
   "leaderboard": [
     {
       "name": "Andrew Fahey",
+      "grp": 0,
+      "correct": 0,
+      "graded": 0,
+      "ko": 0,
+      "rounds": {
+        "R32": 0,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 0,
+      "champ": null,
+      "final_goals_guess": null,
+      "rank": 1,
+      "move": 0
+    },
+    {
+      "name": "Karlis Draulis",
       "grp": 0,
       "correct": 0,
       "graded": 0,
