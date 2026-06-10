@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-10T12:54:17.636373Z",
+  "generated_utc": "2026-06-10T19:45:08.190891Z",
   "leaderboard": [
     {
       "name": "Andrew Fahey",
@@ -60,6 +60,25 @@
     },
     {
       "name": "Kyle Williams",
+      "grp": 0,
+      "correct": 0,
+      "graded": 0,
+      "ko": 0,
+      "rounds": {
+        "R32": 0,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 0,
+      "champ": null,
+      "final_goals_guess": null,
+      "rank": 1,
+      "move": 0
+    },
+    {
+      "name": "Luke Clark",
       "grp": 0,
       "correct": 0,
       "graded": 0,
