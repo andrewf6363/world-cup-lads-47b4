@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-10T00:19:03.945162Z",
+  "generated_utc": "2026-06-10T12:45:55.118365Z",
   "leaderboard": [
     {
       "name": "Andrew Fahey",
@@ -22,6 +22,44 @@
     },
     {
       "name": "Keegan Ball",
+      "grp": 0,
+      "correct": 0,
+      "graded": 0,
+      "ko": 0,
+      "rounds": {
+        "R32": 0,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 0,
+      "champ": null,
+      "final_goals_guess": null,
+      "rank": 1,
+      "move": 0
+    },
+    {
+      "name": "Kyle Williams",
+      "grp": 0,
+      "correct": 0,
+      "graded": 0,
+      "ko": 0,
+      "rounds": {
+        "R32": 0,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 0,
+      "champ": null,
+      "final_goals_guess": null,
+      "rank": 1,
+      "move": 0
+    },
+    {
+      "name": "Ryan Sheekley",
       "grp": 0,
       "correct": 0,
       "graded": 0,
