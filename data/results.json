@@ -1,5 +1,12 @@
 {
-  "last_fetched_utc": "2026-06-09T17:32:37.477291Z",
+  "last_fetched_utc": "2026-06-11T23:53:16.983731Z",
   "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
-  "matches": {}
+  "matches": {
+    "G-A-1": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 2,
+      "team2_goals": 0
+    }
+  }
 }
