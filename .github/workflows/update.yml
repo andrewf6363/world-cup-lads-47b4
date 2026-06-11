@@ -4,7 +4,8 @@ name: Update dashboard
 # results, recomputes scores, and publishes — but only commits when something changed.
 on:
   schedule:
-    - cron: "17 */4 * * *"   # every 4 hours (UTC), off-minute
+    - cron: "*/10 * * * *"   # every 10 min during the tournament — results post fast, hands-off
+                             # (GitHub may queue these a few min under load; revert to "17 */4 * * *" after Jul 19)
   workflow_dispatch:           # lets you (or me) trigger a run by hand anytime
 
 permissions:
