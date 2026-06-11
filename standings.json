@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-11T15:30:34.583501Z",
+  "generated_utc": "2026-06-11T16:48:08.315183Z",
   "leaderboard": [
     {
       "name": "Andrew Fahey",
@@ -22,6 +22,25 @@
     },
     {
       "name": "Brad Bone",
+      "grp": 0,
+      "correct": 0,
+      "graded": 0,
+      "ko": 0,
+      "rounds": {
+        "R32": 0,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 0,
+      "champ": null,
+      "final_goals_guess": null,
+      "rank": 1,
+      "move": 0
+    },
+    {
+      "name": "John Pappas",
       "grp": 0,
       "correct": 0,
       "graded": 0,
