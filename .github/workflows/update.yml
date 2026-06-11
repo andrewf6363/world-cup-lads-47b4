@@ -4,9 +4,15 @@ name: Update dashboard
 # results, recomputes scores, and publishes — but only commits when something changed.
 on:
   schedule:
-    - cron: "*/10 * * * *"   # every 10 min during the tournament — results post fast, hands-off
-                             # (GitHub may queue these a few min under load; revert to "17 */4 * * *" after Jul 19)
-  workflow_dispatch:           # lets you (or me) trigger a run by hand anytime
+    # Schedule-aware polling: every group match kicks off 16:00-04:00 UTC and finishes ~1h50 later,
+    # so we poll every 5 min (GitHub's fastest) through the post-match window 17:00-06:59 UTC, which
+    # covers each final + 30-60 min of delay + feed lag. 07:00-16:59 UTC (3am-noon ET) is a dead zone
+    # with no matches ending; a light backstop there mops up any late feed posts. Minute offset 3-58
+    # dodges GitHub's top-of-hour congestion. Revert to "17 */4 * * *" after Jul 19.
+    - cron: "3-58/5 17-23 * * *"   # dense: evening UTC (afternoon/evening matches ending)
+    - cron: "3-58/5 0-6 * * *"     # dense: overnight UTC (late matches + wrap-around tails)
+    - cron: "23 9,13 * * *"        # backstop: catch any late feed posts during the dead zone
+  workflow_dispatch:               # lets you (or me) trigger a run by hand anytime
 
 permissions:
   contents: write              # allow the run to push the rebuilt site back to the repo
