@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-12T00:09:39.874836Z",
+  "last_fetched_utc": "2026-06-12T04:40:15.617870Z",
   "source": "espn",
   "matches": {
     "G-A-1": {
@@ -37,6 +37,32 @@
           "team": "team1",
           "player": "César Montes",
           "kind": "red"
+        }
+      ]
+    },
+    "G-A-2": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 2,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "59'",
+          "team": "team2",
+          "player": "Ladislav Krejcí",
+          "kind": "goal"
+        },
+        {
+          "min": "67'",
+          "team": "team1",
+          "player": "Hwang In-Beom",
+          "kind": "goal"
+        },
+        {
+          "min": "80'",
+          "team": "team1",
+          "player": "Oh Hyeon-Gyu",
+          "kind": "goal"
         }
       ]
     }
