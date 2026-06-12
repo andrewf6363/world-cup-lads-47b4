@@ -106,9 +106,30 @@ def fetch_espn():
     except Exception as e:
         print(f"  ESPN miss: {str(e)[:80]}"); return None
 
+def _ev_kind(text):
+    t = (text or "").lower()
+    if "own goal" in t: return "og"
+    if "penalty" in t and "scored" in t: return "pen"
+    if t.startswith("goal"): return "goal"
+    if "red card" in t: return "red"
+    return None
+
+def _espn_events(competition, id_to_side):
+    """Scoring plays + red cards from ESPN's details array, oriented to OUR team1/team2."""
+    out = []
+    for x in competition.get("details", []):
+        kind = _ev_kind(x.get("type", {}).get("text"))
+        side = id_to_side.get(str(x.get("team", {}).get("id")))
+        if not kind or not side: continue
+        who = (x.get("athletesInvolved") or [{}])[0].get("displayName") or ""
+        out.append({"min": x.get("clock", {}).get("displayValue", ""), "team": side,
+                    "player": who, "kind": kind})
+    return out
+
 def normalize_espn(data, fixtures):
     """Map ESPN's finished events to our fixture IDs. ESPN gives a per-competitor winner flag and
-    shootoutScore, so knockouts (incl. penalties) resolve directly. Returns (matches, finals, unmatched)."""
+    shootoutScore, so knockouts (incl. penalties) resolve directly. Goal/red-card details ride along
+    as an 'events' list (feeds the Match Center recaps). Returns (matches, finals, unmatched)."""
     group_by_pair = {frozenset((norm(f["team1"]), norm(f["team2"]))): f for f in fixtures["group_stage"]}
     ko_by_pair = {frozenset((norm(kx["team1"]), norm(kx["team2"]))): kx
                   for kx in fixtures.get("knockout", []) if kx.get("team1") and kx.get("team2")}
@@ -117,14 +138,16 @@ def normalize_espn(data, fixtures):
         st = e.get("status", {}).get("type", {})
         if not (st.get("state") == "post" and st.get("completed")):
             continue                                              # only truly-final matches score
-        comp = (e.get("competitions") or [{}])[0].get("competitors", [])
-        teams = []                                                # (our-name, goals, winner_bool, pens)
+        competition = (e.get("competitions") or [{}])[0]
+        comp = competition.get("competitors", [])
+        teams = []                                                # (our-name, goals, winner_bool, pens, espn_id)
         for c in comp:
             nm = canon(c.get("team", {}).get("displayName", ""))
             try: g = int(c.get("score"))
             except (TypeError, ValueError): g = None
             sp = c.get("shootoutScore")
-            teams.append((nm, g, c.get("winner"), int(sp) if sp not in (None, "") else None))
+            teams.append((nm, g, c.get("winner"), int(sp) if sp not in (None, "") else None,
+                          str(c.get("team", {}).get("id"))))
         if len(teams) != 2 or any(t[1] is None for t in teams):
             continue
         by = {norm(t[0]): t for t in teams}
@@ -134,8 +157,11 @@ def normalize_espn(data, fixtures):
             t1, t2 = by.get(norm(fx["team1"])), by.get(norm(fx["team2"]))
             if not t1 or not t2: unmatched.append(f"{teams[0][0]} v {teams[1][0]} (group)"); continue
             a, b = t1[1], t2[1]
-            matches[fx["id"]] = {"status":"final","outcome":("team1" if a>b else "team2" if b>a else "draw"),
-                                 "team1_goals":a, "team2_goals":b}
+            rec = {"status":"final","outcome":("team1" if a>b else "team2" if b>a else "draw"),
+                   "team1_goals":a, "team2_goals":b}
+            ev = _espn_events(competition, {t1[4]:"team1", t2[4]:"team2"})
+            if ev: rec["events"] = ev
+            matches[fx["id"]] = rec
             finals += 1
         else:
             kx = ko_by_pair.get(pair)
@@ -144,7 +170,10 @@ def normalize_espn(data, fixtures):
             if not t1 or not t2: continue
             winner = next((t[0] for t in teams if t[2]), None)
             pens = f"{t1[3]}–{t2[3]} pens" if (t1[3] is not None and t2[3] is not None) else None
-            matches[kx["id"]] = {"status":"final","winner":winner,"team1_goals":t1[1],"team2_goals":t2[1],"pens":pens}
+            rec = {"status":"final","winner":winner,"team1_goals":t1[1],"team2_goals":t2[1],"pens":pens}
+            ev = _espn_events(competition, {t1[4]:"team1", t2[4]:"team2"})
+            if ev: rec["events"] = ev
+            matches[kx["id"]] = rec
             finals += 1
     return matches, finals, unmatched
 

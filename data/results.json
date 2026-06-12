@@ -1,12 +1,44 @@
 {
-  "last_fetched_utc": "2026-06-11T23:58:53.856228Z",
+  "last_fetched_utc": "2026-06-12T00:09:39.874836Z",
   "source": "espn",
   "matches": {
     "G-A-1": {
       "status": "final",
       "outcome": "team1",
       "team1_goals": 2,
-      "team2_goals": 0
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "9'",
+          "team": "team1",
+          "player": "Julián Quiñones",
+          "kind": "goal"
+        },
+        {
+          "min": "49'",
+          "team": "team2",
+          "player": "Sphephelo Sithole",
+          "kind": "red"
+        },
+        {
+          "min": "67'",
+          "team": "team1",
+          "player": "Raúl Jiménez",
+          "kind": "goal"
+        },
+        {
+          "min": "84'",
+          "team": "team2",
+          "player": "Themba Zwane",
+          "kind": "red"
+        },
+        {
+          "min": "90'+2'",
+          "team": "team1",
+          "player": "César Montes",
+          "kind": "red"
+        }
+      ]
     }
   }
 }
