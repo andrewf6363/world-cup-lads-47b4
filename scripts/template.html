@@ -264,7 +264,25 @@
   .bs-row .v{font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;}
   .bs-row .v.r{text-align:right;}
   .bs-row .v.hi{color:var(--ink);font-weight:800;}
-  @media(max-width:900px){.brief-grid{grid-template-columns:1fr;}}
+  .bday{font-size:11.5px;color:var(--ink-soft);font-weight:700;margin:-4px 0 12px;font-variant-numeric:tabular-nums;}
+  .bc-qual{font-size:11.5px;color:var(--gold-deep);font-weight:700;margin-top:6px;}
+  .livechip{color:#fff;background:var(--red);border-radius:4px;padding:1px 7px;animation:blink 1.6s ease infinite;}
+  .bsw{font-size:11.5px;color:var(--ink-soft);padding:3.5px 0;border-bottom:1px solid var(--line-2);}
+  .bsw:last-child{border-bottom:0;}
+  .bsw b{color:var(--ink);}
+  .around-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;}
+  .boot-row{display:grid;grid-template-columns:18px auto minmax(0,1fr) auto auto;align-items:center;gap:8px;padding:5px 0;border-bottom:1px solid var(--line-2);font-size:13px;}
+  .boot-row:last-child{border-bottom:0;}
+  .boot-row .pos{color:var(--faint);font-weight:800;font-size:11px;}
+  .boot-row .bp{font-weight:800;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .boot-row .bt{color:var(--muted);font-size:11px;font-weight:700;}
+  .boot-row .bg{font-family:"Anton",sans-serif;font-size:16px;color:var(--gold-deep);}
+  .tag.hot{background:var(--red);color:#fff;}
+  .tag.spoon{background:var(--bronze);color:#2e1a08;}
+  .qtag{font-size:8.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;padding:1px 5px;flex:0 0 auto;}
+  .qtag.q{background:rgba(30,158,74,.15);color:var(--grass-deep);}
+  .qtag.x{background:var(--paper-3);color:var(--muted);}
+  @media(max-width:900px){.brief-grid{grid-template-columns:1fr;}.around-grid{grid-template-columns:1fr;}}
   /* champion watch */
   .champ-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;}
   .champ-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line-2);}
@@ -359,7 +377,8 @@
 
 <div class="wrap">
   <div class="today" id="today"></div>
-  <section class="sec brief" id="briefSec"><div class="sec-head"><h2>Match Center</h2><span class="meta" id="briefRace"></span></div><div class="brief-grid" id="brief"></div></section>
+  <section class="sec brief" id="briefSec"><div class="sec-head"><h2>Match Center</h2><span class="meta" id="briefRace"></span></div><div class="bday" id="briefDay"></div><div class="brief-grid" id="brief"></div></section>
+  <section class="sec" id="aroundSec"><div class="sec-head"><h2>Around the Cup</h2><span class="meta">Golden Boot · The Book</span></div><div class="around-grid"><div class="bcard" id="bootCard"></div><div class="bcard" id="bookCard"></div></div></section>
   <div class="spotlight" id="spotlight"></div>
   <div class="daily" id="daily"></div>
   <section class="sec" id="standingsSec"><div class="sec-head"><h2>Standings</h2><span class="meta" id="standMeta"></span></div><div class="board" id="standings"></div></section>
@@ -448,7 +467,7 @@ function standings(){
     row.dataset.name=p.name;
     row.innerHTML=`
       <div class="${rb}">${p.rank}</div>
-      <div class="who"><div class="name">${p.name}${(p.rank===1&&p.total>0)?'<span class="tag">Leader</span>':''}</div>
+      <div class="who"><div class="name">${p.name}${(p.rank===1&&p.total>0)?'<span class="tag">Leader</span>':''}${p.streak>=3?`<span class="tag hot">W${p.streak}</span>`:''}${p.spoon?'<span class="tag spoon">Spoon</span>':''}</div>
         <div class="pick">${pick}</div></div>
       <div class="pts"><div class="total tnum"><span class="cu" data-v="${p.total}">${fmt(p.total)}</span><span class="u">PTS</span></div><div class="move ${mvc}">${mv}</div>${(DATA.meta.started&&DATA.players.length>1)?`<div class="wp"><span class="cu" data-v="${p.winpct}">${p.winpct}</span>%<span> to lead</span></div>`:''}</div>
       <div class="meters">
@@ -543,7 +562,7 @@ function groups(){
   gs.forEach(g=>{
     const lab=g.status==="final"?"Final":g.status==="live"?"Live":"Predicted";
     const rows=g.rows.map((r,i)=>`<div class="gtr ${r.through?'thru':''}"><span class="pos">${i+1}</span>`+
-      `<span class="tm">${flag(r.team,'flag sm')}<span class="nm">${r.team}</span></span><span class="pts">${r.pts}</span></div>`).join('');
+      `<span class="tm">${flag(r.team,'flag sm')}<span class="nm">${r.team}</span>${r.qual==='through'?'<span class="qtag q">Q</span>':r.qual==='third'?'<span class="qtag x">3rd route</span>':''}</span><span class="pts">${r.pts}</span></div>`).join('');
     const c=document.createElement("div"); c.className="gt";
     c.innerHTML=`<div class="gt-h"><span class="g">Group ${g.group}</span><span class="lab ${g.status}">${lab}</span></div>${rows}`;
     el.appendChild(c);
@@ -657,6 +676,8 @@ function brief(){
   const B=DATA.briefing||{recaps:[],previews:[]}, sec=document.getElementById("briefSec");
   if(!B.recaps.length&&!B.previews.length){sec.style.display="none";return;}
   document.getElementById("briefRace").textContent=B.race||"";
+  const dl=document.getElementById("briefDay");
+  if(B.day){dl.innerHTML=`<span class="tvtag">LAST 24H</span>${B.day}`;}else{dl.style.display="none";}
   const statRows=r=>{
     const pos=(r.stats||[]).find(s=>s[0]==='Possession');
     return `<details class="bstats"><summary>Match stats</summary><div class="bs">`+
@@ -672,17 +693,31 @@ function brief(){
       ${r.fantasy?`<div class="bc-fant">${r.fantasy}</div>`:''}
       ${(r.stats&&r.stats.length)?statRows(r):''}</div>`).join("");
   const prev=B.previews.map(p=>`<div class="bcard">
-      <div class="bc-top">${flag(p.t1)}<span class="bc-t">${p.t1}</span><span class="bc-vs${p.live?' live':''}">${p.live?'LIVE':'v'}</span><span class="bc-t r">${p.t2}</span>${flag(p.t2)}</div>
-      <div class="bc-sub">${p.label} · ${p.live?'In play':p.et}</div>
+      <div class="bc-top">${flag(p.t1)}<span class="bc-t">${p.t1}</span>${p.ls?`<span class="bc-score">${p.ls.sa}–${p.ls.sb}</span>`:`<span class="bc-vs${p.live?' live':''}">${p.live?'LIVE':'v'}</span>`}<span class="bc-t r">${p.t2}</span>${flag(p.t2)}</div>
+      <div class="bc-sub">${p.label} · ${p.live?`<span class="livechip">LIVE${p.ls&&p.ls.t?' · '+p.ls.t:''}</span>`:p.et}</div>
       ${p.split?`<div class="bc-split">Picks: ${p.split}</div>`:''}
       ${p.odds?`<div class="bc-odds"><span class="tvtag">ODDS</span>${p.odds}</div>`:''}
       ${p.tv?`<div class="bc-tv"><span class="tvtag">TV</span>${p.tv}</div>`:''}
-      ${p.note?`<div class="bc-fant">${p.note}</div>`:''}</div>`).join("");
+      ${p.qual?`<div class="bc-qual">${p.qual}</div>`:''}
+      ${p.note?`<div class="bc-fant">${p.note}</div>`:''}
+      ${(p.swing&&p.swing.length)?`<details class="bstats"><summary>What it means</summary><div class="bs">${p.swing.map(s=>`<div class="bsw">${s}</div>`).join('')}</div></details>`:''}</div>`).join("");
   document.getElementById("brief").innerHTML=
     (rec?`<div class="bcol"><div class="blab">Last 24 Hours</div>${rec}</div>`:"")+
     (prev?`<div class="bcol"><div class="blab">Next 24 Hours</div>${prev}</div>`:"");
 }
-meta();today();brief();daily();spotlight();standings();race();champ();results();groups();players();splits();bracket();enhance();
+function around(){
+  const boot=DATA.boot||[], bk=DATA.book||{}, sec=document.getElementById("aroundSec");
+  const hasBook=bk.record||bk.beat||(bk.dis&&bk.dis.length);
+  if(!boot.length&&!hasBook){sec.style.display="none";return;}
+  document.getElementById("bootCard").innerHTML=`<div class="blab">Golden Boot</div>`+
+    (boot.length?boot.map((r,i)=>`<div class="boot-row"><span class="pos">${i+1}</span>${flag(r.team,'flag sm')}<span class="bp">${r.p}</span><span class="bt">${r.team}</span><span class="bg">${r.g}</span></div>`).join(''):
+     '<div class="bc-tv">Goalscorers land here as matches finish.</div>');
+  document.getElementById("bookCard").innerHTML=`<div class="blab">The Book</div>`+
+    (bk.record?`<div class="bc-split">${bk.record}</div>`:'')+
+    (bk.beat?`<div class="bc-fant">Beating the closing favorite: ${bk.beat}</div>`:'')+
+    ((bk.dis&&bk.dis.length)?bk.dis.map(d=>`<div class="bc-odds" style="margin-top:8px">${d}</div>`).join(''):'');
+}
+meta();today();brief();around();daily();spotlight();standings();race();champ();results();groups();players();splits();bracket();enhance();
 </script>
 </body>
 </html>

@@ -11,6 +11,8 @@ on:
     # dodges GitHub's top-of-hour congestion. Revert to "17 */4 * * *" after Jul 19.
     - cron: "3-58/5 17-23 * * *"   # dense: evening UTC (afternoon/evening matches ending)
     - cron: "3-58/5 0-6 * * *"     # dense: overnight UTC (late matches + wrap-around tails)
+    - cron: "0-55/5 17-23 * * *"   # interleave: offset by 2-3 min from the line above -> effective
+    - cron: "0-55/5 0-6 * * *"     #   ~2-3 min tick for live scores (GitHub's floor is 5 min PER line)
     - cron: "23 9,13 * * *"        # backstop: catch any late feed posts during the dead zone
   workflow_dispatch:               # lets you (or me) trigger a run by hand anytime
 

@@ -180,18 +180,23 @@ def _espn_stats(competition, side_order):
         rows.append([label, f"{a}{suffix}", f"{b}{suffix}"])
     return rows
 
-def normalize_espn(data, fixtures):
+def normalize_espn(data, fixtures, prev_info):
     """Map ESPN events to our fixture IDs. Finished matches become results (per-competitor winner
     flag + shootoutScore resolve knockouts incl. penalties; goal/red-card details ride along as
-    'events'). EVERY mapped match also yields matchinfo: US TV listing, plus team stats once final.
+    'events'). EVERY mapped match also updates matchinfo, merged over what we already know:
+    TV always, odds while ESPN serves them (kept after final — books pull lines at FT, but we
+    need closing odds for the market scoreboard), live score+clock while in play, stats once final.
     Returns (matches, finals, unmatched, info)."""
     group_by_pair = {frozenset((norm(f["team1"]), norm(f["team2"]))): f for f in fixtures["group_stage"]}
     ko_by_pair = {frozenset((norm(kx["team1"]), norm(kx["team2"]))): kx
                   for kx in fixtures.get("knockout", []) if kx.get("team1") and kx.get("team2")}
-    matches, finals, unmatched, info = {}, 0, [], {}
+    matches, finals, unmatched = {}, 0, []
+    info = {k: dict(v) for k, v in prev_info.items()}            # persist known tv/odds/stats
     for e in data.get("events", []):
-        st = e.get("status", {}).get("type", {})
+        status = e.get("status", {})
+        st = status.get("type", {})
         is_final = st.get("state") == "post" and st.get("completed")
+        in_play = st.get("state") == "in"
         competition = (e.get("competitions") or [{}])[0]
         comp = competition.get("competitors", [])
         teams = []                                                # (our-name, goals, winner_bool, pens, espn_id)
@@ -216,11 +221,17 @@ def normalize_espn(data, fixtures):
         if not t1 or not t2: continue
         fid = target["id"]
 
-        tv = _espn_tv(competition)                                # matchinfo: TV always, odds pre-match, stats once final
-        entry = {}
+        entry = dict(info.get(fid, {}))
+        tv = _espn_tv(competition)
         if tv: entry["tv"] = tv
         od = _espn_odds(competition, {t1[4]: "team1", t2[4]: "team2"})
-        if od: entry["odds"] = od
+        if od: entry["odds"] = od                                 # absent post-FT -> stored closing odds survive
+        if in_play and t1[1] is not None and t2[1] is not None:
+            clock = status.get("displayClock") or st.get("shortDetail") or ""
+            if st.get("name") == "STATUS_HALFTIME": clock = "HT"
+            entry["live"] = {"sa": t1[1], "sb": t2[1], "t": clock}
+        elif "live" in entry:
+            del entry["live"]                                     # match over (or not started) -> clear
         if is_final:
             stats = _espn_stats(competition, (t1[4], t2[4]))
             if stats: entry["stats"] = stats
@@ -265,7 +276,7 @@ def main():
     espn = fetch_espn()
     espn_finals = 0
     if espn:
-        espn_matches, espn_finals, espn_unmatched, info = normalize_espn(espn, fixtures)
+        espn_matches, espn_finals, espn_unmatched, info = normalize_espn(espn, fixtures, load("matchinfo.json", {}))
         merged.update(espn_matches)
         if espn_finals: srcs.append("espn")
         if espn_unmatched:

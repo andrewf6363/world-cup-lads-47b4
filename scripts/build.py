@@ -7,6 +7,7 @@ Run:  python3 scripts/build.py
 """
 import json, os, datetime, math, random, re, hashlib
 from collections import Counter
+from itertools import product
 import lib
 
 HERE = os.path.dirname(__file__)
@@ -157,7 +158,78 @@ def write_ics(fixtures):
     open(os.path.join(ROOT, "wc26-group-stage.ics"), "w", encoding="utf-8", newline="").write(out)
     return n
 
-def build_briefing(fixtures, M, players, pmap, dist, minfo):
+def qual_top2(fixtures, M):
+    """Brute-force top-2 qualification status per team over every remaining group-match outcome.
+    Points only (no goal data), so ties break AGAINST a team for clinching and FOR it when checking
+    elimination — 'through'/'third' are only claimed when mathematically certain either way.
+    Returns (status{team: through|alive|third}, notes{fixture_id: [scenario strings]})."""
+    status, notes = {}, {}
+    groups = {}
+    for f in fixtures["group_stage"]:
+        groups.setdefault(f["group"], []).append(f)
+    for g, fxs in groups.items():
+        teams = sorted({t for f in fxs for t in (f["team1"], f["team2"])})
+        base = {t: 0 for t in teams}
+        rem = []
+        for f in fxs:
+            res = M.get(f["id"], {})
+            if res.get("status") == "final":
+                o = res.get("outcome")
+                if o == "team1": base[f["team1"]] += 3
+                elif o == "team2": base[f["team2"]] += 3
+                else: base[f["team1"]] += 1; base[f["team2"]] += 1
+            else:
+                rem.append(f)
+        combos = list(product(("team1", "draw", "team2"), repeat=len(rem)))
+        def table(combo):
+            pts = dict(base)
+            for f, o in zip(rem, combo):
+                if o == "team1": pts[f["team1"]] += 3
+                elif o == "team2": pts[f["team2"]] += 3
+                else: pts[f["team1"]] += 1; pts[f["team2"]] += 1
+            return pts
+        all_pess = {t: True for t in teams}; any_opt = {t: False for t in teams}
+        per = [(combo, table(combo)) for combo in combos]
+        for t in teams:
+            for combo, pts in per:
+                others = [pts[o] for o in teams if o != t]
+                if sum(1 for v in others if v >= pts[t]) > 1: all_pess[t] = False
+                if sum(1 for v in others if v > pts[t]) <= 1: any_opt[t] = True
+        for t in teams:
+            status[t] = "through" if all_pess[t] else ("third" if not any_opt[t] else "alive")
+        # per-match scenarios for teams still alive ("clinch with a win" etc.)
+        for idx, f in enumerate(rem):
+            for side, t in (("team1", f["team1"]), ("team2", f["team2"])):
+                if status[t] != "alive": continue
+                win_p, draw_p, lose_o = True, True, False
+                for combo, pts in per:
+                    others = [pts[o] for o in teams if o != t]
+                    ge = sum(1 for v in others if v >= pts[t]); gt = sum(1 for v in others if v > pts[t])
+                    oc = combo[idx]
+                    if oc == side and ge > 1: win_p = False
+                    if oc == "draw" and ge > 1: draw_p = False
+                    if oc not in (side, "draw") and gt <= 1: lose_o = True
+                if win_p and draw_p: msg = f"{t} are through top-two with a draw or better"
+                elif win_p: msg = f"{t} clinch a top-two spot with a win"
+                elif not lose_o: msg = f"a loss ends {t}'s top-two hopes"
+                else: continue
+                notes.setdefault(f["id"], []).append(msg)
+    return status, notes
+
+def golden_boot(fixtures, M, limit=8):
+    by_id = {f["id"]: f for f in fixtures["group_stage"] + fixtures.get("knockout", [])}
+    c = {}
+    for mid, res in M.items():
+        fx = by_id.get(mid)
+        if not fx or res.get("status") != "final": continue
+        for e in res.get("events", []):
+            if e.get("kind") in ("goal", "pen") and e.get("player"):
+                team = fx.get(e.get("team"), "") if e.get("team") in ("team1", "team2") else ""
+                c[(e["player"], team)] = c.get((e["player"], team), 0) + 1
+    rows = sorted(c.items(), key=lambda kv: (-kv[1], kv[0][0]))
+    return [{"p": p, "team": t, "g": n} for (p, t), n in rows[:limit]]
+
+def build_briefing(fixtures, M, players, pmap, dist, minfo, qnotes):
     """Match Center: recaps of finals from the last ~26h + a watch guide for the next 24h.
     Prose is generated deterministically from score shape, scorer/red-card events, FIFA-rank
     upsets, and the league's pick splits — same inputs always render the same text."""
@@ -245,23 +317,39 @@ def build_briefing(fixtures, M, players, pmap, dist, minfo):
         if len(right) >= n - 2: return f"{len(right)} of {n} banked it — only {' and '.join(wrong)} missed."
         return f"Only {', '.join(right[:-1])} and {right[-1]} called it (+100 each)."
 
-    recaps = []
+    recaps, window = [], []
     for f in sorted(allfx, key=lambda x: x.get("kickoff_utc") or "", reverse=True):
         res = M.get(f["id"], {})
         ko = kdt(f)
         if res.get("status") != "final" or not ko or (now - ko) > datetime.timedelta(hours=26):
             continue
+        window.append((f["id"], res.get("outcome")))
         text, scorers = recap_text(f, res)
         recaps.append({"a": f["team1"], "b": f["team2"], "sa": res["team1_goals"], "sb": res["team2_goals"],
                        "label": label(f), "when": date_label(f.get("kickoff_utc")), "pen": res.get("pens"),
                        "text": text, "scorers": scorers, "fantasy": fantasy_line(f["id"], res.get("outcome")),
                        "stats": minfo.get(f["id"], {}).get("stats", [])})
 
+    # who won the day — fantasy points banked on the recap window, bucketed
+    day = ""
+    if window and players:
+        pts = {p["name"]: sum(100 for fid, oc in window if fid.startswith("G-") and gp(p["name"]).get(fid) == oc)
+               for p in players}
+        buckets = {}
+        for n, v in pts.items(): buckets.setdefault(v, []).append(first(n))
+        if len(buckets) == 1:
+            v = next(iter(buckets))
+            day = f"All {len(players)} lads +{v}" if v else "Nobody scored in the last 24h"
+        else:
+            day = " · ".join((f"+{v} " if v else "0 ") + ", ".join(sorted(buckets[v]))
+                             for v in sorted(buckets, reverse=True))
+
     previews = []
     for f in sorted(allfx, key=lambda x: x.get("kickoff_utc") or ""):
         ko = kdt(f)
         if M.get(f["id"], {}).get("status") == "final" or not ko: continue
-        live = ko <= now < ko + datetime.timedelta(hours=2, minutes=15)
+        ls = minfo.get(f["id"], {}).get("live")
+        live = bool(ls) or (ko <= now < ko + datetime.timedelta(hours=2, minutes=15))
         if not live and not (now < ko <= now + datetime.timedelta(hours=24)): continue
         c = dist.get(f["id"], {"team1": 0, "draw": 0, "team2": 0})
         tot = c["team1"] + c["draw"] + c["team2"]
@@ -294,9 +382,29 @@ def build_briefing(fixtures, M, players, pmap, dist, minfo):
                                  fmt("team2", f["team2"])) if p]
             oline = " · ".join(parts)
             if od.get("ou") is not None: oline += f" · O/U {od['ou']}"
+
+        # swing: what each outcome does to the top of the table (once points exist)
+        sw = []
+        if f["id"].startswith("G-") and players and any(p["total"] > 0 for p in players):
+            base = {p["name"]: p["total"] for p in players}
+            top0 = max(base.values()); lead0 = sorted(n for n, v in base.items() if v == top0)
+            for o, lab in (("team1", f["team1"]), ("draw", "Draw"), ("team2", f["team2"])):
+                gain = [p["name"] for p in players if gp(p["name"]).get(f["id"]) == o]
+                new = {n: base[n] + (100 if n in gain else 0) for n in base}
+                top1 = max(new.values()); lead1 = sorted(n for n, v in new.items() if v == top1)
+                if lead1 == lead0: head = "top unchanged"
+                elif len(lead1) == 1:
+                    head = f"{first(lead1[0])} {'clear on top' if lead1[0] in lead0 else 'takes top spot'}"
+                else:
+                    head = ", ".join(first(x) for x in lead1[:2]) + (f" +{len(lead1)-2}" if len(lead1) > 2 else "") + " tied on top"
+                gtxt = ", ".join(first(x) for x in gain) if gain else "nobody"
+                sw.append(f"<b>{lab}</b> · +100 {gtxt} — {head}")
+
         previews.append({"t1": f["team1"], "t2": f["team2"], "label": label(f), "et": et(ko),
                          "split": (" · ".join(bits)) if bits else "", "note": note, "live": live,
-                         "tv": " · ".join(minfo.get(f["id"], {}).get("tv", [])), "odds": oline})
+                         "tv": " · ".join(minfo.get(f["id"], {}).get("tv", [])), "odds": oline,
+                         "ls": ls, "swing": sw, "qual": "; ".join(qnotes.get(f["id"], [])[:2]),
+                         "id": f["id"]})
 
     race_line = ""
     if players and any(p["total"] > 0 for p in players):
@@ -307,7 +415,7 @@ def build_briefing(fixtures, M, players, pmap, dist, minfo):
             race_line += f" · {first(players[1]['name'])} {gap:,} back" if gap > 0 else " · tied at the top"
         mv = max(players, key=lambda p: p["move"])
         if mv["move"] > 0: race_line += f" · {first(mv['name'])} up {mv['move']}"
-    return {"recaps": recaps[:6], "previews": previews[:6], "race": race_line}
+    return {"recaps": recaps[:6], "previews": previews[:6], "race": race_line, "day": day}
 
 def main():
     fixtures = load("fixtures.json", {"group_stage": [], "knockout": []})
@@ -471,6 +579,22 @@ def main():
         if pl["rank"] == 1 and pl["total"] > 0: b.append("Front-runner")
         pl["badges"] = b
 
+    # ---- Streaks + wooden spoon ----
+    graded_order = sorted((f for f in fixtures["group_stage"] if M.get(f["id"], {}).get("status") == "final"),
+                          key=lambda f: (f.get("kickoff_utc") or "", f["id"]))
+    for pl in players:
+        gpicks = pmap.get(pl["name"], {}).get("group_picks", {}) or {}
+        s = 0
+        for f in reversed(graded_order):
+            if gpicks.get(f["id"]) == M[f["id"]].get("outcome"): s += 1
+            else: break
+        pl["streak"] = s
+        pl["spoon"] = False
+    if finals and players and any(p["total"] > 0 for p in players):
+        worst = max(p["rank"] for p in players)
+        if worst > 1:                                  # nobody gets the spoon while everyone's tied
+            for pl in players: pl["spoon"] = (pl["rank"] == worst)
+
     # ---- Today / Next (live countdown strip) ----
     upcoming = []
     for f in sorted(fixtures["group_stage"], key=lambda x: (x.get("kickoff_utc") or "")):
@@ -497,10 +621,54 @@ def main():
         leader = {"name":rows[0]["name"],"total":rows[0]["total"],"correct":rows[0]["correct"],
                   "graded":rows[0]["graded"],"champ":rows[0]["champ"],"lead":rows[0]["total"]-second}
 
-    briefing = build_briefing(fixtures, M, players, pmap, dist, load("matchinfo.json", {}))
+    minfo = load("matchinfo.json", {})
+    qual, qnotes = qual_top2(fixtures, M)
+    briefing = build_briefing(fixtures, M, players, pmap, dist, minfo, qnotes)
+
+    # tag group-table rows with qualification status (only meaningful once it's mathematically set)
+    for gt in group_tables:
+        for r in gt["rows"]:
+            r["qual"] = qual.get(r["team"], "alive")
+
+    # ---- The Book: market record, who's beating the closing favorite, lads-vs-Vegas splits ----
+    def first_name(n): return n.split()[0]
+    fav_record = {"w": 0, "l": 0}
+    beat = Counter()
+    nfin = ndraw = 0
+    for f in fixtures["group_stage"]:
+        res = M.get(f["id"], {})
+        if res.get("status") != "final": continue
+        nfin += 1
+        if res.get("outcome") == "draw": ndraw += 1
+        fav = (minfo.get(f["id"], {}).get("odds") or {}).get("fav")
+        if not fav: continue
+        fav_record["w" if res["outcome"] == fav else "l"] += 1
+        for p in picks["players"]:
+            pk = p.get("group_picks", {}).get(f["id"])
+            if pk and pk != fav and pk == res["outcome"]: beat[first_name(p["name"])] += 1
+    dis = []
+    for pv in briefing["previews"]:
+        od = minfo.get(pv["id"], {}).get("odds") or {}
+        fav, ml = od.get("fav"), od.get("ml", {})
+        c = dist.get(pv["id"])
+        if not fav or not c: continue
+        mx = max(c.values())
+        tops = [k for k, v in c.items() if v == mx]
+        if len(tops) != 1 or tops[0] == fav: continue
+        lbl = {"team1": pv["t1"], "team2": pv["t2"], "draw": "the draw"}
+        dis.append(f"{pv['t1']} v {pv['t2']} — lads lean {lbl[tops[0]]} ({mx} of {len(players)}); "
+                   f"Vegas likes {lbl[fav]} {ml.get(fav, '')}")
+    book = {
+        "record": (f"Favorites {fav_record['w']}–{fav_record['l']} against the lads' board · "
+                   f"draws {ndraw}/{nfin}") if (fav_record["w"] + fav_record["l"]) else
+                  ("No graded matches with a closing line yet — the market record starts with tonight's games."),
+        "beat": (" · ".join(f"{n} {v}" for n, v in beat.most_common(3)) if beat else ""),
+        "dis": dis[:3],
+    }
+    boot = golden_boot(fixtures, M)
 
     data = {
-        "briefing": briefing,
+        "briefing": briefing, "boot": boot, "book": book,
         "meta": {"name": LEAGUE_NAME, "overline": "The Friends League", "hosts": HOSTS,
                  "phase": phase(fixtures, results), "updated": et_now(),
                  "managers": len(roster), "pot": len(roster)*25, "submitted": len(players),
