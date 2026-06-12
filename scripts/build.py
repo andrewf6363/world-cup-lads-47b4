@@ -157,7 +157,7 @@ def write_ics(fixtures):
     open(os.path.join(ROOT, "wc26-group-stage.ics"), "w", encoding="utf-8", newline="").write(out)
     return n
 
-def build_briefing(fixtures, M, players, pmap, dist):
+def build_briefing(fixtures, M, players, pmap, dist, minfo):
     """Match Center: recaps of finals from the last ~26h + a watch guide for the next 24h.
     Prose is generated deterministically from score shape, scorer/red-card events, FIFA-rank
     upsets, and the league's pick splits — same inputs always render the same text."""
@@ -254,7 +254,8 @@ def build_briefing(fixtures, M, players, pmap, dist):
         text, scorers = recap_text(f, res)
         recaps.append({"a": f["team1"], "b": f["team2"], "sa": res["team1_goals"], "sb": res["team2_goals"],
                        "label": label(f), "when": date_label(f.get("kickoff_utc")), "pen": res.get("pens"),
-                       "text": text, "scorers": scorers, "fantasy": fantasy_line(f["id"], res.get("outcome"))})
+                       "text": text, "scorers": scorers, "fantasy": fantasy_line(f["id"], res.get("outcome")),
+                       "stats": minfo.get(f["id"], {}).get("stats", [])})
 
     previews = []
     for f in sorted(allfx, key=lambda x: x.get("kickoff_utc") or ""):
@@ -280,7 +281,8 @@ def build_briefing(fixtures, M, players, pmap, dist):
                         if who: note = f"{who[0]} stands alone on {lbl[k]}."
                         break
         previews.append({"t1": f["team1"], "t2": f["team2"], "label": label(f), "et": et(ko),
-                         "split": (" · ".join(bits)) if bits else "", "note": note, "live": live})
+                         "split": (" · ".join(bits)) if bits else "", "note": note, "live": live,
+                         "tv": " · ".join(minfo.get(f["id"], {}).get("tv", []))})
 
     race_line = ""
     if players and any(p["total"] > 0 for p in players):
@@ -481,7 +483,7 @@ def main():
         leader = {"name":rows[0]["name"],"total":rows[0]["total"],"correct":rows[0]["correct"],
                   "graded":rows[0]["graded"],"champ":rows[0]["champ"],"lead":rows[0]["total"]-second}
 
-    briefing = build_briefing(fixtures, M, players, pmap, dist)
+    briefing = build_briefing(fixtures, M, players, pmap, dist, load("matchinfo.json", {}))
 
     data = {
         "briefing": briefing,

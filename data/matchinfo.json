@@ -1,0 +1,533 @@
+{
+ "G-A-1": {
+  "stats": [
+   [
+    "Possession",
+    "60.5%",
+    "39.5%"
+   ],
+   [
+    "Shots",
+    "16",
+    "3"
+   ],
+   [
+    "On target",
+    "4",
+    "2"
+   ],
+   [
+    "Corners",
+    "3",
+    "1"
+   ],
+   [
+    "Fouls",
+    "12",
+    "11"
+   ]
+  ],
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-A-2": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-A-3": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-A-4": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-A-5": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-A-6": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-B-1": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-B-2": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-B-3": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-B-4": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-B-5": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-B-6": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-C-1": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-C-2": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-C-3": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-C-4": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-C-5": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-C-6": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-D-1": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-D-2": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-D-3": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-D-4": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-D-5": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-D-6": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-E-1": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-E-2": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-E-3": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-E-4": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-E-5": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-E-6": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-F-1": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-F-2": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-F-3": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-F-4": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-F-5": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-F-6": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-G-1": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-G-2": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-G-3": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-G-4": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-G-5": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-G-6": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-H-1": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-H-2": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-H-3": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-H-4": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-H-5": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-H-6": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-I-1": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-I-2": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-I-3": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-I-4": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-I-5": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-I-6": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-J-1": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-J-2": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-J-3": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-J-4": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-J-5": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-J-6": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-K-1": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-K-2": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-K-3": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-K-4": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-K-5": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-K-6": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-L-1": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-L-2": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-L-3": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-L-4": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-L-5": {
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "Peacock"
+  ]
+ },
+ "G-L-6": {
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "Peacock"
+  ]
+ }
+}

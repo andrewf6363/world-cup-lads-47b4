@@ -126,18 +126,45 @@ def _espn_events(competition, id_to_side):
                     "player": who, "kind": kind})
     return out
 
+TV_NAMES = {"Tele": "Telemundo"}                                  # ESPN shortName -> friendly
+STAT_ROWS = [("possessionPct", "Possession", "%"), ("totalShots", "Shots", ""),
+             ("shotsOnTarget", "On target", ""), ("wonCorners", "Corners", ""),
+             ("foulsCommitted", "Fouls", "")]
+
+def _espn_tv(competition):
+    """US broadcast names (TV + streaming), deduped, in ESPN's order."""
+    out = []
+    for g in competition.get("geoBroadcasts", []):
+        nm = TV_NAMES.get(g.get("media", {}).get("shortName"), g.get("media", {}).get("shortName"))
+        if nm and nm not in out: out.append(nm)
+    return out
+
+def _espn_stats(competition, side_order):
+    """[[label, team1_val, team2_val], ...] for the scan-friendly stat set; [] until ESPN posts them."""
+    per = {}
+    for c in competition.get("competitors", []):
+        per[str(c.get("team", {}).get("id"))] = {s.get("name"): s.get("displayValue")
+                                                 for s in c.get("statistics", [])}
+    s1, s2 = per.get(side_order[0], {}), per.get(side_order[1], {})
+    rows = []
+    for key, label, suffix in STAT_ROWS:
+        a, b = s1.get(key), s2.get(key)
+        if a is None or b is None: continue
+        rows.append([label, f"{a}{suffix}", f"{b}{suffix}"])
+    return rows
+
 def normalize_espn(data, fixtures):
-    """Map ESPN's finished events to our fixture IDs. ESPN gives a per-competitor winner flag and
-    shootoutScore, so knockouts (incl. penalties) resolve directly. Goal/red-card details ride along
-    as an 'events' list (feeds the Match Center recaps). Returns (matches, finals, unmatched)."""
+    """Map ESPN events to our fixture IDs. Finished matches become results (per-competitor winner
+    flag + shootoutScore resolve knockouts incl. penalties; goal/red-card details ride along as
+    'events'). EVERY mapped match also yields matchinfo: US TV listing, plus team stats once final.
+    Returns (matches, finals, unmatched, info)."""
     group_by_pair = {frozenset((norm(f["team1"]), norm(f["team2"]))): f for f in fixtures["group_stage"]}
     ko_by_pair = {frozenset((norm(kx["team1"]), norm(kx["team2"]))): kx
                   for kx in fixtures.get("knockout", []) if kx.get("team1") and kx.get("team2")}
-    matches, finals, unmatched = {}, 0, []
+    matches, finals, unmatched, info = {}, 0, [], {}
     for e in data.get("events", []):
         st = e.get("status", {}).get("type", {})
-        if not (st.get("state") == "post" and st.get("completed")):
-            continue                                              # only truly-final matches score
+        is_final = st.get("state") == "post" and st.get("completed")
         competition = (e.get("competitions") or [{}])[0]
         comp = competition.get("competitors", [])
         teams = []                                                # (our-name, goals, winner_bool, pens, espn_id)
@@ -148,34 +175,43 @@ def normalize_espn(data, fixtures):
             sp = c.get("shootoutScore")
             teams.append((nm, g, c.get("winner"), int(sp) if sp not in (None, "") else None,
                           str(c.get("team", {}).get("id"))))
-        if len(teams) != 2 or any(t[1] is None for t in teams):
+        if len(teams) != 2:
             continue
         by = {norm(t[0]): t for t in teams}
         pair = frozenset(by)
-        fx = group_by_pair.get(pair)
+        fx, kx = group_by_pair.get(pair), ko_by_pair.get(pair)
+        target = fx or kx
+        if not target:
+            if is_final and not any(is_placeholder(t[0]) for t in teams):
+                unmatched.append(f"{teams[0][0]} v {teams[1][0]}")
+            continue
+        t1, t2 = by.get(norm(target["team1"])), by.get(norm(target["team2"]))
+        if not t1 or not t2: continue
+        fid = target["id"]
+
+        tv = _espn_tv(competition)                                # matchinfo: TV always, stats once final
+        entry = {}
+        if tv: entry["tv"] = tv
+        if is_final:
+            stats = _espn_stats(competition, (t1[4], t2[4]))
+            if stats: entry["stats"] = stats
+        if entry: info[fid] = entry
+
+        if not is_final or any(t[1] is None for t in teams):
+            continue                                              # only truly-final matches score
         if fx:
-            t1, t2 = by.get(norm(fx["team1"])), by.get(norm(fx["team2"]))
-            if not t1 or not t2: unmatched.append(f"{teams[0][0]} v {teams[1][0]} (group)"); continue
             a, b = t1[1], t2[1]
             rec = {"status":"final","outcome":("team1" if a>b else "team2" if b>a else "draw"),
                    "team1_goals":a, "team2_goals":b}
-            ev = _espn_events(competition, {t1[4]:"team1", t2[4]:"team2"})
-            if ev: rec["events"] = ev
-            matches[fx["id"]] = rec
-            finals += 1
         else:
-            kx = ko_by_pair.get(pair)
-            if not kx: continue                                   # placeholder/unscheduled KO slot — skip silently
-            t1, t2 = by.get(norm(kx["team1"])), by.get(norm(kx["team2"]))
-            if not t1 or not t2: continue
             winner = next((t[0] for t in teams if t[2]), None)
             pens = f"{t1[3]}–{t2[3]} pens" if (t1[3] is not None and t2[3] is not None) else None
             rec = {"status":"final","winner":winner,"team1_goals":t1[1],"team2_goals":t2[1],"pens":pens}
-            ev = _espn_events(competition, {t1[4]:"team1", t2[4]:"team2"})
-            if ev: rec["events"] = ev
-            matches[kx["id"]] = rec
-            finals += 1
-    return matches, finals, unmatched
+        ev = _espn_events(competition, {t1[4]:"team1", t2[4]:"team2"})
+        if ev: rec["events"] = ev
+        matches[fid] = rec
+        finals += 1
+    return matches, finals, unmatched, info
 
 def main():
     fixtures = load("fixtures.json", {"group_stage": [], "knockout": []})
@@ -200,11 +236,16 @@ def main():
     espn = fetch_espn()
     espn_finals = 0
     if espn:
-        espn_matches, espn_finals, espn_unmatched = normalize_espn(espn, fixtures)
+        espn_matches, espn_finals, espn_unmatched, info = normalize_espn(espn, fixtures)
         merged.update(espn_matches)
         if espn_finals: srcs.append("espn")
         if espn_unmatched:
             print("  ESPN UNMATCHED (add an alias):"); [print("   -", u) for u in espn_unmatched[:8]]
+        # matchinfo (TV listings + final-match stats) — own file, own idempotency guard
+        if info != load("matchinfo.json", {}):
+            json.dump(info, open(os.path.join(DATA, "matchinfo.json"), "w"),
+                      ensure_ascii=False, indent=1, sort_keys=True)
+            print(f"  updated data/matchinfo.json ({len(info)} matches: TV + stats)")
     else:
         print("  ESPN unavailable")
 
