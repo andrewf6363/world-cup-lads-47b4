@@ -1,6 +1,6 @@
 {
-  "last_fetched_utc": "2026-06-12T04:40:15.617870Z",
-  "source": "espn",
+  "last_fetched_utc": "2026-06-12T20:59:09.686359Z",
+  "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
       "status": "final",
@@ -62,6 +62,26 @@
           "min": "80'",
           "team": "team1",
           "player": "Oh Hyeon-Gyu",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-B-1": {
+      "status": "final",
+      "outcome": "draw",
+      "team1_goals": 1,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "21'",
+          "team": "team2",
+          "player": "Jovo Lukic",
+          "kind": "goal"
+        },
+        {
+          "min": "78'",
+          "team": "team1",
+          "player": "Cyle Larin",
           "kind": "goal"
         }
       ]

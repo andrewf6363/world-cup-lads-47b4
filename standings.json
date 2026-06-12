@@ -1,11 +1,11 @@
 {
-  "generated_utc": "2026-06-12T20:57:27.431674Z",
+  "generated_utc": "2026-06-12T20:59:10.532038Z",
   "leaderboard": [
     {
       "name": "Andrew Fahey",
       "grp": 200,
       "correct": 2,
-      "graded": 2,
+      "graded": 3,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -24,7 +24,7 @@
       "name": "Brad Bone",
       "grp": 200,
       "correct": 2,
-      "graded": 2,
+      "graded": 3,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -43,7 +43,7 @@
       "name": "John Pappas",
       "grp": 200,
       "correct": 2,
-      "graded": 2,
+      "graded": 3,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -62,7 +62,7 @@
       "name": "Keegan Ball",
       "grp": 200,
       "correct": 2,
-      "graded": 2,
+      "graded": 3,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -78,10 +78,29 @@
       "move": 0
     },
     {
+      "name": "Luke Clark",
+      "grp": 200,
+      "correct": 2,
+      "graded": 3,
+      "ko": 0,
+      "rounds": {
+        "R32": 0,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 200,
+      "champ": null,
+      "final_goals_guess": null,
+      "rank": 1,
+      "move": 4
+    },
+    {
       "name": "Karlis Draulis",
       "grp": 100,
       "correct": 1,
-      "graded": 2,
+      "graded": 3,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -93,14 +112,14 @@
       "total": 100,
       "champ": null,
       "final_goals_guess": null,
-      "rank": 5,
-      "move": 0
+      "rank": 6,
+      "move": -1
     },
     {
       "name": "Kyle Williams",
       "grp": 100,
       "correct": 1,
-      "graded": 2,
+      "graded": 3,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -112,33 +131,14 @@
       "total": 100,
       "champ": null,
       "final_goals_guess": null,
-      "rank": 5,
-      "move": 0
-    },
-    {
-      "name": "Luke Clark",
-      "grp": 100,
-      "correct": 1,
-      "graded": 2,
-      "ko": 0,
-      "rounds": {
-        "R32": 0,
-        "R16": 0,
-        "QF": 0,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 100,
-      "champ": null,
-      "final_goals_guess": null,
-      "rank": 5,
-      "move": 0
+      "rank": 6,
+      "move": -1
     },
     {
       "name": "Ryan Sheekley",
       "grp": 100,
       "correct": 1,
-      "graded": 2,
+      "graded": 3,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -150,8 +150,8 @@
       "total": 100,
       "champ": null,
       "final_goals_guess": null,
-      "rank": 5,
-      "move": 0
+      "rank": 6,
+      "move": -1
     }
   ]
 }
