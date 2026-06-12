@@ -36,7 +36,7 @@ for p in players:
     d.text((pad, 350), pts, font=pf, fill=GOLD)
     d.text((pad + d.textlength(pts, font=pf) + 22, 470), "PTS", font=F("Barlow-Bold.ttf", 40), fill=MUT)
     y = 590
-    if len(players) > 1:
+    if len(players) > 1 and meta.get("graded", 0) >= 10:
         d.text((pad, y), f"{p.get('winpct',0)}% TO LEAD", font=F("Barlow-Bold.ttf", 46), fill=GRASS); y += 72
     if p.get("champ"):
         d.text((pad, y), f"RIDING WITH {p['champ'].upper()}", font=F("Barlow-Bold.ttf", 40), fill=INK); y += 64

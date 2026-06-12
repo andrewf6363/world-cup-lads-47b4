@@ -691,7 +691,7 @@ def main():
         "meta": {"name": LEAGUE_NAME, "overline": "The Friends League", "hosts": HOSTS,
                  "phase": phase(fixtures, results), "updated": et_now(),
                  "managers": len(roster), "pot": len(roster)*25, "submitted": len(players),
-                 "started": bool(finals)},
+                 "started": bool(finals), "graded": len(finals)},
         "leader": leader, "players": players, "pending": pending, "groups": group_tables, "splits": splits,
         "daily": daily, "race": race, "upcoming": upcoming, "knockoutStart": "2026-06-28T16:00:00Z",
         "champions": champions,
