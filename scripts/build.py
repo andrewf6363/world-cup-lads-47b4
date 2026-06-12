@@ -406,22 +406,15 @@ def build_briefing(fixtures, M, players, pmap, dist, minfo, qnotes):
         live = bool(ls) or (ko <= now < ko + datetime.timedelta(hours=2, minutes=15))
         if not live and not (now < ko <= now + datetime.timedelta(hours=24)): continue
         c = dist.get(f["id"], {"team1": 0, "draw": 0, "team2": 0})
-        tot = c["team1"] + c["draw"] + c["team2"]
-        bits = [s for s in (f'{c["team1"]} {f["team1"]}' if c["team1"] else "",
-                            f'{c["draw"]} draw' if c["draw"] else "",
-                            f'{c["team2"]} {f["team2"]}' if c["team2"] else "") if s]
-        note = ""
-        if tot:
-            lbl = {"team1": f["team1"], "team2": f["team2"], "draw": "the draw"}
-            una = [k for k in c if c[k] == tot]
-            if una:
-                note = f"The league is unanimous — all {tot} on {lbl[una[0]]}."
-            else:
-                for k in ("team1", "draw", "team2"):
-                    if c[k] == 1:
-                        who = [first(p["name"]) for p in players if gp(p["name"]).get(f["id"]) == k]
-                        if who: note = f"{who[0]} stands alone on {lbl[k]}."
-                        break
+        # who's on what — names grouped by pick (Kyle's group-chat request)
+        pick_rows = []
+        lbl = {"team1": f["team1"], "draw": "Draw", "team2": f["team2"]}
+        for k in ("team1", "draw", "team2"):
+            if not c.get(k): continue
+            who = [first(p["name"]) for p in players if gp(p["name"]).get(f["id"]) == k]
+            if who:
+                pick_rows.append({"o": lbl[k],
+                                  "n": f"all {len(players)}" if len(who) == len(players) else ", ".join(who)})
         od = minfo.get(f["id"], {}).get("odds") or {}
         ml = od.get("ml", {})
         oline = ""
@@ -455,7 +448,7 @@ def build_briefing(fixtures, M, players, pmap, dist, minfo, qnotes):
                 sw.append(f"<b>{lab}</b> · +100 {gtxt} — {head}")
 
         previews.append({"t1": f["team1"], "t2": f["team2"], "label": label(f), "et": et(ko),
-                         "split": (" · ".join(bits)) if bits else "", "note": note, "live": live,
+                         "picks": pick_rows, "live": live,
                          "tv": " · ".join(minfo.get(f["id"], {}).get("tv", [])), "odds": oline,
                          "ls": ls, "swing": sw, "qual": "; ".join(qnotes.get(f["id"], [])[:2]),
                          "id": f["id"]})
