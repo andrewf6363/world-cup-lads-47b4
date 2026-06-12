@@ -229,6 +229,115 @@ def golden_boot(fixtures, M, limit=8):
     rows = sorted(c.items(), key=lambda kv: (-kv[1], kv[0][0]))
     return [{"p": p, "team": t, "g": n} for (p, t), n in rows[:limit]]
 
+def recap_prose(f, res, stats):
+    """4–5 sentence deterministic recap: the result shape, the scoring story with running score,
+    the stats picture, and discipline. Degrades gracefully when events/stats are missing
+    (e.g. commissioner-entered results)."""
+    t1, t2 = f["team1"], f["team2"]; a, b = res["team1_goals"], res["team2_goals"]
+    name = {"team1": t1, "team2": t2}
+    ev = res.get("events", [])
+    goals = [e for e in ev if e["kind"] in ("goal", "pen", "og")]
+    reds = [e for e in ev if e["kind"] == "red"]
+    def mval(m):
+        nums = re.findall(r"\d+", m or ""); return sum(int(x) for x in nums) if nums else 0
+    def var(opts):
+        return opts[int(hashlib.md5(f["id"].encode()).hexdigest(), 16) % len(opts)]
+    sents = []
+    win = lose = None; late = False
+    if a != b:
+        win, lose = (t1, t2) if a > b else (t2, t1)
+        ws, ls = max(a, b), min(a, b)
+        wside = "team1" if a > b else "team2"
+        wgoals = [g for g in goals if g["team"] == wside and g["kind"] != "og"]
+        late = bool(wgoals) and mval(wgoals[-1]["min"]) >= 75 and ws - ls == 1
+
+    # 1) the result shape
+    if a == b == 0:
+        sents.append(var([f"{t1} and {t2} cancelled each other out — a goalless draw and a point apiece.",
+                          f"No way through: {t1} and {t2} ground out a 0–0 that never caught fire."]))
+    elif a == b:
+        sents.append(f"{t1} and {t2} shared the points at {a}–{b}.")
+    elif rank(win) > rank(lose) + 15:
+        sents.append(f"{win} stunned {lose} {ws}–{ls} — a result almost nobody had on their sheet.")
+    elif ws - ls >= 3:
+        sents.append(var([f"{win} put on a show, running out {ws}–{ls} winners over {lose}.",
+                          f"A statement from {win} — {lose} swept aside {ws}–{ls}."]))
+    elif ws - ls == 2:
+        sents.append(f"{win} controlled it, a comfortable {ws}–{ls} over {lose}.")
+    elif late:
+        g = wgoals[-1]
+        sents.append(f"{win} snatched it {ws}–{ls}, {g['player'] or 'the winner'} striking in the {g['min']} — heartbreak for {lose}.")
+    else:
+        sents.append(f"{win} edged a tight one, {ws}–{ls} over {lose}.")
+
+    # 2) the scoring story, with the running score
+    if goals:
+        sa = sb = 0; moments = []
+        for g in goals:
+            sa, sb = (sa + 1, sb) if g["team"] == "team1" else (sa, sb + 1)
+            moments.append((g, f"{sa}–{sb}"))
+        if late: moments = moments[:-1]                            # the shape line already told it
+        if a == b and a > 0 and mval(goals[-1]["min"]) >= 75:
+            g = goals[-1]
+            art = "an" if (g["min"] or "").lstrip().startswith(("8", "11", "18")) else "a"
+            sents.append(f"{g['player'] or name[g['team']]} rescued it for {name[g['team']]} with {art} {g['min']} equalizer.")
+            moments = moments[:-1]
+        story = []
+        for i, (g, sc) in enumerate(moments[:3]):
+            who = g["player"] or name[g["team"]]
+            tag = " (pen)" if g["kind"] == "pen" else " (og)" if g["kind"] == "og" else ""
+            story.append(f"{who}{tag} opened the scoring in the {g['min']}" if i == 0 and sc in ("1–0", "0–1")
+                         else f"{who}{tag} made it {sc} in the {g['min']}")
+        if len(moments) > 3: story.append("the goals kept coming from there")
+        if story:
+            s = "; ".join(story)
+            sents.append(s[0].upper() + s[1:] + ".")
+        braces = Counter(g["player"] for g in goals if g["player"]).most_common(1)
+        if braces and braces[0][1] >= 2:
+            sents.append(f"{'A hat-trick' if braces[0][1] >= 3 else 'A brace'} for {braces[0][0]}.")
+        if mval(goals[0]["min"]) > 45:
+            sents.append("The first half finished goalless.")
+
+    # 3) the stats picture
+    srow = {s[0]: (s[1], s[2]) for s in (stats or [])}
+    pos, sh, sot = srow.get("Possession"), srow.get("Shots"), srow.get("On target")
+    if pos and sh:
+        try:
+            p1 = float(pos[0].rstrip("%")); s1i, s2i = int(sh[0]), int(sh[1])
+            wi = 0 if (win == t1 or (win is None and p1 >= 50)) else 1
+            pw = pos[wi].rstrip("%"); shw, shl = (s1i, s2i) if wi == 0 else (s2i, s1i)
+            side_w = t1 if wi == 0 else t2; side_l = t2 if wi == 0 else t1
+            sotw = sot[wi] if sot else None
+            if win and shw >= shl:
+                sents.append(f"{side_w} backed it up with {pw}% of the ball and a {shw}–{shl} edge in shots"
+                             + (f" ({sotw} on target)" if sotw else "") + ".")
+            elif win:
+                sents.append(f"The numbers leaned the other way — {side_l} out-shot them {shl}–{shw} — but {win} took the chances that mattered.")
+            else:
+                sents.append(f"{side_w} had the better of it ({pw}% possession, {shw} shots to {shl}) without finding a winner.")
+        except (ValueError, IndexError):
+            pass
+
+    # 4) discipline
+    if reds:
+        by_side = {}
+        for r in reds: by_side.setdefault(r["team"], []).append(r)
+        bits = []
+        for side, rs in by_side.items():
+            men = {1: "ten men", 2: "nine men", 3: "eight men"}.get(len(rs), "short-handed")
+            names_ = ", ".join(f"{x['player']} ({x['min']})" for x in rs if x["player"]) or f"{len(rs)} sent off"
+            bits.append(f"{name[side]} finished with {men} — {names_}")
+        sents.append(("It boiled over: " if len(reds) >= 2 else "") + "; ".join(bits) + ".")
+
+    def side_goals(side):
+        gs = [g for g in goals if g["team"] == side]
+        return ", ".join(f"{g['player'] or '—'} {g['min']}"
+                         + (" (og)" if g["kind"] == "og" else " (pen)" if g["kind"] == "pen" else "") for g in gs)
+    sg1, sg2 = side_goals("team1"), side_goals("team2")
+    scorers = " &nbsp;·&nbsp; ".join(p for p in
+              ((f"<b>{t1}:</b> {sg1}" if sg1 else ""), (f"<b>{t2}:</b> {sg2}" if sg2 else "")) if p)
+    return " ".join(sents), scorers
+
 def build_briefing(fixtures, M, players, pmap, dist, minfo, qnotes):
     """Match Center: recaps of finals from the last ~26h + a watch guide for the next 24h.
     Prose is generated deterministically from score shape, scorer/red-card events, FIFA-rank
@@ -251,61 +360,6 @@ def build_briefing(fixtures, M, players, pmap, dist, minfo, qnotes):
         return opts[int(hashlib.md5(fid.encode()).hexdigest(), 16) % len(opts)]
     def gp(name): return pmap.get(name, {}).get("group_picks", {}) or {}
 
-    def recap_text(f, res):
-        t1, t2 = f["team1"], f["team2"]; a, b = res["team1_goals"], res["team2_goals"]
-        ev = res.get("events", [])
-        goals = [e for e in ev if e["kind"] in ("goal", "pen", "og")]
-        reds = [e for e in ev if e["kind"] == "red"]
-        name = {"team1": t1, "team2": t2}
-        sents = []
-        if a == b:
-            if a == 0:
-                sents.append(pick_var(f["id"], [
-                    f"{t1} and {t2} cancelled each other out — a goalless draw and a point apiece.",
-                    f"No way through: {t1} and {t2} ground out a 0–0 that never caught fire."]))
-            else:
-                sents.append(f"{t1} and {t2} shared the points at {a}–{b}.")
-                if goals and mval(goals[-1]["min"]) >= 75:
-                    g = goals[-1]
-                    sents.append(f"{g['player'] or name[g['team']]} rescued it with a {g['min']} equalizer.")
-        else:
-            win, lose = (t1, t2) if a > b else (t2, t1)
-            ws, ls = max(a, b), min(a, b)
-            wside = "team1" if a > b else "team2"
-            wgoals = [g for g in goals if g["team"] == wside and g["kind"] != "og"]
-            late = bool(wgoals) and mval(wgoals[-1]["min"]) >= 75 and ws - ls == 1
-            if rank(win) > rank(lose) + 15:
-                sents.append(f"{win} stunned {lose} {ws}–{ls} — a result almost nobody had on their sheet.")
-            elif ws - ls >= 3:
-                sents.append(pick_var(f["id"], [
-                    f"{win} put on a show, running out {ws}–{ls} winners over {lose}.",
-                    f"A statement from {win} — {lose} swept aside {ws}–{ls}."]))
-            elif ws - ls == 2:
-                sents.append(f"{win} controlled it, a comfortable {ws}–{ls} over {lose}.")
-            elif late:
-                g = wgoals[-1]
-                sents.append(f"{win} snatched it {ws}–{ls}, {g['player'] or 'the winner'} striking in the {g['min']} — heartbreak for {lose}.")
-            else:
-                sents.append(f"{win} edged a tight one, {ws}–{ls} over {lose}.")
-            top = Counter(g["player"] for g in wgoals if g["player"]).most_common(1)
-            if top and top[0][1] >= 2:
-                sents.append(f"{top[0][0]} {'hit a hat-trick' if top[0][1] >= 3 else 'scored twice'}.")
-            elif goals and goals[0]["player"] and not late:
-                sents.append(f"{goals[0]['player']} opened the scoring in the {goals[0]['min']}.")
-        if len(reds) >= 2:
-            sents.append(f"It boiled over — {len(reds)} red cards in all.")
-        elif len(reds) == 1:
-            r = reds[0]
-            sents.append(f"{r['player'] or name[r['team']]} ({name[r['team']]}) saw red in the {r['min']}.")
-        def side_goals(side):
-            gs = [g for g in goals if g["team"] == side]
-            return ", ".join(f"{g['player'] or '—'} {g['min']}"
-                             + (" (og)" if g["kind"] == "og" else " (pen)" if g["kind"] == "pen" else "") for g in gs)
-        s1, s2 = side_goals("team1"), side_goals("team2")
-        scorers = " &nbsp;·&nbsp; ".join(p for p in
-                  ((f"<b>{t1}:</b> {s1}" if s1 else ""), (f"<b>{t2}:</b> {s2}" if s2 else "")) if p)
-        return " ".join(sents), scorers
-
     def fantasy_line(fid, outcome):
         if not fid.startswith("G-") or not players: return ""
         n = len(players)
@@ -324,7 +378,7 @@ def build_briefing(fixtures, M, players, pmap, dist, minfo, qnotes):
         if res.get("status") != "final" or not ko or (now - ko) > datetime.timedelta(hours=26):
             continue
         window.append((f["id"], res.get("outcome")))
-        text, scorers = recap_text(f, res)
+        text, scorers = recap_prose(f, res, minfo.get(f["id"], {}).get("stats", []))
         recaps.append({"a": f["team1"], "b": f["team2"], "sa": res["team1_goals"], "sb": res["team2_goals"],
                        "label": label(f), "when": date_label(f.get("kickoff_utc")), "pen": res.get("pens"),
                        "text": text, "scorers": scorers, "fantasy": fantasy_line(f["id"], res.get("outcome")),
