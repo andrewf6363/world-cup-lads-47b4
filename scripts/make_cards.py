@@ -62,7 +62,9 @@ def render_og():
     d.text((pad, 84), "THE FRIENDS LEAGUE · 2026", font=F("Barlow-Bold.ttf", 32), fill=MUT)
     d.text((pad, 132), "WORLD CUP LADS", font=F("Anton-Regular.ttf", 124), fill=INK)
     if meta.get("started") and players:
-        sub = f"{players[0]['name'].upper()} LEADS — {meta.get('phase','').upper()}"
+        tied = sum(1 for p in players if p.get("rank") == 1)
+        sub = (f"{tied} TIED AT THE TOP — {meta.get('phase','').upper()}" if tied > 1
+               else f"{players[0]['name'].upper()} LEADS — {meta.get('phase','').upper()}")
     else:
         sub = f"KICKS OFF JUNE 11 · ${meta.get('pot', 200)} POT · WINNER TAKES ALL"
     d.text((pad, 312), sub, font=F("Barlow-Bold.ttf", 44), fill=GOLD)

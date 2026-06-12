@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-12T00:37:07.161240Z",
+  "generated_utc": "2026-06-12T00:45:55.262367Z",
   "leaderboard": [
     {
       "name": "Andrew Fahey",
@@ -37,7 +37,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 1,
-      "move": 4
+      "move": 0
     },
     {
       "name": "John Pappas",
@@ -94,7 +94,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 1,
-      "move": 4
+      "move": 0
     },
     {
       "name": "Kyle Williams",
@@ -113,7 +113,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 1,
-      "move": 4
+      "move": 0
     },
     {
       "name": "Luke Clark",
@@ -151,7 +151,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 1,
-      "move": 4
+      "move": 0
     }
   ]
 }

@@ -437,6 +437,13 @@ function meta(){
 function spotlight(){
   const L=DATA.leader, sp=document.getElementById("spotlight");
   if(!L){sp.style.display="none";return;}
+  if(L.tied>1&&L.total>0){    // dead heat — crown nobody
+    sp.innerHTML=`<div class="sl-l"><div class="sl-tag">Top of the Table · ${DATA.meta.phase}</div>`+
+      `<div class="sl-name">${L.tied}-Way Tie</div><div class="sl-meta">All level — the next result breaks it</div></div>`+
+      `<div class="sl-r"><div class="sl-total"><span class="cu" data-v="${L.total}">${fmt(L.total)}</span></div><div class="sl-u">POINTS EACH</div>`+
+      `<div class="sl-lead">Dead heat</div></div>`;
+    return;
+  }
   let metaLine, lead;
   if(L.total===0){metaLine="Picks are in — first match kicks off June 11"; lead="Let's go";}
   else{
@@ -454,6 +461,7 @@ function standings(){
   const el=document.getElementById("standings"), GMAX=7200, KMAX=8000;
   document.getElementById("standMeta").textContent=`${DATA.players.length} of ${DATA.meta.managers} reporting`+(DATA.meta.started&&DATA.players.length>1&&DATA.players.length<DATA.meta.managers?" · win% provisional":"");
   if(!DATA.players.length){el.innerHTML='<div class="empty">No picks submitted yet — the leaderboard fills in as sheets come back.</div>';return;}
+  const sole=DATA.players.filter(q=>q.rank===1).length===1;   // crown nobody in a dead heat
   DATA.players.forEach(p=>{
     const gW=Math.round(p.grp/GMAX*100), kW=Math.round(p.ko/KMAX*100);
     const mv=p.move>0?`▲ +${p.move}`:p.move<0?`▼ ${p.move}`:"— 0";
@@ -463,11 +471,11 @@ function standings(){
     const pick=p.champ
       ? `${flag(p.champ,"flag sm")} <span>Champion · <b>${p.champ}</b></span> · ${gp}`
       : `<span>${gp}</span>`;
-    const row=document.createElement("div"); row.className="row"+(p.rank===1&&p.total>0?" leader":"");
+    const row=document.createElement("div"); row.className="row"+(sole&&p.rank===1&&p.total>0?" leader":"");
     row.dataset.name=p.name;
     row.innerHTML=`
       <div class="${rb}">${p.rank}</div>
-      <div class="who"><div class="name">${p.name}${(p.rank===1&&p.total>0)?'<span class="tag">Leader</span>':''}${p.streak>=3?`<span class="tag hot">W${p.streak}</span>`:''}${p.spoon?'<span class="tag spoon">Spoon</span>':''}</div>
+      <div class="who"><div class="name">${p.name}${(sole&&p.rank===1&&p.total>0)?'<span class="tag">Leader</span>':''}${p.streak>=3?`<span class="tag hot">W${p.streak}</span>`:''}${p.spoon?'<span class="tag spoon">Spoon</span>':''}</div>
         <div class="pick">${pick}</div></div>
       <div class="pts"><div class="total tnum"><span class="cu" data-v="${p.total}">${fmt(p.total)}</span><span class="u">PTS</span></div><div class="move ${mvc}">${mv}</div>${(DATA.meta.started&&DATA.players.length>1)?`<div class="wp"><span class="cu" data-v="${p.winpct}">${p.winpct}</span>%<span> to lead</span></div>`:''}</div>
       <div class="meters">
@@ -667,10 +675,12 @@ function enhance(){
   const saved=localStorage.getItem('wcl-theme'); if(saved)root.setAttribute('data-theme',saved);
   const lbl=()=>tb.textContent=root.getAttribute('data-theme')==='dark'?'Light':'Dark'; lbl();
   tb.onclick=()=>{const d=root.getAttribute('data-theme')==='dark';root.setAttribute('data-theme',d?'':'dark');localStorage.setItem('wcl-theme',d?'':'dark');lbl();};
-  try{ const L=DATA.leader; if(L&&L.total>0&&window.confetti){   // confetti when the lead changes
-    const last=localStorage.getItem('wcl-leader');
-    if(last&&last!==L.name) confetti({particleCount:130,spread:75,origin:{y:.3},colors:['#E3A52A','#16314C','#F5ECDB','#2E5E8C']});
-    localStorage.setItem('wcl-leader',L.name);} }catch(e){}
+  try{ const L=DATA.leader;
+    if(L&&L.tied>1){localStorage.removeItem('wcl-leader');}        // no leader to track in a dead heat
+    else if(L&&L.total>0&&window.confetti){                        // confetti when the SOLE lead changes
+      const last=localStorage.getItem('wcl-leader');
+      if(last&&last!==L.name) confetti({particleCount:130,spread:75,origin:{y:.3},colors:['#E3A52A','#16314C','#F5ECDB','#2E5E8C']});
+      localStorage.setItem('wcl-leader',L.name);} }catch(e){}
 }
 function brief(){
   const B=DATA.briefing||{recaps:[],previews:[]}, sec=document.getElementById("briefSec");

@@ -409,12 +409,18 @@ def build_briefing(fixtures, M, players, pmap, dist, minfo, qnotes):
     race_line = ""
     if players and any(p["total"] > 0 for p in players):
         lead = players[0]
-        race_line = f"{first(lead['name'])} leads on {lead['total']:,}"
-        if len(players) > 1:
-            gap = lead["total"] - players[1]["total"]
-            race_line += f" · {first(players[1]['name'])} {gap:,} back" if gap > 0 else " · tied at the top"
-        mv = max(players, key=lambda p: p["move"])
-        if mv["move"] > 0: race_line += f" · {first(mv['name'])} up {mv['move']}"
+        tied_top = sum(1 for p in players if p["rank"] == 1)
+        if tied_top == len(players):
+            race_line = f"All {tied_top} level on {lead['total']:,}"
+        elif tied_top > 1:
+            race_line = f"{tied_top} tied at the top on {lead['total']:,}"
+        else:
+            race_line = f"{first(lead['name'])} leads on {lead['total']:,}"
+            gap = lead["total"] - players[1]["total"] if len(players) > 1 else 0
+            if gap > 0: race_line += f" · {first(players[1]['name'])} {gap:,} back"
+        if len({p["total"] for p in players}) > 1:
+            mv = max(players, key=lambda p: p["move"])
+            if mv["move"] > 0: race_line += f" · {first(mv['name'])} up {mv['move']}"
     return {"recaps": recaps[:6], "previews": previews[:6], "race": race_line, "day": day}
 
 def main():
@@ -538,15 +544,26 @@ def main():
                  "items": []}
     else:
         finals.sort(key=lambda x: (x[0].get("kickoff_utc") or ""), reverse=True)
+        # singular callouts only mean something once the table has actually separated
+        separated = len({p["total"] for p in players}) > 1
+        tied_top = sum(1 for p in players if p["rank"] == 1)
         items = []
-        up = max(players, key=lambda p: p["move"]); dn = min(players, key=lambda p: p["move"])
-        if up["move"] > 0: items.append(f"Biggest riser — {up['name']}, up {up['move']} spot{'s' if up['move'] > 1 else ''}")
-        if dn["move"] < 0: items.append(f"Biggest faller — {dn['name']}, down {abs(dn['move'])}")
+        if separated:
+            up = max(players, key=lambda p: p["move"]); dn = min(players, key=lambda p: p["move"])
+            if up["move"] > 0: items.append(f"Biggest riser — {up['name']}, up {up['move']} spot{'s' if up['move'] > 1 else ''}")
+            if dn["move"] < 0: items.append(f"Biggest faller — {dn['name']}, down {abs(dn['move'])}")
         f0, r0 = min(finals[:8], key=lambda x: dist[x[0]["id"]].get(x[1].get("outcome"), 99))
         n0 = dist[f0["id"]].get(r0.get("outcome"), 0)
-        items.append(f"Least-expected result — {f0['team1']} {r0.get('team1_goals','')}–{r0.get('team2_goals','')} {f0['team2']} ({n0}/{len(players)} called it)")
+        if n0 < len(players):                          # a unanimous result surprised nobody
+            items.append(f"Least-expected result — {f0['team1']} {r0.get('team1_goals','')}–{r0.get('team2_goals','')} {f0['team2']} ({n0}/{len(players)} called it)")
+        if tied_top == 1:
+            lead_txt = f"{players[0]['name']} leads on {players[0]['total']} pts"
+        elif tied_top == len(players):
+            lead_txt = f"all {tied_top} level on {players[0]['total']} pts"
+        else:
+            lead_txt = f"{tied_top} tied at the top on {players[0]['total']} pts"
         daily = {"headline": f"Latest · {date_label(finals[0][0].get('kickoff_utc'))}",
-                 "line": f"{len(finals)} match{'es' if len(finals) != 1 else ''} played · {players[0]['name']} leads on {players[0]['total']} pts",
+                 "line": f"{len(finals)} match{'es' if len(finals) != 1 else ''} played · {lead_txt}",
                  "items": items[:3]}
 
     # ---- The Race (standings history snapshot for the chart) ----
@@ -576,7 +593,8 @@ def main():
             if nchalk / max(1, len(picked)) >= 0.8: b.append("Mr. Chalk")
             if pl["contra"] >= 12: b.append("Maverick")          # genuine minority picks (needs 3+ managers)
             if ndraw >= 10: b.append("Draw Merchant")
-        if pl["rank"] == 1 and pl["total"] > 0: b.append("Front-runner")
+        if pl["rank"] == 1 and pl["total"] > 0 and sum(1 for q in players if q["rank"] == 1) == 1:
+            b.append("Front-runner")                   # only a SOLE leader is a front-runner
         pl["badges"] = b
 
     # ---- Streaks + wooden spoon ----
@@ -619,7 +637,8 @@ def main():
     if rows:
         second = rows[1]["total"] if len(rows) > 1 else 0
         leader = {"name":rows[0]["name"],"total":rows[0]["total"],"correct":rows[0]["correct"],
-                  "graded":rows[0]["graded"],"champ":rows[0]["champ"],"lead":rows[0]["total"]-second}
+                  "graded":rows[0]["graded"],"champ":rows[0]["champ"],"lead":rows[0]["total"]-second,
+                  "tied":sum(1 for r in rows if r["rank"] == 1)}
 
     minfo = load("matchinfo.json", {})
     qual, qnotes = qual_top2(fixtures, M)
@@ -683,7 +702,9 @@ def main():
     nev = write_ics(fixtures)
 
     # social link preview (baked at build time; og.png is rendered by make_cards.py)
-    if data["meta"]["started"] and leader:
+    if data["meta"]["started"] and leader and leader.get("tied", 1) > 1:
+        og_desc = f"{leader['tied']} tied at the top on {leader['total']:,} pts — {data['meta']['phase']}"
+    elif data["meta"]["started"] and leader:
         og_desc = f"{leader['name']} leads on {leader['total']:,} pts — {data['meta']['phase']}"
     else:
         og_desc = f"{len(players)} of {len(roster)} sheets in · ${len(roster)*25} pot · kicks off June 11"
