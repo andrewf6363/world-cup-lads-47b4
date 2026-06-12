@@ -280,9 +280,23 @@ def build_briefing(fixtures, M, players, pmap, dist, minfo):
                         who = [first(p["name"]) for p in players if gp(p["name"]).get(f["id"]) == k]
                         if who: note = f"{who[0]} stands alone on {lbl[k]}."
                         break
+        od = minfo.get(f["id"], {}).get("odds") or {}
+        ml = od.get("ml", {})
+        oline = ""
+        if ml:
+            fav = od.get("fav")
+            def fmt(side, nm):
+                if not ml.get(side): return None
+                s = f"{nm} {ml[side]}"
+                return f"<b>{s}</b>" if side == fav else s
+            parts = [p for p in (fmt("team1", f["team1"]),
+                                 f"Draw {ml['draw']}" if ml.get("draw") else None,
+                                 fmt("team2", f["team2"])) if p]
+            oline = " · ".join(parts)
+            if od.get("ou") is not None: oline += f" · O/U {od['ou']}"
         previews.append({"t1": f["team1"], "t2": f["team2"], "label": label(f), "et": et(ko),
                          "split": (" · ".join(bits)) if bits else "", "note": note, "live": live,
-                         "tv": " · ".join(minfo.get(f["id"], {}).get("tv", []))})
+                         "tv": " · ".join(minfo.get(f["id"], {}).get("tv", [])), "odds": oline})
 
     race_line = ""
     if players and any(p["total"] > 0 for p in players):

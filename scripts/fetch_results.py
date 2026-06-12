@@ -139,6 +139,33 @@ def _espn_tv(competition):
         if nm and nm not in out: out.append(nm)
     return out
 
+def _espn_odds(competition, id_to_side):
+    """DraftKings lines via ESPN: 3-way moneyline (oriented to our team1/team2) + over/under.
+    Uses closing odds, falling back to open. Only present pre-match — ESPN drops odds at final."""
+    odds = [o for o in competition.get("odds", []) if o]
+    if not odds: return None
+    o = odds[0]
+    ha = {c.get("homeAway"): id_to_side.get(str(c.get("team", {}).get("id")))
+          for c in competition.get("competitors", [])}
+    def cur(x):
+        x = x or {}
+        return (x.get("close") or {}).get("odds") or (x.get("open") or {}).get("odds")
+    ml_o = o.get("moneyline") or {}
+    ml = {}
+    if ha.get("home") and cur(ml_o.get("home")): ml[ha["home"]] = cur(ml_o["home"])
+    if ha.get("away") and cur(ml_o.get("away")): ml[ha["away"]] = cur(ml_o["away"])
+    if cur(ml_o.get("draw")): ml["draw"] = cur(ml_o["draw"])
+    out = {}
+    if ml: out["ml"] = ml
+    if o.get("overUnder") is not None: out["ou"] = o["overUnder"]
+    def val(s):
+        try: return int(str(s).replace("+", ""))
+        except (TypeError, ValueError): return None
+    pair = {s: val(ml.get(s)) for s in ("team1", "team2") if val(ml.get(s)) is not None}
+    if len(pair) == 2 and pair["team1"] != pair["team2"]:
+        out["fav"] = "team1" if pair["team1"] < pair["team2"] else "team2"
+    return out or None
+
 def _espn_stats(competition, side_order):
     """[[label, team1_val, team2_val], ...] for the scan-friendly stat set; [] until ESPN posts them."""
     per = {}
@@ -189,9 +216,11 @@ def normalize_espn(data, fixtures):
         if not t1 or not t2: continue
         fid = target["id"]
 
-        tv = _espn_tv(competition)                                # matchinfo: TV always, stats once final
+        tv = _espn_tv(competition)                                # matchinfo: TV always, odds pre-match, stats once final
         entry = {}
         if tv: entry["tv"] = tv
+        od = _espn_odds(competition, {t1[4]: "team1", t2[4]: "team2"})
+        if od: entry["odds"] = od
         if is_final:
             stats = _espn_stats(competition, (t1[4], t2[4]))
             if stats: entry["stats"] = stats

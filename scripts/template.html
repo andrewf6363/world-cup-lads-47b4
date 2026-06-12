@@ -247,6 +247,8 @@
   .bc-split{font-size:12px;color:var(--ink-soft);font-weight:700;margin-top:7px;}
   .bc-fant{font-size:11.5px;color:var(--clay);font-weight:700;margin-top:6px;}
   .bc-tv{font-size:10.5px;color:var(--muted);font-weight:700;margin-top:7px;letter-spacing:.03em;}
+  .bc-odds{font-size:10.5px;color:var(--muted);font-weight:700;margin-top:7px;letter-spacing:.03em;font-variant-numeric:tabular-nums;}
+  .bc-odds b{color:var(--ink-soft);font-weight:800;}
   .tvtag{font-size:8.5px;font-weight:800;letter-spacing:.1em;background:var(--paper-3);border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--muted);margin-right:6px;vertical-align:1px;}
   .bstats{background:transparent;border:none;border-radius:0;overflow:visible;margin:9px 0 0;border-top:1px dashed var(--line);}
   .bstats summary{padding:8px 0 0;justify-content:flex-start;gap:6px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--muted);}
@@ -673,6 +675,7 @@ function brief(){
       <div class="bc-top">${flag(p.t1)}<span class="bc-t">${p.t1}</span><span class="bc-vs${p.live?' live':''}">${p.live?'LIVE':'v'}</span><span class="bc-t r">${p.t2}</span>${flag(p.t2)}</div>
       <div class="bc-sub">${p.label} · ${p.live?'In play':p.et}</div>
       ${p.split?`<div class="bc-split">Picks: ${p.split}</div>`:''}
+      ${p.odds?`<div class="bc-odds"><span class="tvtag">ODDS</span>${p.odds}</div>`:''}
       ${p.tv?`<div class="bc-tv"><span class="tvtag">TV</span>${p.tv}</div>`:''}
       ${p.note?`<div class="bc-fant">${p.note}</div>`:''}</div>`).join("");
   document.getElementById("brief").innerHTML=
