@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
-"""Pull match results from the free openfootball feed, normalize to our fixture IDs, and write
-data/results.json. Manual entries in data/results_manual.json always win (the commissioner's, or
-web-search results the scheduled agent fills when the feed lags). Never overwrites good data on a
-failed fetch. Run:  python3 scripts/fetch_results.py
+"""Pull match results, normalize to our fixture IDs, and write data/results.json.
+
+Sources, layered (later wins): existing results.json (never lose a known final) -> openfootball feed
+(backup, but lags hours) -> ESPN live scoreboard (PRIMARY — near-real-time, updates within minutes of
+full time, no API key) -> data/results_manual.json (commissioner overrides, always win).
+
+Never overwrites good data when sources fail. Run:  python3 scripts/fetch_results.py
 """
 import json, os, sys, re, datetime, urllib.request, unicodedata
 
@@ -11,6 +14,9 @@ FEED_URLS = [
     "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
     "https://raw.githubusercontent.com/openfootball/worldcup.json/main/2026/worldcup.json",
 ]
+# ESPN's public scoreboard (no key). One range query returns the whole tournament; finals are
+# flagged status.state=="post"/completed. Team names match ours via the same ALIASES + norm().
+ESPN_URL = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard?dates=20260611-20260719"
 # feed spelling -> our template spelling (true-name differences; accents/punct handled by norm())
 ALIASES = {
     "Czech Republic":"Czechia", "Cape Verde":"Cabo Verde", "DR Congo":"Congo DR",
@@ -93,28 +99,103 @@ def normalize_feed(feed, fixtures):
             finals += 1
     return matches, mapped, unmatched, finals
 
+def fetch_espn():
+    try:
+        with urllib.request.urlopen(urllib.request.Request(ESPN_URL, headers={"User-Agent":"Mozilla/5.0"}), timeout=25) as r:
+            return json.load(r)
+    except Exception as e:
+        print(f"  ESPN miss: {str(e)[:80]}"); return None
+
+def normalize_espn(data, fixtures):
+    """Map ESPN's finished events to our fixture IDs. ESPN gives a per-competitor winner flag and
+    shootoutScore, so knockouts (incl. penalties) resolve directly. Returns (matches, finals, unmatched)."""
+    group_by_pair = {frozenset((norm(f["team1"]), norm(f["team2"]))): f for f in fixtures["group_stage"]}
+    ko_by_pair = {frozenset((norm(kx["team1"]), norm(kx["team2"]))): kx
+                  for kx in fixtures.get("knockout", []) if kx.get("team1") and kx.get("team2")}
+    matches, finals, unmatched = {}, 0, []
+    for e in data.get("events", []):
+        st = e.get("status", {}).get("type", {})
+        if not (st.get("state") == "post" and st.get("completed")):
+            continue                                              # only truly-final matches score
+        comp = (e.get("competitions") or [{}])[0].get("competitors", [])
+        teams = []                                                # (our-name, goals, winner_bool, pens)
+        for c in comp:
+            nm = canon(c.get("team", {}).get("displayName", ""))
+            try: g = int(c.get("score"))
+            except (TypeError, ValueError): g = None
+            sp = c.get("shootoutScore")
+            teams.append((nm, g, c.get("winner"), int(sp) if sp not in (None, "") else None))
+        if len(teams) != 2 or any(t[1] is None for t in teams):
+            continue
+        by = {norm(t[0]): t for t in teams}
+        pair = frozenset(by)
+        fx = group_by_pair.get(pair)
+        if fx:
+            t1, t2 = by.get(norm(fx["team1"])), by.get(norm(fx["team2"]))
+            if not t1 or not t2: unmatched.append(f"{teams[0][0]} v {teams[1][0]} (group)"); continue
+            a, b = t1[1], t2[1]
+            matches[fx["id"]] = {"status":"final","outcome":("team1" if a>b else "team2" if b>a else "draw"),
+                                 "team1_goals":a, "team2_goals":b}
+            finals += 1
+        else:
+            kx = ko_by_pair.get(pair)
+            if not kx: continue                                   # placeholder/unscheduled KO slot — skip silently
+            t1, t2 = by.get(norm(kx["team1"])), by.get(norm(kx["team2"]))
+            if not t1 or not t2: continue
+            winner = next((t[0] for t in teams if t[2]), None)
+            pens = f"{t1[3]}–{t2[3]} pens" if (t1[3] is not None and t2[3] is not None) else None
+            matches[kx["id"]] = {"status":"final","winner":winner,"team1_goals":t1[1],"team2_goals":t2[1],"pens":pens}
+            finals += 1
+    return matches, finals, unmatched
+
 def main():
     fixtures = load("fixtures.json", {"group_stage": [], "knockout": []})
+    srcs = []                                                     # which sources contributed (for the stamp)
+
+    # base layer: keep every final we already know, so a transient source outage never drops a result
+    merged = dict(load("results.json", {"matches": {}}).get("matches", {}))
+
+    # backup layer: openfootball (lags, but resilient if ESPN's endpoint ever changes)
     feed, used = fetch()
-    if not feed:
-        print("FETCH FAILED — keeping existing data/results.json untouched."); return 0
-    matches, mapped, unmatched, finals = normalize_feed(feed, fixtures)
+    of_finals = 0
+    if feed:
+        of_matches, mapped, of_unmatched, of_finals = normalize_feed(feed, fixtures)
+        merged.update(of_matches)
+        if of_finals: srcs.append("openfootball")
+        if of_unmatched:
+            print("  openfootball UNMATCHED (add an alias):"); [print("   -", u) for u in of_unmatched[:8]]
+    else:
+        print("  openfootball unavailable")
 
+    # PRIMARY layer: ESPN live (near-real-time) — wins over openfootball
+    espn = fetch_espn()
+    espn_finals = 0
+    if espn:
+        espn_matches, espn_finals, espn_unmatched = normalize_espn(espn, fixtures)
+        merged.update(espn_matches)
+        if espn_finals: srcs.append("espn")
+        if espn_unmatched:
+            print("  ESPN UNMATCHED (add an alias):"); [print("   -", u) for u in espn_unmatched[:8]]
+    else:
+        print("  ESPN unavailable")
+
+    if not feed and not espn and not merged:
+        print("ALL SOURCES FAILED and no prior results — data/results.json untouched."); return 0
+
+    # commissioner overrides always win
     manual = load("results_manual.json", {"matches": {}}).get("matches", {})
-    for mid, rec in manual.items():
-        matches[mid] = rec
-    if unmatched:
-        print("  UNMATCHED (add an alias):"); [print("   -", u) for u in unmatched[:12]]
+    merged.update(manual)
+    if manual: srcs.append(f"{len(manual)} manual")
 
-    # idempotent: only rewrite when the actual results changed (keeps auto-update from making empty commits)
-    if load("results.json", {}).get("matches") == matches:
-        print(f"group matches mapped {mapped}/72 — no change since last run (results.json untouched)")
+    # idempotent: only rewrite when results actually changed (no empty auto-update commits)
+    if load("results.json", {}).get("matches") == merged:
+        print(f"no change since last run ({len(merged)} final · sources: {', '.join(srcs) or 'none'}) — results.json untouched")
         return 0
-    out = {"last_fetched_utc": datetime.datetime.utcnow().isoformat()+"Z", "source": used, "matches": matches}
+    out = {"last_fetched_utc": datetime.datetime.utcnow().isoformat()+"Z",
+           "source": " + ".join(srcs) or "none", "matches": merged}
     json.dump(out, open(os.path.join(DATA, "results.json"), "w"), ensure_ascii=False, indent=2)
-    print(f"group matches mapped {mapped}/72" + (f", {finals} final" if finals else ", none played yet")
-          + (f", +{len(manual)} manual" if manual else ""))
-    print(f"updated data/results.json ({len(matches)} final result(s))")
+    print(f"updated data/results.json — {len(merged)} final result(s) "
+          f"(ESPN {espn_finals}, openfootball {of_finals}, manual {len(manual)})")
     return 0
 
 if __name__ == "__main__":

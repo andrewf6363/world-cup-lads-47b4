@@ -1,6 +1,6 @@
 {
-  "last_fetched_utc": "2026-06-11T23:53:16.983731Z",
-  "source": "https://raw.githubusercontent.com/openfootball/worldcup.json/master/2026/worldcup.json",
+  "last_fetched_utc": "2026-06-11T23:58:53.856228Z",
+  "source": "espn",
   "matches": {
     "G-A-1": {
       "status": "final",
