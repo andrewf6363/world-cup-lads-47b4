@@ -26,6 +26,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 320          # live loop can hold the window ~4.5h; stay under the 6h cap
     steps:
       - uses: actions/checkout@v4
         with:
@@ -41,3 +42,5 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
       - name: Fetch results, recompute, and publish if changed
         run: bash scripts/update.sh
+      - name: Live loop (keeps publishing every ~100s while a match is in play)
+        run: bash scripts/live_loop.sh
