@@ -14,6 +14,6 @@ jobs:
           who=$(GH_TOKEN="$CHAIN_PAT" gh api user --jq .login 2>&1) \
             && echo "AUTH-OK as $who" || { echo "RESULT: AUTH-FAIL ($who)"; exit 0; }
           # the decisive test: can it dispatch a workflow? (needs Actions: write on this repo)
-          out=$(GH_TOKEN="$CHAIN_PAT" gh workflow run "Update dashboard" 2>&1) \
+          out=$(GH_TOKEN="$CHAIN_PAT" gh workflow run "Update dashboard" --repo "$GITHUB_REPOSITORY" 2>&1) \
             && echo "RESULT: DISPATCH-OK — PAT works, chain is live" \
             || echo "RESULT: DISPATCH-FAIL ($out)"

@@ -32,7 +32,8 @@ done
 
 # hand off to a fresh run so coverage never lapses (PAT required — GITHUB_TOKEN can't re-trigger workflows)
 if [ -n "$CHAIN_PAT" ]; then
-  GH_TOKEN="$CHAIN_PAT" gh workflow run "Update dashboard" 2>/dev/null \
+  REPO="${GITHUB_REPOSITORY:-andrewf6363/world-cup-lads-47b4}"
+  GH_TOKEN="$CHAIN_PAT" gh workflow run "Update dashboard" --repo "$REPO" 2>/dev/null \
     && echo "supervisor: relaunched successor" \
     || echo "supervisor: relaunch FAILED (check CHAIN_PAT) — cron will cold-start"
 else
