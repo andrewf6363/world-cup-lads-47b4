@@ -1,0 +1,19 @@
+name: Chain selftest
+# Throwaway: proves CHAIN_PAT can authenticate and trigger workflows. Delete after verifying.
+on:
+  workflow_dispatch:
+jobs:
+  selftest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test CHAIN_PAT auth + Actions write
+        env:
+          CHAIN_PAT: ${{ secrets.CHAIN_PAT }}
+        run: |
+          if [ -z "$CHAIN_PAT" ]; then echo "RESULT: SECRET-EMPTY"; exit 0; fi
+          who=$(GH_TOKEN="$CHAIN_PAT" gh api user --jq .login 2>&1) \
+            && echo "AUTH-OK as $who" || { echo "RESULT: AUTH-FAIL ($who)"; exit 0; }
+          # the decisive test: can it dispatch a workflow? (needs Actions: write on this repo)
+          out=$(GH_TOKEN="$CHAIN_PAT" gh workflow run "Update dashboard" 2>&1) \
+            && echo "RESULT: DISPATCH-OK — PAT works, chain is live" \
+            || echo "RESULT: DISPATCH-FAIL ($out)"
