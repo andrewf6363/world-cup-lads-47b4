@@ -3,17 +3,11 @@ name: Update dashboard
 # Runs in the cloud on GitHub's servers (no laptop needed). Fetches the latest World Cup
 # results, recomputes scores, and publishes — but only commits when something changed.
 on:
+  # A long-lived supervisor (scripts/supervisor.sh) self-relaunches via CHAIN_PAT, so a live
+  # process is ALWAYS running regardless of GitHub's cron (which proved unreliable — dropped 2h of
+  # runs across a kickoff). Cron below is only a COLD-START backstop in case the chain ever dies.
   schedule:
-    # Schedule-aware polling: every group match kicks off 16:00-04:00 UTC and finishes ~1h50 later,
-    # so we poll every 5 min (GitHub's fastest) through the post-match window 17:00-06:59 UTC, which
-    # covers each final + 30-60 min of delay + feed lag. 07:00-16:59 UTC (3am-noon ET) is a dead zone
-    # with no matches ending; a light backstop there mops up any late feed posts. Minute offset 3-58
-    # dodges GitHub's top-of-hour congestion. Revert to "17 */4 * * *" after Jul 19.
-    - cron: "3-58/5 17-23 * * *"   # dense: evening UTC (afternoon/evening matches ending)
-    - cron: "3-58/5 0-6 * * *"     # dense: overnight UTC (late matches + wrap-around tails)
-    - cron: "0-55/5 17-23 * * *"   # interleave: offset by 2-3 min from the line above -> effective
-    - cron: "0-55/5 0-6 * * *"     #   ~2-3 min tick for live scores (GitHub's floor is 5 min PER line)
-    - cron: "23 9,13 * * *"        # backstop: catch any late feed posts during the dead zone
+    - cron: "*/30 * * * *"         # cold-start backstop (GitHub drops many; it only needs to land occasionally)
   workflow_dispatch:               # lets you (or me) trigger a run by hand anytime
 
 permissions:
@@ -26,21 +20,35 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
-    timeout-minutes: 320          # live loop can hold the window ~4.5h; stay under the 6h cap
+    timeout-minutes: 340          # supervisor holds ~5.5h then relaunches; stay under the 6h cap
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Single-instance guard (don't pile up on an already-running supervisor)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          n=$(gh run list --workflow="Update dashboard" --status in_progress --json databaseId --jq 'length' 2>/dev/null || echo 1)
+          if [ "$n" -gt 1 ]; then echo "another supervisor is active (n=$n) — exiting"; exit 0; fi
+          echo "ACTIVE=1" >> "$GITHUB_ENV"
       - uses: actions/setup-python@v5
+        if: env.ACTIVE == '1'
         with:
           python-version: "3.12"
       - name: Install deps (Pillow for shareable cards)
+        if: env.ACTIVE == '1'
         run: python -m pip install --quiet pillow
       - name: Configure git identity
+        if: env.ACTIVE == '1'
         run: |
           git config user.name "wc-lads-bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
       - name: Fetch results, recompute, and publish if changed
+        if: env.ACTIVE == '1'
         run: bash scripts/update.sh
-      - name: Live loop (keeps publishing every ~100s while a match is in play)
-        run: bash scripts/live_loop.sh
+      - name: Supervisor (always-on; fast during matches, self-relaunches before exit)
+        if: env.ACTIVE == '1'
+        env:
+          CHAIN_PAT: ${{ secrets.CHAIN_PAT }}
+        run: bash scripts/supervisor.sh
