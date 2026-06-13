@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-13T03:04:28.110880Z",
+  "last_fetched_utc": "2026-06-13T21:06:20.563966Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -120,6 +120,26 @@
           "min": "90'+8'",
           "team": "team1",
           "player": "Giovanni Reyna",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-B-2": {
+      "status": "final",
+      "outcome": "draw",
+      "team1_goals": 1,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "17'",
+          "team": "team2",
+          "player": "Breel Embolo",
+          "kind": "pen"
+        },
+        {
+          "min": "90'+4'",
+          "team": "team1",
+          "player": "Boualem Khoukhi",
           "kind": "goal"
         }
       ]

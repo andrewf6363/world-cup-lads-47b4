@@ -1,11 +1,11 @@
 {
-  "generated_utc": "2026-06-13T21:04:48.783208Z",
+  "generated_utc": "2026-06-13T21:06:21.418589Z",
   "leaderboard": [
     {
       "name": "Andrew Fahey",
       "grp": 300,
       "correct": 3,
-      "graded": 4,
+      "graded": 5,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -24,7 +24,7 @@
       "name": "Brad Bone",
       "grp": 300,
       "correct": 3,
-      "graded": 4,
+      "graded": 5,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -43,7 +43,7 @@
       "name": "John Pappas",
       "grp": 300,
       "correct": 3,
-      "graded": 4,
+      "graded": 5,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -62,7 +62,7 @@
       "name": "Keegan Ball",
       "grp": 300,
       "correct": 3,
-      "graded": 4,
+      "graded": 5,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -81,7 +81,7 @@
       "name": "Luke Clark",
       "grp": 300,
       "correct": 3,
-      "graded": 4,
+      "graded": 5,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -100,7 +100,7 @@
       "name": "Kyle Williams",
       "grp": 200,
       "correct": 2,
-      "graded": 4,
+      "graded": 5,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -119,7 +119,7 @@
       "name": "Ryan Sheekley",
       "grp": 200,
       "correct": 2,
-      "graded": 4,
+      "graded": 5,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -138,7 +138,7 @@
       "name": "Karlis Draulis",
       "grp": 100,
       "correct": 1,
-      "graded": 4,
+      "graded": 5,
       "ko": 0,
       "rounds": {
         "R32": 0,
