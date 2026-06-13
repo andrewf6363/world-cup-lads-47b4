@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-13T21:06:20.563966Z",
+  "last_fetched_utc": "2026-06-13T22:29:30.263425Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -139,8 +139,8 @@
         {
           "min": "90'+4'",
           "team": "team1",
-          "player": "Boualem Khoukhi",
-          "kind": "goal"
+          "player": "Miro Muheim",
+          "kind": "og"
         }
       ]
     }
