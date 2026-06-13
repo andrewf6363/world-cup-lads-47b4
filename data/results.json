@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-12T20:59:09.686359Z",
+  "last_fetched_utc": "2026-06-13T03:04:28.110880Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -82,6 +82,44 @@
           "min": "78'",
           "team": "team1",
           "player": "Cyle Larin",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-D-1": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 4,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "7'",
+          "team": "team1",
+          "player": "Damián Bobadilla",
+          "kind": "og"
+        },
+        {
+          "min": "31'",
+          "team": "team1",
+          "player": "Folarin Balogun",
+          "kind": "goal"
+        },
+        {
+          "min": "45'+5'",
+          "team": "team1",
+          "player": "Folarin Balogun",
+          "kind": "goal"
+        },
+        {
+          "min": "73'",
+          "team": "team2",
+          "player": "Maurício",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+8'",
+          "team": "team1",
+          "player": "Giovanni Reyna",
           "kind": "goal"
         }
       ]
