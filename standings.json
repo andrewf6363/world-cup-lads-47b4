@@ -1,11 +1,11 @@
 {
-  "generated_utc": "2026-06-14T05:53:55.130143Z",
+  "generated_utc": "2026-06-14T05:57:57.815116Z",
   "leaderboard": [
     {
       "name": "Andrew Fahey",
       "grp": 500,
       "correct": 5,
-      "graded": 7,
+      "graded": 8,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -24,7 +24,7 @@
       "name": "Brad Bone",
       "grp": 400,
       "correct": 4,
-      "graded": 7,
+      "graded": 8,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -43,7 +43,7 @@
       "name": "John Pappas",
       "grp": 400,
       "correct": 4,
-      "graded": 7,
+      "graded": 8,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -59,10 +59,29 @@
       "move": 0
     },
     {
+      "name": "Keegan Ball",
+      "grp": 400,
+      "correct": 4,
+      "graded": 8,
+      "ko": 0,
+      "rounds": {
+        "R32": 0,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 400,
+      "champ": null,
+      "final_goals_guess": null,
+      "rank": 2,
+      "move": 5
+    },
+    {
       "name": "Kyle Williams",
       "grp": 400,
       "correct": 4,
-      "graded": 7,
+      "graded": 8,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -81,7 +100,7 @@
       "name": "Luke Clark",
       "grp": 400,
       "correct": 4,
-      "graded": 7,
+      "graded": 8,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -100,7 +119,7 @@
       "name": "Ryan Sheekley",
       "grp": 400,
       "correct": 4,
-      "graded": 7,
+      "graded": 8,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -116,29 +135,10 @@
       "move": 0
     },
     {
-      "name": "Keegan Ball",
-      "grp": 300,
-      "correct": 3,
-      "graded": 7,
-      "ko": 0,
-      "rounds": {
-        "R32": 0,
-        "R16": 0,
-        "QF": 0,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 300,
-      "champ": null,
-      "final_goals_guess": null,
-      "rank": 7,
-      "move": 0
-    },
-    {
       "name": "Karlis Draulis",
       "grp": 200,
       "correct": 2,
-      "graded": 7,
+      "graded": 8,
       "ko": 0,
       "rounds": {
         "R32": 0,

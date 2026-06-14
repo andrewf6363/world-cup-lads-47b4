@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-14T03:04:25.088370Z",
+  "last_fetched_utc": "2026-06-14T05:57:57.091336Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -174,6 +174,26 @@
           "min": "28'",
           "team": "team2",
           "player": "John McGinn",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-D-2": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 2,
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "27'",
+          "team": "team1",
+          "player": "Nestory Irankunda",
+          "kind": "goal"
+        },
+        {
+          "min": "75'",
+          "team": "team1",
+          "player": "Connor Metcalfe",
           "kind": "goal"
         }
       ]
