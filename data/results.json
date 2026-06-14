@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-14T21:57:19.770019Z",
+  "last_fetched_utc": "2026-06-14T23:02:11.748878Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -279,7 +279,7 @@
           "kind": "goal"
         },
         {
-          "min": "88'",
+          "min": "89'",
           "team": "team2",
           "player": "Daichi Kamada",
           "kind": "goal"
