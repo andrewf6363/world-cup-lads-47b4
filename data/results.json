@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-14T00:12:36.533503Z",
+  "last_fetched_utc": "2026-06-14T03:04:25.088370Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -160,6 +160,20 @@
           "min": "32'",
           "team": "team1",
           "player": "Vinícius Júnior",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-C-2": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 0,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "28'",
+          "team": "team2",
+          "player": "John McGinn",
           "kind": "goal"
         }
       ]
