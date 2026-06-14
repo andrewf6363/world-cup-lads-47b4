@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-14T05:57:57.091336Z",
+  "last_fetched_utc": "2026-06-14T18:59:50.938694Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -194,6 +194,62 @@
           "min": "75'",
           "team": "team1",
           "player": "Connor Metcalfe",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-E-1": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 7,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "6'",
+          "team": "team1",
+          "player": "Felix Nmecha",
+          "kind": "goal"
+        },
+        {
+          "min": "21'",
+          "team": "team2",
+          "player": "Livano Comenencia",
+          "kind": "goal"
+        },
+        {
+          "min": "38'",
+          "team": "team1",
+          "player": "Nico Schlotterbeck",
+          "kind": "goal"
+        },
+        {
+          "min": "45'+5'",
+          "team": "team1",
+          "player": "Kai Havertz",
+          "kind": "pen"
+        },
+        {
+          "min": "47'",
+          "team": "team1",
+          "player": "Jamal Musiala",
+          "kind": "goal"
+        },
+        {
+          "min": "68'",
+          "team": "team1",
+          "player": "Nathaniel Brown",
+          "kind": "goal"
+        },
+        {
+          "min": "78'",
+          "team": "team1",
+          "player": "Deniz Undav",
+          "kind": "goal"
+        },
+        {
+          "min": "88'",
+          "team": "team1",
+          "player": "Kai Havertz",
           "kind": "goal"
         }
       ]
