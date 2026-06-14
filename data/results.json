@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-13T22:29:30.263425Z",
+  "last_fetched_utc": "2026-06-14T00:12:36.533503Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -141,6 +141,26 @@
           "team": "team1",
           "player": "Miro Muheim",
           "kind": "og"
+        }
+      ]
+    },
+    "G-C-1": {
+      "status": "final",
+      "outcome": "draw",
+      "team1_goals": 1,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "21'",
+          "team": "team2",
+          "player": "Ismael Saibari",
+          "kind": "goal"
+        },
+        {
+          "min": "32'",
+          "team": "team1",
+          "player": "Vinícius Júnior",
+          "kind": "goal"
         }
       ]
     }

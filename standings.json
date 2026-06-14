@@ -1,11 +1,11 @@
 {
-  "generated_utc": "2026-06-14T00:11:04.657733Z",
+  "generated_utc": "2026-06-14T00:12:37.371384Z",
   "leaderboard": [
     {
       "name": "Andrew Fahey",
-      "grp": 300,
-      "correct": 3,
-      "graded": 5,
+      "grp": 400,
+      "correct": 4,
+      "graded": 6,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -14,7 +14,7 @@
         "SF": 0,
         "Final": 0
       },
-      "total": 300,
+      "total": 400,
       "champ": null,
       "final_goals_guess": null,
       "rank": 1,
@@ -24,7 +24,7 @@
       "name": "Brad Bone",
       "grp": 300,
       "correct": 3,
-      "graded": 5,
+      "graded": 6,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -36,14 +36,14 @@
       "total": 300,
       "champ": null,
       "final_goals_guess": null,
-      "rank": 1,
-      "move": 0
+      "rank": 2,
+      "move": -1
     },
     {
       "name": "John Pappas",
       "grp": 300,
       "correct": 3,
-      "graded": 5,
+      "graded": 6,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -55,14 +55,14 @@
       "total": 300,
       "champ": null,
       "final_goals_guess": null,
-      "rank": 1,
-      "move": 0
+      "rank": 2,
+      "move": -1
     },
     {
       "name": "Keegan Ball",
       "grp": 300,
       "correct": 3,
-      "graded": 5,
+      "graded": 6,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -74,14 +74,33 @@
       "total": 300,
       "champ": null,
       "final_goals_guess": null,
-      "rank": 1,
-      "move": 0
+      "rank": 2,
+      "move": -1
+    },
+    {
+      "name": "Kyle Williams",
+      "grp": 300,
+      "correct": 3,
+      "graded": 6,
+      "ko": 0,
+      "rounds": {
+        "R32": 0,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 300,
+      "champ": null,
+      "final_goals_guess": null,
+      "rank": 2,
+      "move": 4
     },
     {
       "name": "Luke Clark",
       "grp": 300,
       "correct": 3,
-      "graded": 5,
+      "graded": 6,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -93,33 +112,14 @@
       "total": 300,
       "champ": null,
       "final_goals_guess": null,
-      "rank": 1,
-      "move": 0
-    },
-    {
-      "name": "Kyle Williams",
-      "grp": 200,
-      "correct": 2,
-      "graded": 5,
-      "ko": 0,
-      "rounds": {
-        "R32": 0,
-        "R16": 0,
-        "QF": 0,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 200,
-      "champ": null,
-      "final_goals_guess": null,
-      "rank": 6,
-      "move": 0
+      "rank": 2,
+      "move": -1
     },
     {
       "name": "Ryan Sheekley",
-      "grp": 200,
-      "correct": 2,
-      "graded": 5,
+      "grp": 300,
+      "correct": 3,
+      "graded": 6,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -128,17 +128,17 @@
         "SF": 0,
         "Final": 0
       },
-      "total": 200,
+      "total": 300,
       "champ": null,
       "final_goals_guess": null,
-      "rank": 6,
-      "move": 0
+      "rank": 2,
+      "move": 4
     },
     {
       "name": "Karlis Draulis",
       "grp": 100,
       "correct": 1,
-      "graded": 5,
+      "graded": 6,
       "ko": 0,
       "rounds": {
         "R32": 0,
