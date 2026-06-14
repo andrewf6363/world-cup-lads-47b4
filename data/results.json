@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-14T18:59:50.938694Z",
+  "last_fetched_utc": "2026-06-14T21:57:19.770019Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -250,6 +250,38 @@
           "min": "88'",
           "team": "team1",
           "player": "Kai Havertz",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-F-1": {
+      "status": "final",
+      "outcome": "draw",
+      "team1_goals": 2,
+      "team2_goals": 2,
+      "events": [
+        {
+          "min": "51'",
+          "team": "team1",
+          "player": "Virgil van Dijk",
+          "kind": "goal"
+        },
+        {
+          "min": "57'",
+          "team": "team2",
+          "player": "Keito Nakamura",
+          "kind": "goal"
+        },
+        {
+          "min": "64'",
+          "team": "team1",
+          "player": "Crysencio Summerville",
+          "kind": "goal"
+        },
+        {
+          "min": "88'",
+          "team": "team2",
+          "player": "Daichi Kamada",
           "kind": "goal"
         }
       ]
