@@ -24,7 +24,7 @@ RANK = {
  "Belgium":9,"Germany":10,"Croatia":11,"Colombia":13,"Mexico":14,"Senegal":15,"Uruguay":16,"USA":17,
  "Japan":18,"Switzerland":19,"IR Iran":20,"Türkiye":22,"Ecuador":23,"Austria":24,"South Korea":25,
  "Australia":27,"Algeria":28,"Egypt":29,"Canada":30,"Norway":31,"Côte d'Ivoire":33,"Panama":34,
- "Czechia":39,"Paraguay":40,"Scotland":42,"Congo DR":45,"Tunisia":46,"Uzbekistan":48,"Iraq":56,
+ "Czechia":39,"Paraguay":40,"Scotland":42,"Sweden":43,"Congo DR":45,"Tunisia":46,"Uzbekistan":48,"Iraq":56,
  "Qatar":58,"Saudi Arabia":59,"South Africa":60,"Jordan":63,"Bosnia-Herzegovina":64,"Cabo Verde":67,
  "Ghana":73,"Curacao":82,"Haiti":83,"New Zealand":85,
 }
