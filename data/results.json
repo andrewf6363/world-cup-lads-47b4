@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-15T01:06:16.091638Z",
+  "last_fetched_utc": "2026-06-15T03:58:06.006829Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -296,6 +296,50 @@
           "min": "90'",
           "team": "team1",
           "player": "Amad Diallo",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-F-2": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 5,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "7'",
+          "team": "team1",
+          "player": "Yasin Ayari",
+          "kind": "goal"
+        },
+        {
+          "min": "30'",
+          "team": "team1",
+          "player": "Alexander Isak",
+          "kind": "goal"
+        },
+        {
+          "min": "43'",
+          "team": "team2",
+          "player": "Omar Rekik",
+          "kind": "goal"
+        },
+        {
+          "min": "59'",
+          "team": "team1",
+          "player": "Viktor Gyökeres",
+          "kind": "goal"
+        },
+        {
+          "min": "84'",
+          "team": "team1",
+          "player": "Mattias Svanberg",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+6'",
+          "team": "team1",
+          "player": "Yasin Ayari",
           "kind": "goal"
         }
       ]
