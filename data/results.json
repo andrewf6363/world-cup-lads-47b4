@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-15T17:57:14.214535Z",
+  "last_fetched_utc": "2026-06-15T20:59:29.370266Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -349,6 +349,26 @@
       "outcome": "draw",
       "team1_goals": 0,
       "team2_goals": 0
+    },
+    "G-G-1": {
+      "status": "final",
+      "outcome": "draw",
+      "team1_goals": 1,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "19'",
+          "team": "team2",
+          "player": "Emam Ashour",
+          "kind": "goal"
+        },
+        {
+          "min": "66'",
+          "team": "team1",
+          "player": "Mohamed Hany",
+          "kind": "og"
+        }
+      ]
     }
   }
 }
