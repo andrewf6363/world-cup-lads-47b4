@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-16T00:37:08.450586Z",
+  "last_fetched_utc": "2026-06-16T03:05:05.548542Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -386,6 +386,38 @@
           "min": "80'",
           "team": "team2",
           "player": "Maxi Araújo",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-G-2": {
+      "status": "final",
+      "outcome": "draw",
+      "team1_goals": 2,
+      "team2_goals": 2,
+      "events": [
+        {
+          "min": "7'",
+          "team": "team2",
+          "player": "Elijah Just",
+          "kind": "goal"
+        },
+        {
+          "min": "32'",
+          "team": "team1",
+          "player": "Ramin Rezaeian",
+          "kind": "goal"
+        },
+        {
+          "min": "54'",
+          "team": "team2",
+          "player": "Elijah Just",
+          "kind": "goal"
+        },
+        {
+          "min": "64'",
+          "team": "team1",
+          "player": "Mohammad Mohebbi",
           "kind": "goal"
         }
       ]
