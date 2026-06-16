@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-16T00:04:59.411749Z",
+  "last_fetched_utc": "2026-06-16T00:37:08.450586Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -357,7 +357,7 @@
       "team2_goals": 1,
       "events": [
         {
-          "min": "19'",
+          "min": "20'",
           "team": "team2",
           "player": "Emam Ashour",
           "kind": "goal"
