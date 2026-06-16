@@ -1,78 +1,348 @@
 {
-  "last_fetched_utc": "2026-06-16T10:22:04.871024Z",
-  "source": "openfootball",
+  "last_fetched_utc": "2026-06-16T10:26:07.538390Z",
+  "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
       "status": "final",
       "outcome": "team1",
       "team1_goals": 2,
-      "team2_goals": 0
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "9'",
+          "team": "team1",
+          "player": "Julián Quiñones",
+          "kind": "goal"
+        },
+        {
+          "min": "49'",
+          "team": "team2",
+          "player": "Sphephelo Sithole",
+          "kind": "red"
+        },
+        {
+          "min": "67'",
+          "team": "team1",
+          "player": "Raúl Jiménez",
+          "kind": "goal"
+        },
+        {
+          "min": "84'",
+          "team": "team2",
+          "player": "Themba Zwane",
+          "kind": "red"
+        },
+        {
+          "min": "90'+2'",
+          "team": "team1",
+          "player": "César Montes",
+          "kind": "red"
+        }
+      ]
     },
     "G-A-2": {
       "status": "final",
       "outcome": "team1",
       "team1_goals": 2,
-      "team2_goals": 1
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "59'",
+          "team": "team2",
+          "player": "Ladislav Krejcí",
+          "kind": "goal"
+        },
+        {
+          "min": "67'",
+          "team": "team1",
+          "player": "Hwang In-Beom",
+          "kind": "goal"
+        },
+        {
+          "min": "80'",
+          "team": "team1",
+          "player": "Oh Hyeon-Gyu",
+          "kind": "goal"
+        }
+      ]
     },
     "G-B-1": {
       "status": "final",
       "outcome": "draw",
       "team1_goals": 1,
-      "team2_goals": 1
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "21'",
+          "team": "team2",
+          "player": "Jovo Lukic",
+          "kind": "goal"
+        },
+        {
+          "min": "78'",
+          "team": "team1",
+          "player": "Cyle Larin",
+          "kind": "goal"
+        }
+      ]
     },
     "G-D-1": {
       "status": "final",
       "outcome": "team1",
       "team1_goals": 4,
-      "team2_goals": 1
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "7'",
+          "team": "team1",
+          "player": "Damián Bobadilla",
+          "kind": "og"
+        },
+        {
+          "min": "31'",
+          "team": "team1",
+          "player": "Folarin Balogun",
+          "kind": "goal"
+        },
+        {
+          "min": "45'+5'",
+          "team": "team1",
+          "player": "Folarin Balogun",
+          "kind": "goal"
+        },
+        {
+          "min": "73'",
+          "team": "team2",
+          "player": "Maurício",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+8'",
+          "team": "team1",
+          "player": "Giovanni Reyna",
+          "kind": "goal"
+        }
+      ]
     },
     "G-B-2": {
       "status": "final",
       "outcome": "draw",
       "team1_goals": 1,
-      "team2_goals": 1
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "17'",
+          "team": "team2",
+          "player": "Breel Embolo",
+          "kind": "pen"
+        },
+        {
+          "min": "90'+4'",
+          "team": "team1",
+          "player": "Miro Muheim",
+          "kind": "og"
+        }
+      ]
     },
     "G-C-1": {
       "status": "final",
       "outcome": "draw",
       "team1_goals": 1,
-      "team2_goals": 1
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "21'",
+          "team": "team2",
+          "player": "Ismael Saibari",
+          "kind": "goal"
+        },
+        {
+          "min": "32'",
+          "team": "team1",
+          "player": "Vinícius Júnior",
+          "kind": "goal"
+        }
+      ]
     },
     "G-C-2": {
       "status": "final",
       "outcome": "team2",
       "team1_goals": 0,
-      "team2_goals": 1
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "28'",
+          "team": "team2",
+          "player": "John McGinn",
+          "kind": "goal"
+        }
+      ]
     },
     "G-D-2": {
       "status": "final",
       "outcome": "team1",
       "team1_goals": 2,
-      "team2_goals": 0
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "27'",
+          "team": "team1",
+          "player": "Nestory Irankunda",
+          "kind": "goal"
+        },
+        {
+          "min": "75'",
+          "team": "team1",
+          "player": "Connor Metcalfe",
+          "kind": "goal"
+        }
+      ]
     },
     "G-E-1": {
       "status": "final",
       "outcome": "team1",
       "team1_goals": 7,
-      "team2_goals": 1
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "6'",
+          "team": "team1",
+          "player": "Felix Nmecha",
+          "kind": "goal"
+        },
+        {
+          "min": "21'",
+          "team": "team2",
+          "player": "Livano Comenencia",
+          "kind": "goal"
+        },
+        {
+          "min": "38'",
+          "team": "team1",
+          "player": "Nico Schlotterbeck",
+          "kind": "goal"
+        },
+        {
+          "min": "45'+5'",
+          "team": "team1",
+          "player": "Kai Havertz",
+          "kind": "pen"
+        },
+        {
+          "min": "47'",
+          "team": "team1",
+          "player": "Jamal Musiala",
+          "kind": "goal"
+        },
+        {
+          "min": "68'",
+          "team": "team1",
+          "player": "Nathaniel Brown",
+          "kind": "goal"
+        },
+        {
+          "min": "78'",
+          "team": "team1",
+          "player": "Deniz Undav",
+          "kind": "goal"
+        },
+        {
+          "min": "88'",
+          "team": "team1",
+          "player": "Kai Havertz",
+          "kind": "goal"
+        }
+      ]
     },
     "G-F-1": {
       "status": "final",
       "outcome": "draw",
       "team1_goals": 2,
-      "team2_goals": 2
+      "team2_goals": 2,
+      "events": [
+        {
+          "min": "51'",
+          "team": "team1",
+          "player": "Virgil van Dijk",
+          "kind": "goal"
+        },
+        {
+          "min": "57'",
+          "team": "team2",
+          "player": "Keito Nakamura",
+          "kind": "goal"
+        },
+        {
+          "min": "64'",
+          "team": "team1",
+          "player": "Crysencio Summerville",
+          "kind": "goal"
+        },
+        {
+          "min": "89'",
+          "team": "team2",
+          "player": "Daichi Kamada",
+          "kind": "goal"
+        }
+      ]
     },
     "G-E-2": {
       "status": "final",
       "outcome": "team1",
       "team1_goals": 1,
-      "team2_goals": 0
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "90'",
+          "team": "team1",
+          "player": "Amad Diallo",
+          "kind": "goal"
+        }
+      ]
     },
     "G-F-2": {
       "status": "final",
       "outcome": "team1",
       "team1_goals": 5,
-      "team2_goals": 1
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "7'",
+          "team": "team1",
+          "player": "Yasin Ayari",
+          "kind": "goal"
+        },
+        {
+          "min": "30'",
+          "team": "team1",
+          "player": "Alexander Isak",
+          "kind": "goal"
+        },
+        {
+          "min": "43'",
+          "team": "team2",
+          "player": "Omar Rekik",
+          "kind": "goal"
+        },
+        {
+          "min": "59'",
+          "team": "team1",
+          "player": "Viktor Gyökeres",
+          "kind": "goal"
+        },
+        {
+          "min": "84'",
+          "team": "team1",
+          "player": "Mattias Svanberg",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+6'",
+          "team": "team1",
+          "player": "Yasin Ayari",
+          "kind": "goal"
+        }
+      ]
     },
     "G-H-1": {
       "status": "final",
@@ -84,19 +354,73 @@
       "status": "final",
       "outcome": "draw",
       "team1_goals": 1,
-      "team2_goals": 1
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "20'",
+          "team": "team2",
+          "player": "Emam Ashour",
+          "kind": "goal"
+        },
+        {
+          "min": "66'",
+          "team": "team1",
+          "player": "Mohamed Hany",
+          "kind": "og"
+        }
+      ]
     },
     "G-H-2": {
       "status": "final",
       "outcome": "draw",
       "team1_goals": 1,
-      "team2_goals": 1
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "41'",
+          "team": "team1",
+          "player": "Abdulelah Al-Amri",
+          "kind": "goal"
+        },
+        {
+          "min": "80'",
+          "team": "team2",
+          "player": "Maxi Araújo",
+          "kind": "goal"
+        }
+      ]
     },
     "G-G-2": {
       "status": "final",
       "outcome": "draw",
       "team1_goals": 2,
-      "team2_goals": 2
+      "team2_goals": 2,
+      "events": [
+        {
+          "min": "7'",
+          "team": "team2",
+          "player": "Elijah Just",
+          "kind": "goal"
+        },
+        {
+          "min": "32'",
+          "team": "team1",
+          "player": "Ramin Rezaeian",
+          "kind": "goal"
+        },
+        {
+          "min": "54'",
+          "team": "team2",
+          "player": "Elijah Just",
+          "kind": "goal"
+        },
+        {
+          "min": "64'",
+          "team": "team1",
+          "player": "Mohammad Mohebbi",
+          "kind": "goal"
+        }
+      ]
     }
   }
 }
