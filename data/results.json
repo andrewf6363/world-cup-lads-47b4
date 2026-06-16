@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-16T10:26:07.538390Z",
+  "last_fetched_utc": "2026-06-16T21:05:48.824124Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -418,6 +418,38 @@
           "min": "64'",
           "team": "team1",
           "player": "Mohammad Mohebbi",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-I-1": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 3,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "66'",
+          "team": "team1",
+          "player": "Kylian Mbappé",
+          "kind": "goal"
+        },
+        {
+          "min": "82'",
+          "team": "team1",
+          "player": "Bradley Barcola",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+5'",
+          "team": "team2",
+          "player": "Ibrahim Mbaye",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+6'",
+          "team": "team1",
+          "player": "Kylian Mbappé",
           "kind": "goal"
         }
       ]
