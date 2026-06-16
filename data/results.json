@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-15T20:59:29.370266Z",
+  "last_fetched_utc": "2026-06-16T00:04:59.411749Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -367,6 +367,26 @@
           "team": "team1",
           "player": "Mohamed Hany",
           "kind": "og"
+        }
+      ]
+    },
+    "G-H-2": {
+      "status": "final",
+      "outcome": "draw",
+      "team1_goals": 1,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "41'",
+          "team": "team1",
+          "player": "Abdulelah Al-Amri",
+          "kind": "goal"
+        },
+        {
+          "min": "80'",
+          "team": "team2",
+          "player": "Maxi Araújo",
+          "kind": "goal"
         }
       ]
     }
