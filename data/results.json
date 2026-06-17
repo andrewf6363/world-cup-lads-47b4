@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-16T21:05:48.824124Z",
+  "last_fetched_utc": "2026-06-17T00:01:54.527773Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -451,6 +451,44 @@
           "team": "team1",
           "player": "Kylian Mbappé",
           "kind": "goal"
+        }
+      ]
+    },
+    "G-I-2": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 1,
+      "team2_goals": 4,
+      "events": [
+        {
+          "min": "29'",
+          "team": "team2",
+          "player": "Erling Haaland",
+          "kind": "goal"
+        },
+        {
+          "min": "39'",
+          "team": "team1",
+          "player": "Aymen Hussein",
+          "kind": "goal"
+        },
+        {
+          "min": "43'",
+          "team": "team2",
+          "player": "Erling Haaland",
+          "kind": "goal"
+        },
+        {
+          "min": "76'",
+          "team": "team2",
+          "player": "Leo Østigard",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+6'",
+          "team": "team2",
+          "player": "Aymen Hussein",
+          "kind": "og"
         }
       ]
     }
