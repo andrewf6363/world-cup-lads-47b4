@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-17T06:11:28.571559Z",
+  "last_fetched_utc": "2026-06-17T19:00:09.471361Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -547,6 +547,26 @@
           "team": "team1",
           "player": "Marko Arnautovic",
           "kind": "pen"
+        }
+      ]
+    },
+    "G-K-1": {
+      "status": "final",
+      "outcome": "draw",
+      "team1_goals": 1,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "6'",
+          "team": "team1",
+          "player": "João Neves",
+          "kind": "goal"
+        },
+        {
+          "min": "45'+5'",
+          "team": "team2",
+          "player": "Yoane Wissa",
+          "kind": "goal"
         }
       ]
     }
