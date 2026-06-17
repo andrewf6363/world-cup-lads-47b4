@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-17T00:01:54.527773Z",
+  "last_fetched_utc": "2026-06-17T03:01:55.695596Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -489,6 +489,32 @@
           "team": "team2",
           "player": "Aymen Hussein",
           "kind": "og"
+        }
+      ]
+    },
+    "G-J-1": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 3,
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "17'",
+          "team": "team1",
+          "player": "Lionel Messi",
+          "kind": "goal"
+        },
+        {
+          "min": "60'",
+          "team": "team1",
+          "player": "Lionel Messi",
+          "kind": "goal"
+        },
+        {
+          "min": "76'",
+          "team": "team1",
+          "player": "Lionel Messi",
+          "kind": "goal"
         }
       ]
     }
