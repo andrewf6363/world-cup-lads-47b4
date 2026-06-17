@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-17T19:00:09.471361Z",
+  "last_fetched_utc": "2026-06-17T22:02:52.027845Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -566,6 +566,50 @@
           "min": "45'+5'",
           "team": "team2",
           "player": "Yoane Wissa",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-L-1": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 4,
+      "team2_goals": 2,
+      "events": [
+        {
+          "min": "12'",
+          "team": "team1",
+          "player": "Harry Kane",
+          "kind": "pen"
+        },
+        {
+          "min": "36'",
+          "team": "team2",
+          "player": "Martin Baturina",
+          "kind": "goal"
+        },
+        {
+          "min": "42'",
+          "team": "team1",
+          "player": "Harry Kane",
+          "kind": "goal"
+        },
+        {
+          "min": "45'+5'",
+          "team": "team2",
+          "player": "Petar Musa",
+          "kind": "goal"
+        },
+        {
+          "min": "47'",
+          "team": "team1",
+          "player": "Jude Bellingham",
+          "kind": "goal"
+        },
+        {
+          "min": "85'",
+          "team": "team1",
+          "player": "Marcus Rashford",
           "kind": "goal"
         }
       ]
