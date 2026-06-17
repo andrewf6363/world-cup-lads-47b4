@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-17T03:01:55.695596Z",
+  "last_fetched_utc": "2026-06-17T06:11:28.571559Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -515,6 +515,38 @@
           "team": "team1",
           "player": "Lionel Messi",
           "kind": "goal"
+        }
+      ]
+    },
+    "G-J-2": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 3,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "21'",
+          "team": "team1",
+          "player": "Romano Schmid",
+          "kind": "goal"
+        },
+        {
+          "min": "50'",
+          "team": "team2",
+          "player": "Ali Olwan",
+          "kind": "goal"
+        },
+        {
+          "min": "76'",
+          "team": "team1",
+          "player": "Yazan Al-Arab",
+          "kind": "og"
+        },
+        {
+          "min": "90'+12'",
+          "team": "team1",
+          "player": "Marko Arnautovic",
+          "kind": "pen"
         }
       ]
     }
