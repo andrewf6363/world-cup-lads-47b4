@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-17T22:02:52.027845Z",
+  "last_fetched_utc": "2026-06-18T01:04:47.656026Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -610,6 +610,20 @@
           "min": "85'",
           "team": "team1",
           "player": "Marcus Rashford",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-L-2": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 1,
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "90'+5'",
+          "team": "team1",
+          "player": "Caleb Yirenkyi",
           "kind": "goal"
         }
       ]
