@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-18T01:04:47.656026Z",
+  "last_fetched_utc": "2026-06-18T04:02:42.542961Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -624,6 +624,38 @@
           "min": "90'+5'",
           "team": "team1",
           "player": "Caleb Yirenkyi",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-K-2": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 1,
+      "team2_goals": 3,
+      "events": [
+        {
+          "min": "40'",
+          "team": "team2",
+          "player": "Daniel Muñoz",
+          "kind": "goal"
+        },
+        {
+          "min": "60'",
+          "team": "team1",
+          "player": "Abbosbek Fayzullaev",
+          "kind": "goal"
+        },
+        {
+          "min": "65'",
+          "team": "team2",
+          "player": "Luis Díaz",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+9'",
+          "team": "team2",
+          "player": "Jáminton Campaz",
           "kind": "goal"
         }
       ]
