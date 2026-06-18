@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-18T18:00:04.376784Z",
+  "last_fetched_utc": "2026-06-18T20:57:55.594390Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -676,6 +676,50 @@
           "min": "83'",
           "team": "team2",
           "player": "Teboho Mokoena",
+          "kind": "pen"
+        }
+      ]
+    },
+    "G-B-3": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 4,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "74'",
+          "team": "team1",
+          "player": "Johan Manzambi",
+          "kind": "goal"
+        },
+        {
+          "min": "80'",
+          "team": "team2",
+          "player": "Tarik Muharemovic",
+          "kind": "red"
+        },
+        {
+          "min": "84'",
+          "team": "team1",
+          "player": "Rubén Vargas",
+          "kind": "goal"
+        },
+        {
+          "min": "90'",
+          "team": "team1",
+          "player": "Johan Manzambi",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+3'",
+          "team": "team2",
+          "player": "Ermin Mahmic",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+7'",
+          "team": "team1",
+          "player": "Granit Xhaka",
           "kind": "pen"
         }
       ]
