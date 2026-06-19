@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-19T21:05:28.832619Z",
+  "generated_utc": "2026-06-19T21:17:32.055606Z",
   "leaderboard": [
     {
       "name": "Andrew Fahey",
@@ -132,7 +132,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 7,
-      "move": -1
+      "move": 0
     },
     {
       "name": "Keegan Ball",
@@ -151,7 +151,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 7,
-      "move": 1
+      "move": 0
     }
   ]
 }
