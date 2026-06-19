@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-19T00:02:41.243690Z",
+  "last_fetched_utc": "2026-06-19T02:58:27.638700Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -776,6 +776,20 @@
           "min": "90'+2'",
           "team": "team1",
           "player": "Jonathan David",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-A-4": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 1,
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "50'",
+          "team": "team1",
+          "player": "Luis Romo",
           "kind": "goal"
         }
       ]
