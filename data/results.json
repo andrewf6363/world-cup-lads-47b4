@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-18T20:57:55.594390Z",
+  "last_fetched_utc": "2026-06-19T00:02:41.243690Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -721,6 +721,62 @@
           "team": "team1",
           "player": "Granit Xhaka",
           "kind": "pen"
+        }
+      ]
+    },
+    "G-B-4": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 6,
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "16'",
+          "team": "team1",
+          "player": "Cyle Larin",
+          "kind": "goal"
+        },
+        {
+          "min": "29'",
+          "team": "team1",
+          "player": "Jonathan David",
+          "kind": "goal"
+        },
+        {
+          "min": "33'",
+          "team": "team2",
+          "player": "Homam Ahmed",
+          "kind": "red"
+        },
+        {
+          "min": "45'+3'",
+          "team": "team1",
+          "player": "Jonathan David",
+          "kind": "goal"
+        },
+        {
+          "min": "53'",
+          "team": "team2",
+          "player": "Assim Madibo",
+          "kind": "red"
+        },
+        {
+          "min": "64'",
+          "team": "team1",
+          "player": "Nathan Saliba",
+          "kind": "goal"
+        },
+        {
+          "min": "75'",
+          "team": "team1",
+          "player": "Mohamed Manai",
+          "kind": "og"
+        },
+        {
+          "min": "90'+2'",
+          "team": "team1",
+          "player": "Jonathan David",
+          "kind": "goal"
         }
       ]
     }
