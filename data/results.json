@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-19T02:58:27.638700Z",
+  "last_fetched_utc": "2026-06-19T21:05:28.324303Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -790,6 +790,26 @@
           "min": "50'",
           "team": "team1",
           "player": "Luis Romo",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-D-3": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 2,
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "11'",
+          "team": "team1",
+          "player": "Cameron Burgess",
+          "kind": "og"
+        },
+        {
+          "min": "43'",
+          "team": "team1",
+          "player": "Alex Freeman",
           "kind": "goal"
         }
       ]
