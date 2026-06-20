@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-20T00:00:28.692824Z",
+  "last_fetched_utc": "2026-06-20T02:32:03.438857Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -824,6 +824,32 @@
           "min": "2'",
           "team": "team2",
           "player": "Ismael Saibari",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-C-4": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 3,
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "23'",
+          "team": "team1",
+          "player": "Matheus Cunha",
+          "kind": "goal"
+        },
+        {
+          "min": "36'",
+          "team": "team1",
+          "player": "Matheus Cunha",
+          "kind": "goal"
+        },
+        {
+          "min": "45'+3'",
+          "team": "team1",
+          "player": "Vinícius Júnior",
           "kind": "goal"
         }
       ]
