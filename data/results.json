@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-19T21:05:28.324303Z",
+  "last_fetched_utc": "2026-06-20T00:00:28.692824Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -810,6 +810,20 @@
           "min": "43'",
           "team": "team1",
           "player": "Alex Freeman",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-C-3": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 0,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "2'",
+          "team": "team2",
+          "player": "Ismael Saibari",
           "kind": "goal"
         }
       ]
