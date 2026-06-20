@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-20T02:32:03.438857Z",
+  "last_fetched_utc": "2026-06-20T05:06:56.546426Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -851,6 +851,26 @@
           "team": "team1",
           "player": "Vinícius Júnior",
           "kind": "goal"
+        }
+      ]
+    },
+    "G-D-4": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 0,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "2'",
+          "team": "team2",
+          "player": "Matías Galarza",
+          "kind": "goal"
+        },
+        {
+          "min": "45'+3'",
+          "team": "team2",
+          "player": "Miguel Almirón",
+          "kind": "red"
         }
       ]
     }
