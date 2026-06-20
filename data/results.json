@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-20T18:57:34.927221Z",
+  "last_fetched_utc": "2026-06-20T22:00:41.601521Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -914,6 +914,32 @@
           "min": "89'",
           "team": "team1",
           "player": "Crysencio Summerville",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-E-3": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 2,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "30'",
+          "team": "team2",
+          "player": "Franck Kessié",
+          "kind": "goal"
+        },
+        {
+          "min": "68'",
+          "team": "team1",
+          "player": "Deniz Undav",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+4'",
+          "team": "team1",
+          "player": "Deniz Undav",
           "kind": "goal"
         }
       ]
