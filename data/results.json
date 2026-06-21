@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-21T05:59:20.653367Z",
+  "last_fetched_utc": "2026-06-21T18:02:55.660150Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -979,6 +979,38 @@
           "team": "team2",
           "player": "Ayase Ueda",
           "kind": "goal"
+        }
+      ]
+    },
+    "G-H-3": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 4,
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "10'",
+          "team": "team1",
+          "player": "Lamine Yamal",
+          "kind": "goal"
+        },
+        {
+          "min": "21'",
+          "team": "team1",
+          "player": "Mikel Oyarzabal",
+          "kind": "goal"
+        },
+        {
+          "min": "24'",
+          "team": "team1",
+          "player": "Mikel Oyarzabal",
+          "kind": "goal"
+        },
+        {
+          "min": "49'",
+          "team": "team1",
+          "player": "Hassan Al-Tambakti",
+          "kind": "og"
         }
       ]
     }
