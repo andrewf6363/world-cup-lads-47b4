@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-21T18:02:55.660150Z",
+  "last_fetched_utc": "2026-06-21T21:02:41.385493Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1011,6 +1011,20 @@
           "team": "team1",
           "player": "Hassan Al-Tambakti",
           "kind": "og"
+        }
+      ]
+    },
+    "G-G-3": {
+      "status": "final",
+      "outcome": "draw",
+      "team1_goals": 0,
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "66'",
+          "team": "team1",
+          "player": "Nathan Ngoy",
+          "kind": "red"
         }
       ]
     }
