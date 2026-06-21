@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-21T01:57:13.091938Z",
+  "last_fetched_utc": "2026-06-21T05:59:20.653367Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -949,6 +949,38 @@
       "outcome": "draw",
       "team1_goals": 0,
       "team2_goals": 0
+    },
+    "G-F-4": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 0,
+      "team2_goals": 4,
+      "events": [
+        {
+          "min": "4'",
+          "team": "team2",
+          "player": "Daichi Kamada",
+          "kind": "goal"
+        },
+        {
+          "min": "31'",
+          "team": "team2",
+          "player": "Ayase Ueda",
+          "kind": "goal"
+        },
+        {
+          "min": "69'",
+          "team": "team2",
+          "player": "Junya Ito",
+          "kind": "goal"
+        },
+        {
+          "min": "83'",
+          "team": "team2",
+          "player": "Ayase Ueda",
+          "kind": "goal"
+        }
+      ]
     }
   }
 }
