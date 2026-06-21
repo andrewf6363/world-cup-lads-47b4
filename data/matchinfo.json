@@ -190,7 +190,7 @@
   },
   "tv": [
    "FS1",
-   "Telemundo",
+   "Universo",
    "FOX One"
   ]
  },
@@ -394,7 +394,7 @@
   },
   "tv": [
    "FS1",
-   "Telemundo",
+   "Universo",
    "FOX One"
   ]
  },
@@ -598,7 +598,7 @@
   },
   "tv": [
    "FS1",
-   "Telemundo",
+   "Universo",
    "FOX One"
   ]
  },
@@ -802,7 +802,7 @@
   },
   "tv": [
    "FS1",
-   "Telemundo",
+   "Universo",
    "FOX One"
   ]
  },
@@ -939,7 +939,7 @@
   "live": {
    "sa": 0,
    "sb": 0,
-   "t": "45'+1'"
+   "t": "45'+3'"
   },
   "odds": {
    "fav": "team1",
@@ -968,7 +968,7 @@
   },
   "tv": [
    "FS1",
-   "Telemundo",
+   "Universo",
    "FOX One"
   ]
  },
@@ -1145,7 +1145,7 @@
   },
   "tv": [
    "FS1",
-   "Telemundo",
+   "Universo",
    "FOX One"
   ]
  },
@@ -1311,7 +1311,7 @@
   },
   "tv": [
    "FOX",
-   "Telemundo",
+   "Universo",
    "FOX One"
   ]
  },
@@ -1445,7 +1445,7 @@
   },
   "tv": [
    "FS1",
-   "Telemundo",
+   "Universo",
    "FOX One"
   ]
  },
@@ -1611,7 +1611,7 @@
   },
   "tv": [
    "FS1",
-   "Telemundo",
+   "Universo",
    "FOX One"
   ]
  },
@@ -1744,7 +1744,7 @@
   },
   "tv": [
    "FS1",
-   "Telemundo",
+   "Universo",
    "FOX One"
   ]
  },
@@ -1910,7 +1910,7 @@
   },
   "tv": [
    "FS1",
-   "Telemundo",
+   "Universo",
    "FOX One"
   ]
  },
@@ -2060,7 +2060,7 @@
   },
   "tv": [
    "FS1",
-   "Telemundo",
+   "Universo",
    "FOX One"
   ]
  }
