@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-22T00:17:43.820072Z",
+  "last_fetched_utc": "2026-06-22T03:01:33.596707Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1056,6 +1056,38 @@
           "min": "61'",
           "team": "team2",
           "player": "Hélio Varela",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-G-4": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 1,
+      "team2_goals": 3,
+      "events": [
+        {
+          "min": "15'",
+          "team": "team1",
+          "player": "Finn Surman",
+          "kind": "goal"
+        },
+        {
+          "min": "58'",
+          "team": "team2",
+          "player": "Mostafa Zico",
+          "kind": "goal"
+        },
+        {
+          "min": "67'",
+          "team": "team2",
+          "player": "Mohamed Salah",
+          "kind": "goal"
+        },
+        {
+          "min": "82'",
+          "team": "team2",
+          "player": "Trézéguet",
           "kind": "goal"
         }
       ]
