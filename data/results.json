@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-22T03:01:33.596707Z",
+  "last_fetched_utc": "2026-06-22T19:03:53.023436Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1088,6 +1088,26 @@
           "min": "82'",
           "team": "team2",
           "player": "Trézéguet",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-J-3": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 2,
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "38'",
+          "team": "team1",
+          "player": "Lionel Messi",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+5'",
+          "team": "team1",
+          "player": "Lionel Messi",
           "kind": "goal"
         }
       ]
