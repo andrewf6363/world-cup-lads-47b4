@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-21T21:02:41.385493Z",
+  "last_fetched_utc": "2026-06-22T00:05:37.822570Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1025,6 +1025,38 @@
           "team": "team1",
           "player": "Nathan Ngoy",
           "kind": "red"
+        }
+      ]
+    },
+    "G-H-4": {
+      "status": "final",
+      "outcome": "draw",
+      "team1_goals": 2,
+      "team2_goals": 2,
+      "events": [
+        {
+          "min": "21'",
+          "team": "team2",
+          "player": "Kevin Pina",
+          "kind": "goal"
+        },
+        {
+          "min": "44'",
+          "team": "team1",
+          "player": "Maxi Araújo",
+          "kind": "goal"
+        },
+        {
+          "min": "45'+6'",
+          "team": "team1",
+          "player": "Agustín Cano",
+          "kind": "goal"
+        },
+        {
+          "min": "61'",
+          "team": "team2",
+          "player": "Hélio Varela",
+          "kind": "goal"
         }
       ]
     }
