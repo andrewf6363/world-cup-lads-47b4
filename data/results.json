@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-22T00:05:37.822570Z",
+  "last_fetched_utc": "2026-06-22T00:17:43.820072Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1049,7 +1049,7 @@
         {
           "min": "45'+6'",
           "team": "team1",
-          "player": "Agustín Cano",
+          "player": "Agustín Canobbio",
           "kind": "goal"
         },
         {
