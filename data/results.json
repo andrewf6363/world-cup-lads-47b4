@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-23T19:00:54.855099Z",
+  "last_fetched_utc": "2026-06-23T22:01:38.758487Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1239,6 +1239,12 @@
           "kind": "goal"
         }
       ]
+    },
+    "G-L-3": {
+      "status": "final",
+      "outcome": "draw",
+      "team1_goals": 0,
+      "team2_goals": 0
     }
   }
 }
