@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-23T05:01:35.649129Z",
+  "generated_utc": "2026-06-23T05:09:38.519878Z",
   "leaderboard": [
     {
       "name": "Andrew Fahey",
@@ -75,7 +75,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 4,
-      "move": 1
+      "move": 0
     },
     {
       "name": "Ryan Sheekley",
@@ -94,7 +94,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 4,
-      "move": -3
+      "move": 0
     },
     {
       "name": "Karlis Draulis",
@@ -113,7 +113,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 6,
-      "move": 1
+      "move": 0
     },
     {
       "name": "Keegan Ball",
