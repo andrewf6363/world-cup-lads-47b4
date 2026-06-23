@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-22T19:03:53.023436Z",
+  "last_fetched_utc": "2026-06-23T00:49:49.276213Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1108,6 +1108,32 @@
           "min": "90'+5'",
           "team": "team1",
           "player": "Lionel Messi",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-I-3": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 3,
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "14'",
+          "team": "team1",
+          "player": "Kylian Mbappé",
+          "kind": "goal"
+        },
+        {
+          "min": "54'",
+          "team": "team1",
+          "player": "Kylian Mbappé",
+          "kind": "goal"
+        },
+        {
+          "min": "66'",
+          "team": "team1",
+          "player": "Ousmane Dembélé",
           "kind": "goal"
         }
       ]
