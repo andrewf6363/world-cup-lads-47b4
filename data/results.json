@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-23T00:49:49.276213Z",
+  "last_fetched_utc": "2026-06-23T02:00:45.096235Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1134,6 +1134,44 @@
           "min": "66'",
           "team": "team1",
           "player": "Ousmane Dembélé",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-I-4": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 3,
+      "team2_goals": 2,
+      "events": [
+        {
+          "min": "43'",
+          "team": "team1",
+          "player": "Marcus Holmgren Pedersen",
+          "kind": "goal"
+        },
+        {
+          "min": "48'",
+          "team": "team1",
+          "player": "Erling Haaland",
+          "kind": "goal"
+        },
+        {
+          "min": "53'",
+          "team": "team2",
+          "player": "Ismaïla Sarr",
+          "kind": "goal"
+        },
+        {
+          "min": "58'",
+          "team": "team1",
+          "player": "Erling Haaland",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+3'",
+          "team": "team2",
+          "player": "Ismaïla Sarr",
           "kind": "goal"
         }
       ]
