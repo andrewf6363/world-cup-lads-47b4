@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-24T20:57:31.750925Z",
+  "last_fetched_utc": "2026-06-24T20:59:04.176509Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1296,6 +1296,38 @@
           "min": "76'",
           "team": "team2",
           "player": "Promise David",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-B-6": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 3,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "29'",
+          "team": "team1",
+          "player": "Kerim Alajbegovic",
+          "kind": "goal"
+        },
+        {
+          "min": "34'",
+          "team": "team1",
+          "player": "Mahmoud Abunada",
+          "kind": "og"
+        },
+        {
+          "min": "42'",
+          "team": "team2",
+          "player": "Hassan Al-Haydos",
+          "kind": "goal"
+        },
+        {
+          "min": "80'",
+          "team": "team1",
+          "player": "Ermin Mahmic",
           "kind": "goal"
         }
       ]
