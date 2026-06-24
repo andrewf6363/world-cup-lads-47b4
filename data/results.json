@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-24T00:55:29.078848Z",
+  "last_fetched_utc": "2026-06-24T03:58:41.518692Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1256,6 +1256,20 @@
           "min": "54'",
           "team": "team2",
           "player": "Ante Budimir",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-K-4": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 1,
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "76'",
+          "team": "team1",
+          "player": "Daniel Muñoz",
           "kind": "goal"
         }
       ]
