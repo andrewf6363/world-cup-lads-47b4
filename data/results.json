@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-24T03:58:41.518692Z",
+  "last_fetched_utc": "2026-06-24T20:57:31.750925Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1270,6 +1270,32 @@
           "min": "76'",
           "team": "team1",
           "player": "Daniel Muñoz",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-B-5": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 2,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "46'",
+          "team": "team1",
+          "player": "Rubén Vargas",
+          "kind": "goal"
+        },
+        {
+          "min": "57'",
+          "team": "team1",
+          "player": "Johan Manzambi",
+          "kind": "goal"
+        },
+        {
+          "min": "76'",
+          "team": "team2",
+          "player": "Promise David",
           "kind": "goal"
         }
       ]
