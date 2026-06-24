@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-24T20:59:04.401125Z",
+  "generated_utc": "2026-06-24T21:03:06.636396Z",
   "leaderboard": [
     {
       "name": "John Pappas",
@@ -75,7 +75,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 4,
-      "move": 1
+      "move": 0
     },
     {
       "name": "Ryan Sheekley",
@@ -94,7 +94,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 4,
-      "move": -1
+      "move": 0
     },
     {
       "name": "Karlis Draulis",
