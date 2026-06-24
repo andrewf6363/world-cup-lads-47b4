@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-23T22:01:38.758487Z",
+  "last_fetched_utc": "2026-06-24T00:55:29.078848Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1245,6 +1245,20 @@
       "outcome": "draw",
       "team1_goals": 0,
       "team2_goals": 0
+    },
+    "G-L-4": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 0,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "54'",
+          "team": "team2",
+          "player": "Ante Budimir",
+          "kind": "goal"
+        }
+      ]
     }
   }
 }
