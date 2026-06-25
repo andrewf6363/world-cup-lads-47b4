@@ -1,11 +1,11 @@
 {
-  "generated_utc": "2026-06-25T00:01:16.369021Z",
+  "generated_utc": "2026-06-25T00:02:48.867313Z",
   "leaderboard": [
     {
       "name": "John Pappas",
-      "grp": 3300,
-      "correct": 33,
-      "graded": 50,
+      "grp": 3500,
+      "correct": 35,
+      "graded": 52,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -14,7 +14,7 @@
         "SF": 0,
         "Final": 0
       },
-      "total": 3300,
+      "total": 3500,
       "champ": null,
       "final_goals_guess": null,
       "rank": 1,
@@ -22,9 +22,47 @@
     },
     {
       "name": "Luke Clark",
+      "grp": 3500,
+      "correct": 35,
+      "graded": 52,
+      "ko": 0,
+      "rounds": {
+        "R32": 0,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 3500,
+      "champ": null,
+      "final_goals_guess": null,
+      "rank": 1,
+      "move": 0
+    },
+    {
+      "name": "Andrew Fahey",
+      "grp": 3400,
+      "correct": 34,
+      "graded": 52,
+      "ko": 0,
+      "rounds": {
+        "R32": 0,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 3400,
+      "champ": null,
+      "final_goals_guess": null,
+      "rank": 3,
+      "move": 0
+    },
+    {
+      "name": "Kyle Williams",
       "grp": 3300,
       "correct": 33,
-      "graded": 50,
+      "graded": 52,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -36,52 +74,14 @@
       "total": 3300,
       "champ": null,
       "final_goals_guess": null,
-      "rank": 1,
-      "move": 0
-    },
-    {
-      "name": "Andrew Fahey",
-      "grp": 3200,
-      "correct": 32,
-      "graded": 50,
-      "ko": 0,
-      "rounds": {
-        "R32": 0,
-        "R16": 0,
-        "QF": 0,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 3200,
-      "champ": null,
-      "final_goals_guess": null,
-      "rank": 3,
-      "move": 0
-    },
-    {
-      "name": "Kyle Williams",
-      "grp": 3100,
-      "correct": 31,
-      "graded": 50,
-      "ko": 0,
-      "rounds": {
-        "R32": 0,
-        "R16": 0,
-        "QF": 0,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 3100,
-      "champ": null,
-      "final_goals_guess": null,
       "rank": 4,
       "move": 0
     },
     {
       "name": "Ryan Sheekley",
-      "grp": 3100,
-      "correct": 31,
-      "graded": 50,
+      "grp": 3300,
+      "correct": 33,
+      "graded": 52,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -90,7 +90,7 @@
         "SF": 0,
         "Final": 0
       },
-      "total": 3100,
+      "total": 3300,
       "champ": null,
       "final_goals_guess": null,
       "rank": 4,
@@ -98,9 +98,9 @@
     },
     {
       "name": "Karlis Draulis",
-      "grp": 2800,
-      "correct": 28,
-      "graded": 50,
+      "grp": 3000,
+      "correct": 30,
+      "graded": 52,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -109,26 +109,7 @@
         "SF": 0,
         "Final": 0
       },
-      "total": 2800,
-      "champ": null,
-      "final_goals_guess": null,
-      "rank": 6,
-      "move": 0
-    },
-    {
-      "name": "Keegan Ball",
-      "grp": 2800,
-      "correct": 28,
-      "graded": 50,
-      "ko": 0,
-      "rounds": {
-        "R32": 0,
-        "R16": 0,
-        "QF": 0,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 2800,
+      "total": 3000,
       "champ": null,
       "final_goals_guess": null,
       "rank": 6,
@@ -136,9 +117,9 @@
     },
     {
       "name": "Brad Bone",
-      "grp": 2700,
-      "correct": 27,
-      "graded": 50,
+      "grp": 2900,
+      "correct": 29,
+      "graded": 52,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -147,11 +128,30 @@
         "SF": 0,
         "Final": 0
       },
-      "total": 2700,
+      "total": 2900,
       "champ": null,
       "final_goals_guess": null,
-      "rank": 8,
-      "move": 0
+      "rank": 7,
+      "move": 1
+    },
+    {
+      "name": "Keegan Ball",
+      "grp": 2900,
+      "correct": 29,
+      "graded": 52,
+      "ko": 0,
+      "rounds": {
+        "R32": 0,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 2900,
+      "champ": null,
+      "final_goals_guess": null,
+      "rank": 7,
+      "move": -1
     }
   ]
 }

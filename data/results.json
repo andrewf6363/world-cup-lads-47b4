@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-24T20:59:04.176509Z",
+  "last_fetched_utc": "2026-06-25T00:02:48.598516Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1328,6 +1328,76 @@
           "min": "80'",
           "team": "team1",
           "player": "Ermin Mahmic",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-C-6": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 4,
+      "team2_goals": 2,
+      "events": [
+        {
+          "min": "10'",
+          "team": "team2",
+          "player": "Yassine Bounou",
+          "kind": "og"
+        },
+        {
+          "min": "39'",
+          "team": "team1",
+          "player": "Achraf Hakimi",
+          "kind": "goal"
+        },
+        {
+          "min": "43'",
+          "team": "team2",
+          "player": "Wilson Isidor",
+          "kind": "goal"
+        },
+        {
+          "min": "45'+1'",
+          "team": "team1",
+          "player": "Ismael Saibari",
+          "kind": "goal"
+        },
+        {
+          "min": "78'",
+          "team": "team1",
+          "player": "Soufiane Rahimi",
+          "kind": "goal"
+        },
+        {
+          "min": "89'",
+          "team": "team1",
+          "player": "Gessime Yassine",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-C-5": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 0,
+      "team2_goals": 3,
+      "events": [
+        {
+          "min": "7'",
+          "team": "team2",
+          "player": "Vinícius Júnior",
+          "kind": "goal"
+        },
+        {
+          "min": "45'+3'",
+          "team": "team2",
+          "player": "Vinícius Júnior",
+          "kind": "goal"
+        },
+        {
+          "min": "60'",
+          "team": "team2",
+          "player": "Matheus Cunha",
           "kind": "goal"
         }
       ]
