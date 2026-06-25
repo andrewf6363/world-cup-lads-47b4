@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-25T00:02:48.598516Z",
+  "last_fetched_utc": "2026-06-25T02:58:03.939058Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1398,6 +1398,46 @@
           "min": "60'",
           "team": "team2",
           "player": "Matheus Cunha",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-A-5": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 0,
+      "team2_goals": 3,
+      "events": [
+        {
+          "min": "55'",
+          "team": "team2",
+          "player": "Mateo Chávez",
+          "kind": "goal"
+        },
+        {
+          "min": "61'",
+          "team": "team2",
+          "player": "Julián Quiñones",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+4'",
+          "team": "team2",
+          "player": "Álvaro Fidalgo",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-A-6": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 1,
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "63'",
+          "team": "team1",
+          "player": "Thapelo Maseko",
           "kind": "goal"
         }
       ]
