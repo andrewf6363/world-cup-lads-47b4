@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-25T02:58:03.939058Z",
+  "last_fetched_utc": "2026-06-25T21:59:24.971004Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1438,6 +1438,52 @@
           "min": "63'",
           "team": "team1",
           "player": "Thapelo Maseko",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-E-5": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 0,
+      "team2_goals": 2,
+      "events": [
+        {
+          "min": "7'",
+          "team": "team2",
+          "player": "Nicolas Pépé",
+          "kind": "goal"
+        },
+        {
+          "min": "64'",
+          "team": "team2",
+          "player": "Nicolas Pépé",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-E-6": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 2,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "2'",
+          "team": "team2",
+          "player": "Leroy Sané",
+          "kind": "goal"
+        },
+        {
+          "min": "9'",
+          "team": "team1",
+          "player": "Nilson Angulo",
+          "kind": "goal"
+        },
+        {
+          "min": "77'",
+          "team": "team1",
+          "player": "Gonzalo Plata",
           "kind": "goal"
         }
       ]
