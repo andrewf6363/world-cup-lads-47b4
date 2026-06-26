@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-26T04:00:41.824284Z",
+  "last_fetched_utc": "2026-06-26T04:03:47.753894Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1545,6 +1545,44 @@
       "outcome": "draw",
       "team1_goals": 0,
       "team2_goals": 0
+    },
+    "G-D-5": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 3,
+      "team2_goals": 2,
+      "events": [
+        {
+          "min": "3'",
+          "team": "team2",
+          "player": "Auston Trusty",
+          "kind": "goal"
+        },
+        {
+          "min": "10'",
+          "team": "team1",
+          "player": "Arda Güler",
+          "kind": "goal"
+        },
+        {
+          "min": "31'",
+          "team": "team1",
+          "player": "Baris Alper Yilmaz",
+          "kind": "goal"
+        },
+        {
+          "min": "49'",
+          "team": "team2",
+          "player": "Sebastian Berhalter",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+8'",
+          "team": "team1",
+          "player": "Kaan Ayhan",
+          "kind": "goal"
+        }
+      ]
     }
   }
 }

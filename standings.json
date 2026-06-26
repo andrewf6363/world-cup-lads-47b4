@@ -1,11 +1,11 @@
 {
-  "generated_utc": "2026-06-26T04:02:14.843450Z",
+  "generated_utc": "2026-06-26T04:03:47.947323Z",
   "leaderboard": [
     {
       "name": "John Pappas",
       "grp": 3800,
       "correct": 38,
-      "graded": 59,
+      "graded": 60,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -24,7 +24,7 @@
       "name": "Luke Clark",
       "grp": 3800,
       "correct": 38,
-      "graded": 59,
+      "graded": 60,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -43,7 +43,7 @@
       "name": "Andrew Fahey",
       "grp": 3700,
       "correct": 37,
-      "graded": 59,
+      "graded": 60,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -62,7 +62,7 @@
       "name": "Kyle Williams",
       "grp": 3700,
       "correct": 37,
-      "graded": 59,
+      "graded": 60,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -79,9 +79,9 @@
     },
     {
       "name": "Ryan Sheekley",
-      "grp": 3600,
-      "correct": 36,
-      "graded": 59,
+      "grp": 3700,
+      "correct": 37,
+      "graded": 60,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -90,17 +90,17 @@
         "SF": 0,
         "Final": 0
       },
-      "total": 3600,
+      "total": 3700,
       "champ": null,
       "final_goals_guess": null,
-      "rank": 5,
-      "move": 0
+      "rank": 3,
+      "move": 2
     },
     {
       "name": "Karlis Draulis",
       "grp": 3400,
       "correct": 34,
-      "graded": 59,
+      "graded": 60,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -117,9 +117,9 @@
     },
     {
       "name": "Keegan Ball",
-      "grp": 3300,
-      "correct": 33,
-      "graded": 59,
+      "grp": 3400,
+      "correct": 34,
+      "graded": 60,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -128,17 +128,17 @@
         "SF": 0,
         "Final": 0
       },
-      "total": 3300,
+      "total": 3400,
       "champ": null,
       "final_goals_guess": null,
-      "rank": 7,
-      "move": 0
+      "rank": 6,
+      "move": 1
     },
     {
       "name": "Brad Bone",
       "grp": 3200,
       "correct": 32,
-      "graded": 59,
+      "graded": 60,
       "ko": 0,
       "rounds": {
         "R32": 0,
