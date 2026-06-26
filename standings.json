@@ -1,11 +1,11 @@
 {
-  "generated_utc": "2026-06-26T03:59:09.486251Z",
+  "generated_utc": "2026-06-26T04:00:42.022386Z",
   "leaderboard": [
     {
       "name": "John Pappas",
       "grp": 3800,
       "correct": 38,
-      "graded": 58,
+      "graded": 59,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -24,7 +24,7 @@
       "name": "Luke Clark",
       "grp": 3800,
       "correct": 38,
-      "graded": 58,
+      "graded": 59,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -43,7 +43,7 @@
       "name": "Andrew Fahey",
       "grp": 3700,
       "correct": 37,
-      "graded": 58,
+      "graded": 59,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -62,7 +62,7 @@
       "name": "Kyle Williams",
       "grp": 3700,
       "correct": 37,
-      "graded": 58,
+      "graded": 59,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -81,7 +81,7 @@
       "name": "Ryan Sheekley",
       "grp": 3600,
       "correct": 36,
-      "graded": 58,
+      "graded": 59,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -98,9 +98,28 @@
     },
     {
       "name": "Karlis Draulis",
+      "grp": 3400,
+      "correct": 34,
+      "graded": 59,
+      "ko": 0,
+      "rounds": {
+        "R32": 0,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 3400,
+      "champ": null,
+      "final_goals_guess": null,
+      "rank": 6,
+      "move": 0
+    },
+    {
+      "name": "Keegan Ball",
       "grp": 3300,
       "correct": 33,
-      "graded": 58,
+      "graded": 59,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -112,14 +131,14 @@
       "total": 3300,
       "champ": null,
       "final_goals_guess": null,
-      "rank": 6,
+      "rank": 7,
       "move": 0
     },
     {
       "name": "Brad Bone",
       "grp": 3200,
       "correct": 32,
-      "graded": 58,
+      "graded": 59,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -131,27 +150,8 @@
       "total": 3200,
       "champ": null,
       "final_goals_guess": null,
-      "rank": 7,
-      "move": 0
-    },
-    {
-      "name": "Keegan Ball",
-      "grp": 3200,
-      "correct": 32,
-      "graded": 58,
-      "ko": 0,
-      "rounds": {
-        "R32": 0,
-        "R16": 0,
-        "QF": 0,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 3200,
-      "champ": null,
-      "final_goals_guess": null,
-      "rank": 7,
-      "move": 0
+      "rank": 8,
+      "move": -1
     }
   ]
 }
