@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-26T21:00:25.164458Z",
+  "last_fetched_utc": "2026-06-26T21:05:03.003110Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1618,6 +1618,50 @@
           "min": "90'+4'",
           "team": "team2",
           "player": "Désiré Doué",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-I-6": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 5,
+      "team2_goals": 0,
+      "events": [
+        {
+          "min": "4'",
+          "team": "team1",
+          "player": "Habib Diarra",
+          "kind": "goal"
+        },
+        {
+          "min": "13'",
+          "team": "team2",
+          "player": "Rebin Sulaka",
+          "kind": "red"
+        },
+        {
+          "min": "56'",
+          "team": "team1",
+          "player": "Ismaïla Sarr",
+          "kind": "goal"
+        },
+        {
+          "min": "59'",
+          "team": "team1",
+          "player": "Pape Gueye",
+          "kind": "goal"
+        },
+        {
+          "min": "71'",
+          "team": "team1",
+          "player": "Pape Gueye",
+          "kind": "goal"
+        },
+        {
+          "min": "82'",
+          "team": "team1",
+          "player": "Iliman Ndiaye",
           "kind": "goal"
         }
       ]
