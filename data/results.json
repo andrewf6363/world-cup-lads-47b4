@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-25T21:59:24.971004Z",
+  "last_fetched_utc": "2026-06-26T00:56:25.565023Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1484,6 +1484,38 @@
           "min": "77'",
           "team": "team1",
           "player": "Gonzalo Plata",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-F-6": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 1,
+      "team2_goals": 3,
+      "events": [
+        {
+          "min": "3'",
+          "team": "team2",
+          "player": "Ellyes Skhiri",
+          "kind": "og"
+        },
+        {
+          "min": "7'",
+          "team": "team2",
+          "player": "Brian Brobbey",
+          "kind": "goal"
+        },
+        {
+          "min": "54'",
+          "team": "team1",
+          "player": "Hazem Mastouri",
+          "kind": "goal"
+        },
+        {
+          "min": "62'",
+          "team": "team2",
+          "player": "Jan Paul van Hecke",
           "kind": "goal"
         }
       ]
