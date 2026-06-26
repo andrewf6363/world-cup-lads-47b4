@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-26T04:03:47.753894Z",
+  "last_fetched_utc": "2026-06-26T21:00:25.164458Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1580,6 +1580,44 @@
           "min": "90'+8'",
           "team": "team1",
           "player": "Kaan Ayhan",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-I-5": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 1,
+      "team2_goals": 4,
+      "events": [
+        {
+          "min": "7'",
+          "team": "team2",
+          "player": "Ousmane Dembélé",
+          "kind": "goal"
+        },
+        {
+          "min": "20'",
+          "team": "team2",
+          "player": "Ousmane Dembélé",
+          "kind": "goal"
+        },
+        {
+          "min": "21'",
+          "team": "team1",
+          "player": "Thelo Aasgaard",
+          "kind": "goal"
+        },
+        {
+          "min": "32'",
+          "team": "team2",
+          "player": "Ousmane Dembélé",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+4'",
+          "team": "team2",
+          "player": "Désiré Doué",
           "kind": "goal"
         }
       ]
