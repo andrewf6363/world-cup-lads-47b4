@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-27T05:04:55.777459Z",
+  "last_fetched_utc": "2026-06-27T22:55:55.718628Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1752,6 +1752,26 @@
           "min": "14'",
           "team": "team2",
           "player": "Ramin Rezaeian",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-L-5": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 0,
+      "team2_goals": 2,
+      "events": [
+        {
+          "min": "62'",
+          "team": "team2",
+          "player": "Jude Bellingham",
+          "kind": "goal"
+        },
+        {
+          "min": "67'",
+          "team": "team2",
+          "player": "Harry Kane",
           "kind": "goal"
         }
       ]
