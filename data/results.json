@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-27T02:01:15.486936Z",
+  "last_fetched_utc": "2026-06-27T02:02:47.671409Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1671,6 +1671,26 @@
       "outcome": "draw",
       "team1_goals": 0,
       "team2_goals": 0
+    },
+    "G-H-6": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 0,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "42'",
+          "team": "team2",
+          "player": "Álex Baena",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+5'",
+          "team": "team1",
+          "player": "Agustín Canobbio",
+          "kind": "red"
+        }
+      ]
     }
   }
 }
