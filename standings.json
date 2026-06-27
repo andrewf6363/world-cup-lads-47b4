@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-27T23:00:33.366406Z",
+  "generated_utc": "2026-06-27T23:04:36.082508Z",
   "leaderboard": [
     {
       "name": "Kyle Williams",
@@ -18,7 +18,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 1,
-      "move": 1
+      "move": 0
     },
     {
       "name": "Luke Clark",
@@ -75,7 +75,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 4,
-      "move": 1
+      "move": 0
     },
     {
       "name": "John Pappas",
@@ -94,7 +94,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 4,
-      "move": -1
+      "move": 0
     },
     {
       "name": "Karlis Draulis",
