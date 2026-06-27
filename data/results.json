@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-27T22:55:55.718628Z",
+  "last_fetched_utc": "2026-06-27T23:00:33.249343Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1772,6 +1772,32 @@
           "min": "67'",
           "team": "team2",
           "player": "Harry Kane",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-L-6": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 2,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "31'",
+          "team": "team1",
+          "player": "Petar Sucic",
+          "kind": "goal"
+        },
+        {
+          "min": "73'",
+          "team": "team2",
+          "player": "Derrick Luckassen",
+          "kind": "goal"
+        },
+        {
+          "min": "83'",
+          "team": "team1",
+          "player": "Nikola Vlasic",
           "kind": "goal"
         }
       ]
