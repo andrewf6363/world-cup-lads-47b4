@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-27T02:02:47.671409Z",
+  "last_fetched_utc": "2026-06-27T04:58:47.887533Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1689,6 +1689,50 @@
           "team": "team1",
           "player": "Agustín Canobbio",
           "kind": "red"
+        }
+      ]
+    },
+    "G-G-6": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 1,
+      "team2_goals": 5,
+      "events": [
+        {
+          "min": "28'",
+          "team": "team2",
+          "player": "Leandro Trossard",
+          "kind": "goal"
+        },
+        {
+          "min": "50'",
+          "team": "team2",
+          "player": "Leandro Trossard",
+          "kind": "goal"
+        },
+        {
+          "min": "66'",
+          "team": "team2",
+          "player": "Kevin De Bruyne",
+          "kind": "goal"
+        },
+        {
+          "min": "84'",
+          "team": "team1",
+          "player": "Elijah Just",
+          "kind": "goal"
+        },
+        {
+          "min": "86'",
+          "team": "team2",
+          "player": "Romelu Lukaku",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+4'",
+          "team": "team2",
+          "player": "Alexis Saelemaekers",
+          "kind": "goal"
         }
       ]
     }
