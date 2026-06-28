@@ -8,6 +8,7 @@ full time, no API key) -> data/results_manual.json (commissioner overrides, alwa
 Never overwrites good data when sources fail. Run:  python3 scripts/fetch_results.py
 """
 import json, os, sys, re, datetime, urllib.request, unicodedata
+import lib
 
 HERE = os.path.dirname(__file__); DATA = os.path.join(HERE, "..", "data")
 FEED_URLS = [
@@ -180,7 +181,7 @@ def _espn_stats(competition, side_order):
         rows.append([label, f"{a}{suffix}", f"{b}{suffix}"])
     return rows
 
-def normalize_espn(data, fixtures, prev_info):
+def normalize_espn(data, fixtures, prev_info, prior_matches=None):
     """Map ESPN events to our fixture IDs. Finished matches become results (per-competitor winner
     flag + shootoutScore resolve knockouts incl. penalties; goal/red-card details ride along as
     'events'). EVERY mapped match also updates matchinfo, merged over what we already know:
@@ -188,8 +189,12 @@ def normalize_espn(data, fixtures, prev_info):
     need closing odds for the market scoreboard), live score+clock while in play, stats once final.
     Returns (matches, finals, unmatched, info)."""
     group_by_pair = {frozenset((norm(f["team1"]), norm(f["team2"]))): f for f in fixtures["group_stage"]}
-    ko_by_pair = {frozenset((norm(kx["team1"]), norm(kx["team2"]))): kx
-                  for kx in fixtures.get("knockout", []) if kx.get("team1") and kx.get("team2")}
+    # knockout matchups resolve as the bracket plays — match R16+ by the teams their feeders produced
+    resolved = lib.resolve_bracket(fixtures, prior_matches or {})
+    ko_by_pair = {}
+    for kx in fixtures.get("knockout", []):
+        t1, t2 = resolved.get(kx["id"], (kx.get("team1"), kx.get("team2")))
+        if t1 and t2: ko_by_pair[frozenset((norm(t1), norm(t2)))] = kx
     matches, finals, unmatched = {}, 0, []
     info = {k: dict(v) for k, v in prev_info.items()}            # persist known tv/odds/stats
     for e in data.get("events", []):
@@ -217,7 +222,9 @@ def normalize_espn(data, fixtures, prev_info):
             if is_final and not any(is_placeholder(t[0]) for t in teams):
                 unmatched.append(f"{teams[0][0]} v {teams[1][0]}")
             continue
-        t1, t2 = by.get(norm(target["team1"])), by.get(norm(target["team2"]))
+        # our canonical (team1, team2): group fixtures carry them; knockout uses the resolved bracket
+        tt1, tt2 = (fx["team1"], fx["team2"]) if fx else resolved.get(kx["id"], (None, None))
+        t1, t2 = by.get(norm(tt1)), by.get(norm(tt2))
         if not t1 or not t2: continue
         fid = target["id"]
 
@@ -276,7 +283,7 @@ def main():
     espn = fetch_espn()
     espn_finals = 0
     if espn:
-        espn_matches, espn_finals, espn_unmatched, info = normalize_espn(espn, fixtures, load("matchinfo.json", {}))
+        espn_matches, espn_finals, espn_unmatched, info = normalize_espn(espn, fixtures, load("matchinfo.json", {}), merged)
         merged.update(espn_matches)
         if espn_finals: srcs.append("espn")
         if espn_unmatched:

@@ -3084,5 +3084,261 @@
    "Universo",
    "FOX One"
   ]
+ },
+ "K-73": {
+  "odds": {
+   "fav": "team2",
+   "ml": {
+    "draw": "+270",
+    "team1": "+500",
+    "team2": "-150"
+   },
+   "ou": 2.5
+  },
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-74": {
+  "odds": {
+   "fav": "team1",
+   "ml": {
+    "draw": "+450",
+    "team1": "-295",
+    "team2": "+850"
+   },
+   "ou": 2.5
+  },
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-75": {
+  "odds": {
+   "fav": "team1",
+   "ml": {
+    "draw": "+225",
+    "team1": "+115",
+    "team2": "+270"
+   },
+   "ou": 2.5
+  },
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-76": {
+  "odds": {
+   "fav": "team1",
+   "ml": {
+    "draw": "+290",
+    "team1": "-145",
+    "team2": "+400"
+   },
+   "ou": 2.5
+  },
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-77": {
+  "odds": {
+   "fav": "team1",
+   "ml": {
+    "draw": "+500",
+    "team1": "-360",
+    "team2": "+950"
+   },
+   "ou": 3.5
+  },
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-78": {
+  "odds": {
+   "fav": "team2",
+   "ml": {
+    "draw": "+250",
+    "team1": "+265",
+    "team2": "+105"
+   },
+   "ou": 2.5
+  },
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-79": {
+  "odds": {
+   "fav": "team1",
+   "ml": {
+    "draw": "+200",
+    "team1": "+130",
+    "team2": "+270"
+   },
+   "ou": 1.5
+  },
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-80": {
+  "odds": {
+   "fav": "team1",
+   "ml": {
+    "draw": "+475",
+    "team1": "-360",
+    "team2": "+1100"
+   },
+   "ou": 2.5
+  },
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-81": {
+  "odds": {
+   "fav": "team1",
+   "ml": {
+    "draw": "+400",
+    "team1": "-270",
+    "team2": "+800"
+   },
+   "ou": 2.5
+  },
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-82": {
+  "odds": {
+   "fav": "team1",
+   "ml": {
+    "draw": "+220",
+    "team1": "+115",
+    "team2": "+270"
+   },
+   "ou": 2.5
+  },
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-83": {
+  "odds": {
+   "fav": "team1",
+   "ml": {
+    "draw": "+260",
+    "team1": "-120",
+    "team2": "+360"
+   },
+   "ou": 2.5
+  },
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-84": {
+  "odds": {
+   "fav": "team1",
+   "ml": {
+    "draw": "+450",
+    "team1": "-340",
+    "team2": "+1100"
+   },
+   "ou": 2.5
+  },
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-85": {
+  "odds": {
+   "fav": "team1",
+   "ml": {
+    "draw": "+250",
+    "team1": "-110",
+    "team2": "+330"
+   },
+   "ou": 2.5
+  },
+  "tv": [
+   "FS1",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-86": {
+  "odds": {
+   "fav": "team1",
+   "ml": {
+    "draw": "+700",
+    "team1": "-650",
+    "team2": "+1800"
+   },
+   "ou": 2.5
+  },
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-87": {
+  "odds": {
+   "fav": "team1",
+   "ml": {
+    "draw": "+295",
+    "team1": "-175",
+    "team2": "+550"
+   },
+   "ou": 2.5
+  },
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-88": {
+  "odds": {
+   "fav": "team2",
+   "ml": {
+    "draw": "+195",
+    "team1": "+230",
+    "team2": "+150"
+   },
+   "ou": 1.5
+  },
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "FOX One"
+  ]
  }
 }

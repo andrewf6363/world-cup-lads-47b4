@@ -464,7 +464,9 @@ function spotlight(){
 function standings(){
   const el=document.getElementById("standings"), GMAX=7200, KMAX=8000;
   const showWin=DATA.meta.graded>=10&&DATA.players.length>1;   // win% needs a real sample, not model guesswork
-  document.getElementById("standMeta").textContent=`${DATA.players.length} of ${DATA.meta.managers} reporting`+(showWin&&DATA.meta.graded<72?" · win% projected":"");
+  const kp=DATA.meta.ko_pending||0;
+  document.getElementById("standMeta").textContent=`${DATA.players.length} of ${DATA.meta.managers} reporting`+
+    (showWin?(kp>0?` · win% excludes ${kp} bracket${kp>1?'s':''} not in yet`:(DATA.meta.graded<72?" · win% projected":"")):"");
   if(!DATA.players.length){el.innerHTML='<div class="empty">No picks submitted yet — the leaderboard fills in as sheets come back.</div>';return;}
   const sole=DATA.players.filter(q=>q.rank===1).length===1;   // crown nobody in a dead heat
   DATA.players.forEach(p=>{

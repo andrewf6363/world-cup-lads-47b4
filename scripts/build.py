@@ -38,23 +38,43 @@ def match_probs(t1, t2):
     p1_dec = 1 / (1 + 10 ** (-diff / 34.0))                      # team1 share of a decisive result
     return (1 - pdraw) * p1_dec, pdraw, (1 - pdraw) * (1 - p1_dec)
 
-def win_probabilities(rows, group_stage, M, pmap, nsim=10000):
-    """Monte Carlo: simulate unplayed matches vs each manager's picks; % of sims they finish 1st."""
-    random.seed(20260611)                                        # deterministic for a given input
-    unplayed = [(f["id"], match_probs(f["team1"], f["team2"]))
-                for f in group_stage if M.get(f["id"], {}).get("status") != "final"]
+def win_probabilities(rows, fixtures, M, pmap, nsim=10000):
+    """Monte Carlo: simulate every UNPLAYED match — group outcomes AND the knockout bracket
+    (advancing sim-winners through the tree) — versus each manager's picks, awarding doubling
+    knockout points, and tally how often each finishes 1st. Deterministic for a given input."""
+    random.seed(20260611)
     names = [r["name"] for r in rows]
     if not names: return {}
-    picks_by = {n: pmap.get(n, {}).get("group_picks", {}) for n in names}
-    base = {r["name"]: r["total"] for r in rows}                 # points already locked
+    group_unplayed = [(f["id"], match_probs(f["team1"], f["team2"]))
+                      for f in fixtures["group_stage"] if M.get(f["id"], {}).get("status") != "final"]
+    ko = [k for k in fixtures.get("knockout", []) if k.get("round") != "3P"]
+    resolved = lib.resolve_bracket(fixtures, M)                  # R32 teams known; later via sim
+    gpicks = {n: pmap.get(n, {}).get("group_picks", {}) for n in names}
+    kpicks = {n: pmap.get(n, {}).get("knockout_picks", {}) for n in names}
+    base = {r["name"]: r["total"] for r in rows}
     wins = {n: 0.0 for n in names}
     for _ in range(nsim):
         tot = dict(base)
-        for fid, (p1, pd, p2) in unplayed:
+        for fid, (p1, pd, p2) in group_unplayed:
             r = random.random()
             o = "team1" if r < p1 else ("draw" if r < p1 + pd else "team2")
             for n in names:
-                if picks_by[n].get(fid) == o: tot[n] += 100
+                if gpicks[n].get(fid) == o: tot[n] += 100
+        simwin = {}
+        for k in ko:                                            # num order -> feeders resolve first
+            res = M.get(k["id"], {})
+            if res.get("status") == "final":
+                w = res.get("winner")
+            else:
+                if k.get("round") == "R32": a, b = k.get("team1"), k.get("team2")
+                else: a, b = simwin.get(k["feeds"][0]), simwin.get(k["feeds"][1])
+                if not a or not b: continue                     # bracket not resolved this far yet
+                p1, pd, p2 = match_probs(a, b)
+                w = a if random.random() < p1 + pd / 2 else b   # split the draw mass (KO has no draws)
+            simwin[k["id"]] = w
+            rp = lib.ROUND_POINTS.get(k["round"], 0)
+            for n in names:
+                if kpicks[n].get(k["id"]) == w: tot[n] += rp
         mx = max(tot.values()); lead = [n for n in names if tot[n] == mx]
         for n in lead: wins[n] += 1.0 / len(lead)
     return {n: round(wins[n] / nsim * 100) for n in names}
@@ -359,17 +379,28 @@ def build_briefing(fixtures, M, players, pmap, dist, minfo, qnotes):
     def pick_var(fid, opts):                                   # stable variety, never random
         return opts[int(hashlib.md5(fid.encode()).hexdigest(), 16) % len(opts)]
     def gp(name): return pmap.get(name, {}).get("group_picks", {}) or {}
+    def kp(name): return pmap.get(name, {}).get("knockout_picks", {}) or {}
+    RP = {"R32": 100, "R16": 200, "QF": 400, "SF": 800, "Final": 1600, "3P": 0}
+    ko_round = {k["id"]: k.get("round") for k in fixtures.get("knockout", [])}
 
-    def fantasy_line(fid, outcome):
-        if not fid.startswith("G-") or not players: return ""
-        n = len(players)
-        right = [first(p["name"]) for p in players if gp(p["name"]).get(fid) == outcome]
-        wrong = [first(p["name"]) for p in players if first(p["name"]) not in right]
-        if len(right) == n: return f"All {n} lads called it — no separation."
+    def fantasy_line(f, res):
+        if not players: return ""
+        fid = f["id"]
+        if fid.startswith("G-"):
+            target, pick, pool, unit = res.get("outcome"), lambda nm: gp(nm).get(fid), players, 100
+        else:
+            target, pick = res.get("winner"), lambda nm: kp(nm).get(fid)
+            pool, unit = [p for p in players if pmap.get(p["name"], {}).get("submitted_knockout")], RP.get(ko_round.get(fid), 0)
+        n = len(pool)
+        if not n or target is None: return ""
+        right = [first(p["name"]) for p in pool if pick(p["name"]) == target]
+        wrong = [first(p["name"]) for p in pool if first(p["name"]) not in right]
+        plus = f"+{unit:,}"
+        if len(right) == n: return f"All {n} called it ({plus} each)."
         if not right: return "Nobody called it — the whole league blanked."
-        if len(right) == 1: return f"{right[0]} alone called it — +100 on the field."
+        if len(right) == 1: return f"{right[0]} alone called it — {plus} solo."
         if len(right) >= n - 2: return f"{len(right)} of {n} banked it — only {' and '.join(wrong)} missed."
-        return f"Only {', '.join(right[:-1])} and {right[-1]} called it (+100 each)."
+        return f"Only {', '.join(right[:-1])} and {right[-1]} called it ({plus} each)."
 
     recaps, window = [], []
     for f in sorted(allfx, key=lambda x: x.get("kickoff_utc") or "", reverse=True):
@@ -381,14 +412,22 @@ def build_briefing(fixtures, M, players, pmap, dist, minfo, qnotes):
         text, scorers = recap_prose(f, res, minfo.get(f["id"], {}).get("stats", []))
         recaps.append({"a": f["team1"], "b": f["team2"], "sa": res["team1_goals"], "sb": res["team2_goals"],
                        "label": label(f), "when": date_label(f.get("kickoff_utc")), "pen": res.get("pens"),
-                       "text": text, "scorers": scorers, "fantasy": fantasy_line(f["id"], res.get("outcome")),
+                       "text": text, "scorers": scorers, "fantasy": fantasy_line(f, res),
                        "stats": minfo.get(f["id"], {}).get("stats", [])})
 
-    # who won the day — fantasy points banked on the recap window, bucketed
+    # who won the day — fantasy points banked on the recap window (group + knockout), bucketed
     day = ""
     if window and players:
-        pts = {p["name"]: sum(100 for fid, oc in window if fid.startswith("G-") and gp(p["name"]).get(fid) == oc)
-               for p in players}
+        def day_pts(p):
+            t = 0
+            for fid, _ in window:
+                res = M.get(fid, {})
+                if fid.startswith("G-"):
+                    if gp(p["name"]).get(fid) == res.get("outcome"): t += 100
+                elif pmap.get(p["name"], {}).get("submitted_knockout") and kp(p["name"]).get(fid) == res.get("winner"):
+                    t += RP.get(ko_round.get(fid), 0)
+            return t
+        pts = {p["name"]: day_pts(p) for p in players}
         buckets = {}
         for n, v in pts.items(): buckets.setdefault(v, []).append(first(n))
         if len(buckets) == 1:
@@ -406,15 +445,24 @@ def build_briefing(fixtures, M, players, pmap, dist, minfo, qnotes):
         live = bool(ls) or (ko <= now < ko + datetime.timedelta(hours=2, minutes=15))
         if not live and not (now < ko <= now + datetime.timedelta(hours=24)): continue
         c = dist.get(f["id"], {"team1": 0, "draw": 0, "team2": 0})
-        # who's on what — names grouped by pick (Kyle's group-chat request)
+        # who's on what — names grouped by pick (Kyle's group-chat request); knockout = who's advancing the team
         pick_rows = []
-        lbl = {"team1": f["team1"], "draw": "Draw", "team2": f["team2"]}
-        for k in ("team1", "draw", "team2"):
-            if not c.get(k): continue
-            who = [first(p["name"]) for p in players if gp(p["name"]).get(f["id"]) == k]
-            if who:
-                pick_rows.append({"o": lbl[k],
-                                  "n": f"all {len(players)}" if len(who) == len(players) else ", ".join(who)})
+        if f["id"].startswith("G-"):
+            lbl = {"team1": f["team1"], "draw": "Draw", "team2": f["team2"]}
+            for k in ("team1", "draw", "team2"):
+                if not c.get(k): continue
+                who = [first(p["name"]) for p in players if gp(p["name"]).get(f["id"]) == k]
+                if who:
+                    pick_rows.append({"o": lbl[k],
+                                      "n": f"all {len(players)}" if len(who) == len(players) else ", ".join(who)})
+        else:
+            subs = [p for p in players if pmap.get(p["name"], {}).get("submitted_knockout")]
+            for team in (f.get("team1"), f.get("team2")):
+                if not team: continue
+                who = [first(p["name"]) for p in subs if kp(p["name"]).get(f["id"]) == team]
+                if who:
+                    pick_rows.append({"o": team,
+                                      "n": f"all {len(subs)}" if (len(who) == len(subs) == len(players)) else ", ".join(who)})
         od = minfo.get(f["id"], {}).get("odds") or {}
         ml = od.get("ml", {})
         oline = ""
@@ -483,6 +531,10 @@ def main():
     final_goals = (fin.get("team1_goals",0)+fin.get("team2_goals",0)) if fin.get("status")=="final" else None
 
     M = results.get("matches", {})
+    # fill knockout matchups as the bracket plays (R32 known up front; later rounds resolve from results)
+    for k, (t1, t2) in lib.resolve_bracket(fixtures, M).items():
+        kx = next((x for x in fixtures["knockout"] if x["id"] == k), None)
+        if kx: kx["team1"], kx["team2"] = t1, t2
     rows = lib.standings(picks["players"], fixtures, M, prev_ranks, final_goals)
 
     # per-player group-pick breakdown (for the expandable "what did they pick" view)
@@ -579,7 +631,7 @@ def main():
     splits.sort(key=lambda s: (max(s["c"].values()) / s["total"], -s["total"]))
     splits = splits[:12]
 
-    wp = win_probabilities(rows, fixtures["group_stage"], M, pmap)
+    wp = win_probabilities(rows, fixtures, M, pmap)
     for pl in players:
         pl["winpct"] = wp.get(pl["name"], 0)
 
@@ -738,7 +790,8 @@ def main():
         "meta": {"name": LEAGUE_NAME, "overline": "The Friends League", "hosts": HOSTS,
                  "phase": phase(fixtures, results), "updated": et_now(),
                  "managers": len(roster), "pot": len(roster)*25, "submitted": len(players),
-                 "started": bool(finals), "graded": len(finals)},
+                 "started": bool(finals), "graded": len(finals),
+                 "ko_pending": sum(1 for p in picks["players"] if not p.get("submitted_knockout"))},
         "leader": leader, "players": players, "pending": pending, "groups": group_tables, "splits": splits,
         "daily": daily, "race": race, "upcoming": upcoming, "knockoutStart": "2026-06-28T16:00:00Z",
         "champions": champions,

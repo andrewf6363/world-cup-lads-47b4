@@ -18,6 +18,33 @@ def _final(results, mid):
     r = results.get(mid)
     return r if (r and r.get("status") == "final") else None
 
+def resolve_bracket(fixtures, results):
+    """Walk the knockout tree, filling each match's (team1, team2) from the winners of its feeder
+    matches as results come in. R32 teams are known up front; later rounds resolve as the bracket
+    plays; the 3rd-place match is fed by the semifinal LOSERS. Unresolved slots return None.
+    Returns {fixture_id: (team1_or_None, team2_or_None)}."""
+    ko = {k["id"]: k for k in fixtures.get("knockout", [])}
+    out = {}
+    def win(mid):
+        r = results.get(mid) or {}
+        return r.get("winner") if r.get("status") == "final" else None
+    def loser(mid):
+        w = win(mid); a, b = out.get(mid, (None, None))
+        return None if not w else (a if w == b else (b if w == a else None))
+    def resolve(mid):
+        if mid in out: return out[mid]
+        k = ko[mid]
+        if k.get("round") == "R32" or not k.get("feeds"):
+            out[mid] = (k.get("team1"), k.get("team2")); return out[mid]
+        f1, f2 = k["feeds"]; resolve(f1); resolve(f2)
+        if k.get("loser_feed"):
+            out[mid] = (loser(f1), loser(f2))
+        else:
+            out[mid] = (win(f1), win(f2))
+        return out[mid]
+    for k in fixtures.get("knockout", []): resolve(k["id"])
+    return out
+
 def score_group(player, group_fixtures, results):
     pts = correct = graded = 0
     picks = player.get("group_picks", {})

@@ -1513,5 +1513,359 @@
       "result": null
     }
   ],
-  "knockout": []
+  "knockout": [
+    {
+      "id": "K-73",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "South Africa",
+      "team2": "Canada",
+      "kickoff_utc": "2026-06-28T19:00:00Z",
+      "kickoff_et": "2026-06-28T15:00:00-04:00"
+    },
+    {
+      "id": "K-74",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "Germany",
+      "team2": "Paraguay",
+      "kickoff_utc": "2026-06-29T20:30:00Z",
+      "kickoff_et": "2026-06-29T16:30:00-04:00"
+    },
+    {
+      "id": "K-75",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "Netherlands",
+      "team2": "Morocco",
+      "kickoff_utc": "2026-06-30T01:00:00Z",
+      "kickoff_et": "2026-06-29T21:00:00-04:00"
+    },
+    {
+      "id": "K-76",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "Brazil",
+      "team2": "Japan",
+      "kickoff_utc": "2026-06-29T17:00:00Z",
+      "kickoff_et": "2026-06-29T13:00:00-04:00"
+    },
+    {
+      "id": "K-77",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "France",
+      "team2": "Sweden",
+      "kickoff_utc": "2026-06-30T21:00:00Z",
+      "kickoff_et": "2026-06-30T17:00:00-04:00"
+    },
+    {
+      "id": "K-78",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "Côte d'Ivoire",
+      "team2": "Norway",
+      "kickoff_utc": "2026-06-30T17:00:00Z",
+      "kickoff_et": "2026-06-30T13:00:00-04:00"
+    },
+    {
+      "id": "K-79",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "Mexico",
+      "team2": "Ecuador",
+      "kickoff_utc": "2026-07-01T01:00:00Z",
+      "kickoff_et": "2026-06-30T21:00:00-04:00"
+    },
+    {
+      "id": "K-80",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "England",
+      "team2": "Congo DR",
+      "kickoff_utc": "2026-07-01T16:00:00Z",
+      "kickoff_et": "2026-07-01T12:00:00-04:00"
+    },
+    {
+      "id": "K-81",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "USA",
+      "team2": "Bosnia-Herzegovina",
+      "kickoff_utc": "2026-07-02T00:00:00Z",
+      "kickoff_et": "2026-07-01T20:00:00-04:00"
+    },
+    {
+      "id": "K-82",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "Belgium",
+      "team2": "Senegal",
+      "kickoff_utc": "2026-07-01T20:00:00Z",
+      "kickoff_et": "2026-07-01T16:00:00-04:00"
+    },
+    {
+      "id": "K-83",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "Portugal",
+      "team2": "Croatia",
+      "kickoff_utc": "2026-07-02T23:00:00Z",
+      "kickoff_et": "2026-07-02T19:00:00-04:00"
+    },
+    {
+      "id": "K-84",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "Spain",
+      "team2": "Austria",
+      "kickoff_utc": "2026-07-02T19:00:00Z",
+      "kickoff_et": "2026-07-02T15:00:00-04:00"
+    },
+    {
+      "id": "K-85",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "Switzerland",
+      "team2": "Algeria",
+      "kickoff_utc": "2026-07-03T03:00:00Z",
+      "kickoff_et": "2026-07-02T23:00:00-04:00"
+    },
+    {
+      "id": "K-86",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "Argentina",
+      "team2": "Cabo Verde",
+      "kickoff_utc": "2026-07-03T22:00:00Z",
+      "kickoff_et": "2026-07-03T18:00:00-04:00"
+    },
+    {
+      "id": "K-87",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "Colombia",
+      "team2": "Ghana",
+      "kickoff_utc": "2026-07-04T01:30:00Z",
+      "kickoff_et": "2026-07-03T21:30:00-04:00"
+    },
+    {
+      "id": "K-88",
+      "round": "R32",
+      "phase": "knockout",
+      "team1": "Australia",
+      "team2": "Egypt",
+      "kickoff_utc": "2026-07-03T18:00:00Z",
+      "kickoff_et": "2026-07-03T14:00:00-04:00"
+    },
+    {
+      "id": "K-89",
+      "round": "R16",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-04T21:00:00Z",
+      "kickoff_et": "2026-07-04T17:00:00-04:00",
+      "feeds": [
+        "K-74",
+        "K-77"
+      ]
+    },
+    {
+      "id": "K-90",
+      "round": "R16",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-04T17:00:00Z",
+      "kickoff_et": "2026-07-04T13:00:00-04:00",
+      "feeds": [
+        "K-73",
+        "K-75"
+      ]
+    },
+    {
+      "id": "K-91",
+      "round": "R16",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-05T20:00:00Z",
+      "kickoff_et": "2026-07-05T16:00:00-04:00",
+      "feeds": [
+        "K-76",
+        "K-78"
+      ]
+    },
+    {
+      "id": "K-92",
+      "round": "R16",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-06T00:00:00Z",
+      "kickoff_et": "2026-07-05T20:00:00-04:00",
+      "feeds": [
+        "K-79",
+        "K-80"
+      ]
+    },
+    {
+      "id": "K-93",
+      "round": "R16",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-06T19:00:00Z",
+      "kickoff_et": "2026-07-06T15:00:00-04:00",
+      "feeds": [
+        "K-83",
+        "K-84"
+      ]
+    },
+    {
+      "id": "K-94",
+      "round": "R16",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-07T00:00:00Z",
+      "kickoff_et": "2026-07-06T20:00:00-04:00",
+      "feeds": [
+        "K-81",
+        "K-82"
+      ]
+    },
+    {
+      "id": "K-95",
+      "round": "R16",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-07T16:00:00Z",
+      "kickoff_et": "2026-07-07T12:00:00-04:00",
+      "feeds": [
+        "K-86",
+        "K-88"
+      ]
+    },
+    {
+      "id": "K-96",
+      "round": "R16",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-07T20:00:00Z",
+      "kickoff_et": "2026-07-07T16:00:00-04:00",
+      "feeds": [
+        "K-85",
+        "K-87"
+      ]
+    },
+    {
+      "id": "K-97",
+      "round": "QF",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-09T20:00:00Z",
+      "kickoff_et": "2026-07-09T16:00:00-04:00",
+      "feeds": [
+        "K-89",
+        "K-90"
+      ]
+    },
+    {
+      "id": "K-98",
+      "round": "QF",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-10T19:00:00Z",
+      "kickoff_et": "2026-07-10T15:00:00-04:00",
+      "feeds": [
+        "K-93",
+        "K-94"
+      ]
+    },
+    {
+      "id": "K-99",
+      "round": "QF",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-11T21:00:00Z",
+      "kickoff_et": "2026-07-11T17:00:00-04:00",
+      "feeds": [
+        "K-91",
+        "K-92"
+      ]
+    },
+    {
+      "id": "K-100",
+      "round": "QF",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-12T01:00:00Z",
+      "kickoff_et": "2026-07-11T21:00:00-04:00",
+      "feeds": [
+        "K-95",
+        "K-96"
+      ]
+    },
+    {
+      "id": "K-101",
+      "round": "SF",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-14T19:00:00Z",
+      "kickoff_et": "2026-07-14T15:00:00-04:00",
+      "feeds": [
+        "K-97",
+        "K-98"
+      ]
+    },
+    {
+      "id": "K-102",
+      "round": "SF",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-15T19:00:00Z",
+      "kickoff_et": "2026-07-15T15:00:00-04:00",
+      "feeds": [
+        "K-99",
+        "K-100"
+      ]
+    },
+    {
+      "id": "K-103",
+      "round": "3P",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-18T21:00:00Z",
+      "kickoff_et": "2026-07-18T17:00:00-04:00",
+      "feeds": [
+        "K-101",
+        "K-102"
+      ],
+      "loser_feed": true
+    },
+    {
+      "id": "K-104",
+      "round": "Final",
+      "phase": "knockout",
+      "team1": null,
+      "team2": null,
+      "kickoff_utc": "2026-07-19T19:00:00Z",
+      "kickoff_et": "2026-07-19T15:00:00-04:00",
+      "feeds": [
+        "K-101",
+        "K-102"
+      ]
+    }
+  ]
 }
