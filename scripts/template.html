@@ -182,6 +182,9 @@
   .gtr .tm{display:flex;align-items:center;gap:7px;min-width:0;color:var(--muted);}
   .gtr .tm .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .gtr.thru .tm{color:var(--ink);font-weight:700;} .gtr.thru .pos{color:var(--grass-deep);}
+  .gtr.out{opacity:.7;} .gtr.out .pos{color:var(--faint);}
+  .gtr.out .nm{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px;color:var(--muted);}
+  .gtr.out .flag{opacity:.45;} .gtr.out .pts{color:var(--faint);}
   .gtr .pts{font-weight:800;font-variant-numeric:tabular-nums;}
   @media(max-width:900px){.groups{grid-template-columns:repeat(2,1fr);}}
   @media(max-width:560px){.groups{grid-template-columns:1fr;}}
@@ -287,6 +290,7 @@
   .qtag{font-size:8.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;padding:1px 5px;flex:0 0 auto;}
   .qtag.q{background:rgba(30,158,74,.15);color:var(--grass-deep);}
   .qtag.x{background:var(--paper-3);color:var(--muted);}
+  .qtag.out{background:rgba(214,68,44,.12);color:var(--red);}
   @media(max-width:900px){.brief-grid{grid-template-columns:1fr;}.around-grid{grid-template-columns:1fr;}}
   /* champion watch */
   .champ-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px 24px;}
@@ -580,8 +584,14 @@ function groups(){
   document.getElementById("gtMeta").textContent = gs.some(g=>g.status!=="predicted") ? "live + predicted" : "predicted from picks";
   gs.forEach(g=>{
     const lab=g.status==="final"?"Final":g.status==="live"?"Live":"Predicted";
-    const rows=g.rows.map((r,i)=>`<div class="gtr ${r.through?'thru':''}"><span class="pos">${i+1}</span>`+
-      `<span class="tm">${flag(r.team,'flag sm')}<span class="nm">${r.team}</span>${r.qual==='through'?'<span class="qtag q">Q</span>':r.qual==='third'?'<span class="qtag x">3rd route</span>':''}</span><span class="pts">${r.pts}</span></div>`).join('');
+    const rows=g.rows.map((r,i)=>{
+      const out=r.adv===false, inq=r.adv===true;              // adv set once the R32 bracket is known
+      const cls=out?'out':(inq||r.through)?'thru':'';
+      const tag=inq?'<span class="qtag q">Q</span>'
+               :out?'<span class="qtag out">Out</span>'
+               :(r.qual==='through'?'<span class="qtag q">Q</span>':r.qual==='third'?'<span class="qtag x">3rd route</span>':'');
+      return `<div class="gtr ${cls}"><span class="pos">${i+1}</span>`+
+        `<span class="tm">${flag(r.team,'flag sm')}<span class="nm">${r.team}</span>${tag}</span><span class="pts">${r.pts}</span></div>`;}).join('');
     const c=document.createElement("div"); c.className="gt";
     c.innerHTML=`<div class="gt-h"><span class="g">Group ${g.group}</span><span class="lab ${g.status}">${lab}</span></div>${rows}`;
     el.appendChild(c);

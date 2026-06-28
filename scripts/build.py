@@ -747,10 +747,15 @@ def main():
     qual, qnotes = qual_top2(fixtures, M)
     briefing = build_briefing(fixtures, M, players, pmap, dist, minfo, qnotes)
 
-    # tag group-table rows with qualification status (only meaningful once it's mathematically set)
+    # tag group-table rows: predicted qualification before the bracket is set; once R32 teams are
+    # known, mark each team DEFINITIVELY advanced (in the R32) or eliminated.
+    advanced = {t for kx in fixtures.get("knockout", []) if kx.get("round") == "R32"
+                for t in (kx.get("team1"), kx.get("team2")) if t}
     for gt in group_tables:
         for r in gt["rows"]:
             r["qual"] = qual.get(r["team"], "alive")
+            if advanced:
+                r["adv"] = r["team"] in advanced
 
     # ---- The Book: market record, who's beating the closing favorite, lads-vs-Vegas splits ----
     def first_name(n): return n.split()[0]
