@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-06-28T01:28:46.852790Z",
+  "generated_utc": "2026-06-28T01:30:19.352539Z",
   "leaderboard": [
     {
       "name": "Kyle Williams",
@@ -37,7 +37,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 2,
-      "move": -1
+      "move": 0
     },
     {
       "name": "Ryan Sheekley",
@@ -113,7 +113,7 @@
       "champ": null,
       "final_goals_guess": null,
       "rank": 4,
-      "move": 2
+      "move": 0
     },
     {
       "name": "Keegan Ball",
