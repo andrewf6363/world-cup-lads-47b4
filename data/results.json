@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-28T01:33:24.206155Z",
+  "last_fetched_utc": "2026-06-28T03:59:18.109226Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1836,6 +1836,38 @@
           "min": "90'+1'",
           "team": "team1",
           "player": "Yoane Wissa",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-J-6": {
+      "status": "final",
+      "outcome": "team2",
+      "team1_goals": 1,
+      "team2_goals": 3,
+      "events": [
+        {
+          "min": "19'",
+          "team": "team2",
+          "player": "Giovani Lo Celso",
+          "kind": "goal"
+        },
+        {
+          "min": "31'",
+          "team": "team2",
+          "player": "Lautaro Martínez",
+          "kind": "pen"
+        },
+        {
+          "min": "55'",
+          "team": "team1",
+          "player": "Mousa Al-Tamari",
+          "kind": "goal"
+        },
+        {
+          "min": "80'",
+          "team": "team2",
+          "player": "Lionel Messi",
           "kind": "goal"
         }
       ]
