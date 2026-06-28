@@ -19,6 +19,20 @@ CHAMP_COL = 12
 ALIASES = {"bosnia": "Bosnia-Herzegovina", "congo": "Congo DR", "drcongo": "Congo DR",
            "ivorycoast": "Côte d'Ivoire", "capeverde": "Cabo Verde", "usa": "USA",
            "unitedstates": "USA", "southkorea": "South Korea", "iran": "IR Iran"}
+# the template ships a pre-filled EXAMPLE bracket (England champion); if a person's only filled sheet
+# IS this untouched example, they haven't actually made picks — refuse rather than score the default.
+DEFAULT_SIG = frozenset((r, c, t) for r, c, t in [
+    [3,4,"Germany"],[3,6,"France"],[3,8,"France"],[3,10,"France"],[3,12,"England"],[3,14,"England"],
+    [3,16,"England"],[3,18,"Brazil"],[3,20,"Brazil"],[6,4,"France"],[6,20,"Norway"],[9,4,"Canada"],
+    [9,6,"Netherlands"],[9,18,"England"],[9,20,"Mexico"],[12,4,"Netherlands"],[12,20,"England"],
+    [15,4,"Croatia"],[15,6,"Spain"],[15,8,"Spain"],[15,16,"Argentina"],[15,18,"Argentina"],
+    [15,20,"Argentina"],[18,4,"Spain"],[18,20,"Egypt"],[21,4,"USA"],[21,6,"USA"],[21,18,"Colombia"],
+    [21,20,"Switzerland"],[24,4,"Belgium"],[24,20,"Colombia"]])
+
+def _sheet_sig(ws):
+    cols = [c for pair in COL.values() for c in pair] + [CHAMP_COL]
+    return frozenset((r, c, str(ws.cell(row=r, column=c).value).strip())
+                     for r in ROWS for c in cols if ws.cell(row=r, column=c).value not in (None, ""))
 
 def norm(s):
     s = unicodedata.normalize("NFKD", str(s or "")).strip()
@@ -40,19 +54,34 @@ def resolver(valid):
         return by_norm[m[0]] if m else ("?" + str(s))      # unresolved -> flagged
     return res
 
-def detect_sheet(wb, valid):
-    best, bn = None, -1
-    for ws in wb.worksheets:
-        hits = sum(1 for r in ROWS for c in (2, 22) if norm(ws.cell(row=r, column=c).value) in {norm(t) for t in valid})
-        if hits > bn: best, bn = ws, hits
-    return best
+def _adv_filled(ws):
+    cols = [c for pair in COL.values() for c in pair] + [CHAMP_COL]
+    return sum(1 for r in ROWS for c in cols if ws.cell(row=r, column=c).value not in (None, ""))
 
-def ingest(path, fixtures, name_override=None, champ_override=None):
+def detect_sheet(wb, valid, prefer=None):
+    """The bracket the person actually filled. The template ships a pre-filled EXAMPLE sheet ('KB')
+    and a blank fill-in sheet ('Master', header L2='Winner'); most people fill Master, a few fill KB
+    directly. Rule: an explicit --sheet wins; else a 'Master' sheet with real advancement wins (the
+    intended sheet); else the most-filled sheet. Returns (worksheet, note)."""
+    cand = [(ws, _adv_filled(ws)) for ws in wb.worksheets]
+    if prefer:
+        for ws, _ in cand:
+            if ws.title.lower() == prefer.lower(): return ws, f"forced sheet '{ws.title}'"
+    master = next((ws for ws, adv in cand if ws.title.lower() == "master" and adv >= 8), None)
+    if master: return master, f"sheet '{master.title}'"
+    ws = max(cand, key=lambda x: x[1])[0]
+    note = f"sheet '{ws.title}'" + (" (the blank Master sheet was empty)" if any(c[0].title.lower()=="master" for c in cand) else "")
+    return ws, note
+
+def ingest(path, fixtures, name_override=None, champ_override=None, sheet_override=None):
     ko = {k["id"]: k for k in fixtures["knockout"]}
     r32 = [ko[f"K-{n}"] for n in range(73, 89)]
     valid = sorted({t for k in r32 for t in (k["team1"], k["team2"])})
     res = resolver(valid)
-    wb = load_workbook(path, data_only=True); ws = detect_sheet(wb, valid)
+    wb = load_workbook(path, data_only=True); ws, sheet_note = detect_sheet(wb, valid, sheet_override)
+    if _sheet_sig(ws) == DEFAULT_SIG and not sheet_override:
+        return (name_override or re.split(r"\s*-\s*", os.path.splitext(os.path.basename(path))[0])[-1].strip()), \
+               {}, None, [], ["NOT SUBMITTED — only the untouched template example is filled (no real bracket)"], "no real bracket"
 
     # validate the sheet's R32 matchups match the real bracket (by pair)
     sheet_pairs = set()
@@ -102,28 +131,33 @@ def ingest(path, fixtures, name_override=None, champ_override=None):
         resolve(f"K-{n}")
 
     name = name_override or re.split(r"\s*-\s*", os.path.splitext(os.path.basename(path))[0])[-1].strip()
-    return name, picks, champ, bad_pairs, flags
+    return name, picks, champ, bad_pairs, flags, sheet_note
 
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     name_ov = next((sys.argv[i+1] for i, a in enumerate(sys.argv) if a == "--name"), None)
     champ_ov = next((sys.argv[i+1] for i, a in enumerate(sys.argv) if a == "--champ"), None)
-    if not args: sys.exit("usage: ingest_knockout.py <file.xlsx> [--name N] [--champ Team]")
+    sheet_ov = next((sys.argv[i+1] for i, a in enumerate(sys.argv) if a == "--sheet"), None)
+    if not args: sys.exit("usage: ingest_knockout.py <file.xlsx> [--name N] [--champ Team] [--sheet KB|Master]")
     fixtures = load("fixtures.json", {"knockout": []})
     if not fixtures.get("knockout"): sys.exit("no knockout fixtures yet — run build_knockout_fixtures.py first")
 
-    name, picks, champ, bad, flags = ingest(args[0], fixtures, name_ov, champ_ov)
+    name, picks, champ, bad, flags, sheet_note = ingest(args[0], fixtures, name_ov, champ_ov, sheet_ov)
     data = load("picks.json", {"players": []})
     pl = next((p for p in data["players"] if p["name"].lower() == name.lower()), None)
     if not pl: sys.exit(f"'{name}' not found in picks.json (group picks must be ingested first)")
-    pl["knockout_picks"] = picks; pl["submitted_knockout"] = True
+    pl["knockout_picks"] = picks; pl["submitted_knockout"] = bool(picks)   # only "in" with real picks
     json.dump(data, open(os.path.join(DATA, "picks.json"), "w"), ensure_ascii=False, indent=2)
 
+    if not picks:
+        print(f"  {name}: NO REAL BRACKET — [{sheet_note}] — left NOT submitted")
+        for f in flags: print("    FLAG:", f)
+        return
     by_round = {}
     for mid, t in picks.items():
         rnd = next(k["round"] for k in fixtures["knockout"] if k["id"] == mid)
         by_round[rnd] = by_round.get(rnd, 0) + 1
-    print(f"  {name}: {len(picks)}/31 picks  (champion: {champ})  {by_round}")
+    print(f"  {name}: {len(picks)}/31 picks  (champion: {champ})  [{sheet_note}]  {by_round}")
     if bad: print("    R32 MATCHUP MISMATCH vs real bracket:", bad)
     for f in flags: print("    FLAG:", f)
 
