@@ -1,11 +1,11 @@
 {
-  "generated_utc": "2026-06-28T03:59:18.195638Z",
+  "generated_utc": "2026-06-28T04:00:50.744489Z",
   "leaderboard": [
     {
       "name": "Kyle Williams",
-      "grp": 4800,
-      "correct": 48,
-      "graded": 71,
+      "grp": 4900,
+      "correct": 49,
+      "graded": 72,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -14,7 +14,7 @@
         "SF": 0,
         "Final": 0
       },
-      "total": 4800,
+      "total": 4900,
       "champ": null,
       "final_goals_guess": null,
       "rank": 1,
@@ -24,7 +24,7 @@
       "name": "Luke Clark",
       "grp": 4700,
       "correct": 47,
-      "graded": 71,
+      "graded": 72,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -43,7 +43,7 @@
       "name": "Ryan Sheekley",
       "grp": 4600,
       "correct": 46,
-      "graded": 71,
+      "graded": 72,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -62,7 +62,7 @@
       "name": "Andrew Fahey",
       "grp": 4500,
       "correct": 45,
-      "graded": 71,
+      "graded": 72,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -81,7 +81,7 @@
       "name": "John Pappas",
       "grp": 4500,
       "correct": 45,
-      "graded": 71,
+      "graded": 72,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -100,7 +100,7 @@
       "name": "Karlis Draulis",
       "grp": 4400,
       "correct": 44,
-      "graded": 71,
+      "graded": 72,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -117,9 +117,28 @@
     },
     {
       "name": "Keegan Ball",
+      "grp": 4300,
+      "correct": 43,
+      "graded": 72,
+      "ko": 0,
+      "rounds": {
+        "R32": 0,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 4300,
+      "champ": null,
+      "final_goals_guess": null,
+      "rank": 7,
+      "move": 0
+    },
+    {
+      "name": "Brad Bone",
       "grp": 4200,
       "correct": 42,
-      "graded": 71,
+      "graded": 72,
       "ko": 0,
       "rounds": {
         "R32": 0,
@@ -129,25 +148,6 @@
         "Final": 0
       },
       "total": 4200,
-      "champ": null,
-      "final_goals_guess": null,
-      "rank": 7,
-      "move": 0
-    },
-    {
-      "name": "Brad Bone",
-      "grp": 4100,
-      "correct": 41,
-      "graded": 71,
-      "ko": 0,
-      "rounds": {
-        "R32": 0,
-        "R16": 0,
-        "QF": 0,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 4100,
       "champ": null,
       "final_goals_guess": null,
       "rank": 8,

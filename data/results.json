@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-28T03:59:18.109226Z",
+  "last_fetched_utc": "2026-06-28T04:00:50.669507Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1868,6 +1868,50 @@
           "min": "80'",
           "team": "team2",
           "player": "Lionel Messi",
+          "kind": "goal"
+        }
+      ]
+    },
+    "G-J-5": {
+      "status": "final",
+      "outcome": "draw",
+      "team1_goals": 3,
+      "team2_goals": 3,
+      "events": [
+        {
+          "min": "28'",
+          "team": "team2",
+          "player": "Marko Arnautovic",
+          "kind": "goal"
+        },
+        {
+          "min": "45'",
+          "team": "team1",
+          "player": "Rafik Belghali",
+          "kind": "goal"
+        },
+        {
+          "min": "55'",
+          "team": "team2",
+          "player": "Marcel Sabitzer",
+          "kind": "goal"
+        },
+        {
+          "min": "60'",
+          "team": "team1",
+          "player": "Riyad Mahrez",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+3'",
+          "team": "team1",
+          "player": "Riyad Mahrez",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+6'",
+          "team": "team2",
+          "player": "Sasa Kalajdzic",
           "kind": "goal"
         }
       ]
