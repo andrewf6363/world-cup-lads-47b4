@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-28T04:00:50.669507Z",
+  "last_fetched_utc": "2026-06-28T20:57:44.254883Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1912,6 +1912,21 @@
           "min": "90'+6'",
           "team": "team2",
           "player": "Sasa Kalajdzic",
+          "kind": "goal"
+        }
+      ]
+    },
+    "K-73": {
+      "status": "final",
+      "winner": "Canada",
+      "team1_goals": 0,
+      "team2_goals": 1,
+      "pens": null,
+      "events": [
+        {
+          "min": "90'+2'",
+          "team": "team2",
+          "player": "Stephen Eustáquio",
           "kind": "goal"
         }
       ]
