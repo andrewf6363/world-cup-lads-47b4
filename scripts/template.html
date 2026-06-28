@@ -299,6 +299,7 @@
   /* race chart */
   .race svg{width:100%;height:auto;display:block;}
   .race-legend{display:flex;flex-wrap:wrap;gap:9px 16px;margin-top:10px;font-size:11.5px;color:var(--ink-soft);font-weight:700;}
+  .race-legend b{color:var(--ink);font-variant-numeric:tabular-nums;margin-left:2px;}
   .race-legend span{display:inline-flex;align-items:center;gap:6px;}
   .race-legend i{width:14px;height:3px;border-radius:2px;display:inline-block;}
   /* badges */
@@ -386,7 +387,7 @@
   <div class="spotlight" id="spotlight"></div>
   <div class="daily" id="daily"></div>
   <section class="sec" id="standingsSec"><div class="sec-head"><h2>Standings</h2><span class="meta" id="standMeta"></span></div><div class="board" id="standings"></div></section>
-  <section class="sec" id="raceSec"><div class="sec-head"><h2>The Race</h2><span class="meta">points over time</span></div><div class="race" id="race"></div></section>
+  <section class="sec" id="raceSec"><div class="sec-head"><h2>The Race</h2><span class="meta" id="raceMeta">points behind the leader</span></div><div class="race" id="race"></div></section>
   <section class="sec" id="champSec"><div class="sec-head"><h2>Champion Watch</h2><span class="meta">predicted cup winners</span></div><div id="champ"></div></section>
   <section class="sec" id="resultsSec"><div class="sec-head"><h2>Latest Results</h2><span class="meta">Auto-updated</span></div><div id="results"></div></section>
   <section class="sec" id="groupsSec"><div class="sec-head"><h2>Group Tables</h2><span class="meta" id="gtMeta"></span></div><div class="groups" id="groups"></div></section>
@@ -621,12 +622,31 @@ function daily(){
 function race(){
   const el=document.getElementById("race"), r=DATA.race||{labels:[],series:[]};
   if(!r.labels||r.labels.length<2){el.innerHTML='<div class="empty">The race chart fills in as points are scored — check back once games kick off.</div>';return;}
-  const W=900,H=300,pad=34,n=r.labels.length,mx=Math.max(100,...r.series.flatMap(s=>s.points).filter(v=>v!=null));
-  const X=i=>pad+(W-2*pad)*(n<=1?0:i/(n-1)), Y=v=>H-pad-(H-2*pad)*((v||0)/mx);
+  const n=r.labels.length;
+  // plot points BEHIND the leader at each snapshot -> the field fans out across the full height
+  const leaderAt=i=>{const v=r.series.map(s=>s.points[i]).filter(x=>x!=null); return v.length?Math.max(...v):null;};
+  const lead=Array.from({length:n},(_,i)=>leaderAt(i));
+  const gap=(v,i)=> (v==null||lead[i]==null)? null : lead[i]-v;
+  let maxGap=1;
+  r.series.forEach(s=>s.points.forEach((v,i)=>{const g=gap(v,i); if(g!=null&&g>maxGap)maxGap=g;}));
+  const top=maxGap*1.12;
+  const W=900,H=330,padL=52,padR=14,padT=16,padB=18;
+  const X=i=>padL+(W-padL-padR)*(n<=1?0:i/(n-1));
+  const Y=g=>padT+(H-padT-padB)*(g/top);                 // gap 0 (leader) at the top
   const cols=['#16314C','#C2871A','#2E5E8C','#1E7A43','#A02D17','#6A2740','#8A7F6C','#54341B'];
-  const paths=r.series.map((s,si)=>`<polyline fill="none" stroke="${cols[si%cols.length]}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="${s.points.map((v,i)=>X(i)+','+Y(v)).join(' ')}"/>`).join('');
-  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet"><line x1="${pad}" y1="${H-pad}" x2="${W-pad}" y2="${H-pad}" stroke="#e1d7c3"/>${paths}</svg>`+
-    `<div class="race-legend">${r.series.map((s,si)=>`<span><i style="background:${cols[si%cols.length]}"></i>${s.name}</span>`).join('')}</div>`;
+  // nice gridline step (~4 lines)
+  const raw=top/4, mag=Math.pow(10,Math.floor(Math.log10(raw||1))), nm=raw/mag;
+  const step=Math.max(1,(nm<1.5?1:nm<3?2:nm<7?5:10)*mag);
+  let grid='';
+  for(let g=0; g<=top+1; g+=step){const y=Y(g).toFixed(1);
+    grid+=`<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="#e1d7c3" stroke-width="${g===0?1.6:1}"/>`+
+          `<text x="${padL-8}" y="${(+y+3.5).toFixed(1)}" text-anchor="end" font-size="11" font-weight="700" fill="${g===0?'#C2871A':'#8A7F6C'}">${g===0?'LEADER':'−'+g}</text>`;}
+  const paths=r.series.map((s,si)=>{
+    const pts=s.points.map((v,i)=>{const g=gap(v,i); return g==null?null:X(i).toFixed(1)+','+Y(g).toFixed(1);}).filter(Boolean).join(' ');
+    return `<polyline fill="none" stroke="${cols[si%cols.length]}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="${pts}"/>`;}).join('');
+  const dots=r.series.map((s,si)=>{const g=gap(s.points[n-1],n-1); return g==null?'':`<circle cx="${X(n-1).toFixed(1)}" cy="${Y(g).toFixed(1)}" r="3.4" fill="${cols[si%cols.length]}"/>`;}).join('');
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">${grid}${paths}${dots}</svg>`+
+    `<div class="race-legend">${r.series.map((s,si)=>{const g=gap(s.points[n-1],n-1); return `<span><i style="background:${cols[si%cols.length]}"></i>${s.name}${g!=null?` <b>${g===0?'lead':'−'+g}</b>`:''}</span>`;}).join('')}</div>`;
 }
 function champ(){
   const el=document.getElementById("champ"), cs=DATA.champions||[];
