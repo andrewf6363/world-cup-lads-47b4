@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-28T01:28:46.747254Z",
+  "last_fetched_utc": "2026-06-28T01:33:24.206155Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1807,6 +1807,38 @@
       "outcome": "draw",
       "team1_goals": 0,
       "team2_goals": 0
+    },
+    "G-K-6": {
+      "status": "final",
+      "outcome": "team1",
+      "team1_goals": 3,
+      "team2_goals": 1,
+      "events": [
+        {
+          "min": "10'",
+          "team": "team2",
+          "player": "Eldor Shomurodov",
+          "kind": "goal"
+        },
+        {
+          "min": "68'",
+          "team": "team1",
+          "player": "Yoane Wissa",
+          "kind": "pen"
+        },
+        {
+          "min": "78'",
+          "team": "team1",
+          "player": "Fiston Mayele",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+1'",
+          "team": "team1",
+          "player": "Yoane Wissa",
+          "kind": "goal"
+        }
+      ]
     }
   }
 }
