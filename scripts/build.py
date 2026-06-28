@@ -368,7 +368,10 @@ def build_briefing(fixtures, M, players, pmap, dist, minfo, qnotes):
     def kdt(f):
         iso = f.get("kickoff_utc")
         return datetime.datetime.fromisoformat(iso.replace("Z", "+00:00")) if iso else None
-    def first(n): return n.split()[0]
+    _firsts = Counter(p["name"].split()[0] for p in players)   # disambiguate shared first names (two Johns)
+    def first(n):
+        parts = n.split()
+        return f"{parts[0]} {parts[-1][0]}" if (_firsts.get(parts[0], 0) > 1 and len(parts) > 1) else parts[0]
     def mval(m):
         nums = re.findall(r"\d+", m or ""); return sum(int(x) for x in nums) if nums else 0
     def et(dt):
@@ -571,6 +574,7 @@ def main():
     players = [{
         "name": r["name"], "total": r["total"], "grp": r["grp"], "ko": r["ko"],
         "correct": r["correct"], "graded": r["graded"], "rank": r["rank"], "move": r["move"], "champ": r["champ"],
+        "ko_only": r.get("ko_only", False), "baseline": r.get("baseline", 0),
         "rounds": {"R32":r["rounds"]["R32"],"R16":r["rounds"]["R16"],"QF":r["rounds"]["QF"],
                    "SF":r["rounds"]["SF"],"F":r["rounds"]["Final"]},
         "picks": pick_breakdown(r["name"]),

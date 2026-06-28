@@ -807,6 +807,47 @@
         "K-104": "France"
       },
       "final_goals_guess": null
+    },
+    {
+      "name": "John Atkins",
+      "submitted_group": false,
+      "submitted_knockout": true,
+      "group_picks": {},
+      "knockout_picks": {
+        "K-73": "Canada",
+        "K-74": "Germany",
+        "K-75": "Netherlands",
+        "K-76": "Brazil",
+        "K-77": "France",
+        "K-78": "Côte d'Ivoire",
+        "K-79": "Mexico",
+        "K-80": "England",
+        "K-81": "USA",
+        "K-82": "Belgium",
+        "K-83": "Croatia",
+        "K-84": "Spain",
+        "K-85": "Switzerland",
+        "K-86": "Argentina",
+        "K-87": "Colombia",
+        "K-88": "Egypt",
+        "K-89": "France",
+        "K-90": "Netherlands",
+        "K-91": "Brazil",
+        "K-92": "England",
+        "K-93": "Spain",
+        "K-94": "USA",
+        "K-95": "Argentina",
+        "K-96": "Colombia",
+        "K-97": "France",
+        "K-98": "Spain",
+        "K-99": "Brazil",
+        "K-100": "Argentina",
+        "K-101": "France",
+        "K-102": "Argentina",
+        "K-104": "France"
+      },
+      "final_goals_guess": null,
+      "baseline": 3800
     }
   ]
 }

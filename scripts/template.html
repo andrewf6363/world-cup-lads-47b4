@@ -283,6 +283,7 @@
   .boot-row .bg{font-family:"Anton",sans-serif;font-size:16px;color:var(--gold-deep);}
   .tag.hot{background:var(--red);color:#fff;}
   .tag.spoon{background:var(--bronze);color:#2e1a08;}
+  .tag.koentry{background:var(--steel);color:#fff;}
   .qtag{font-size:8.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:4px;padding:1px 5px;flex:0 0 auto;}
   .qtag.q{background:rgba(30,158,74,.15);color:var(--grass-deep);}
   .qtag.x{background:var(--paper-3);color:var(--muted);}
@@ -476,18 +477,20 @@ function standings(){
     const mvc=p.move>0?"up":p.move<0?"down":"";
     const rb=p.rank<=3?`rankb g${p.rank}`:"rankb";
     const gp=p.graded>0?`${p.correct}/${p.graded} correct`:'Picks in';
-    const pick=p.champ
-      ? `${flag(p.champ,"flag sm")} <span>Champion · <b>${p.champ}</b></span> · ${gp}`
-      : `<span>${gp}</span>`;
+    const pick=p.ko_only
+      ? (p.champ?`${flag(p.champ,"flag sm")} <span>Champion · <b>${p.champ}</b></span> · Knockout only`:`<span>Joined for the knockout</span>`)
+      : (p.champ
+        ? `${flag(p.champ,"flag sm")} <span>Champion · <b>${p.champ}</b></span> · ${gp}`
+        : `<span>${gp}</span>`);
     const row=document.createElement("div"); row.className="row"+(sole&&p.rank===1&&p.total>0?" leader":"");
     row.dataset.name=p.name;
     row.innerHTML=`
       <div class="${rb}">${p.rank}</div>
-      <div class="who"><div class="name">${p.name}${(sole&&p.rank===1&&p.total>0)?'<span class="tag">Leader</span>':''}${p.streak>=3?`<span class="tag hot">W${p.streak}</span>`:''}${p.spoon?'<span class="tag spoon">Spoon</span>':''}</div>
+      <div class="who"><div class="name">${p.name}${(sole&&p.rank===1&&p.total>0)?'<span class="tag">Leader</span>':''}${p.ko_only?'<span class="tag koentry">KO entry</span>':''}${p.streak>=3?`<span class="tag hot">W${p.streak}</span>`:''}${p.spoon?'<span class="tag spoon">Spoon</span>':''}</div>
         <div class="pick">${pick}</div></div>
       <div class="pts"><div class="total tnum"><span class="cu" data-v="${p.total}">${fmt(p.total)}</span><span class="u">PTS</span></div><div class="move ${mvc}">${mv}</div>${showWin?`<div class="wp"><span class="cu" data-v="${p.winpct}">${p.winpct}</span>%<span> to lead</span></div>`:''}</div>
       <div class="meters">
-        <div class="meter"><span class="ml">Group</span><span class="mtrack"><i class="g" style="width:${gW}%"></i></span><span class="mv">${fmt(p.grp)}<i>/7,200</i></span></div>
+        <div class="meter"><span class="ml">${p.ko_only?'Head start':'Group'}</span><span class="mtrack"><i class="g" style="width:${gW}%"></i></span><span class="mv">${fmt(p.grp)}<i>${p.ko_only?'':'/7,200'}</i></span></div>
         <div class="meter"><span class="ml">Knockout</span><span class="mtrack"><i class="k" style="width:${kW}%"></i></span><span class="mv">${fmt(p.ko)}<i>/8,000</i></span></div>
       </div>`;
     el.appendChild(row);

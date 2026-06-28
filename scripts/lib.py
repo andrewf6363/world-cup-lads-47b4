@@ -77,11 +77,14 @@ def score_knockout(player, knockout_fixtures, results):
 def score_player(player, fixtures, results):
     g = score_group(player, fixtures["group_stage"], results)
     k = score_knockout(player, fixtures.get("knockout", []), results)
+    base = player.get("baseline", 0)        # handicap for a late entrant who skipped the group stage
+    ko_only = bool(base) and not (player.get("group_picks") or {})
     return {
         "name": player["name"],
-        "grp": g["points"], "correct": g["correct"], "graded": g["graded"],
+        "grp": g["points"] + base, "correct": g["correct"], "graded": g["graded"],
         "ko": k["points"], "rounds": k["rounds"],
-        "total": g["points"] + k["points"],
+        "total": g["points"] + k["points"] + base,
+        "baseline": base, "ko_only": ko_only,
         "champ": (player.get("knockout_picks", {}) or {}).get("K-104"),  # Final-winner pick
         "final_goals_guess": player.get("final_goals_guess"),
     }
