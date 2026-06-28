@@ -666,15 +666,15 @@ def main():
                  "items": items[:3]}
 
     # ---- The Race (standings history snapshot for the chart) ----
+    # One point per scoring change (i.e. per game), labelled by day. The first point is the
+    # knockout starting line (current totals); the chart grows as each knockout result lands.
     hist = load("history.json", [])
     today = et_now().split(",")[0]
     cur = {p["name"]: p["total"] for p in players}
     new_hist = list(hist)
-    if new_hist and new_hist[-1].get("t") == today:
-        new_hist[-1] = {"t": today, "totals": cur}
-    elif (not new_hist) or new_hist[-1].get("totals") != cur:
+    if (not new_hist) or new_hist[-1].get("totals") != cur:
         new_hist.append({"t": today, "totals": cur})
-    new_hist = new_hist[-60:]
+    new_hist = new_hist[-90:]
     if new_hist != hist:
         json.dump(new_hist, open(os.path.join(DATA, "history.json"), "w"), ensure_ascii=False, indent=2)
     race = {"labels": [h["t"] for h in new_hist],

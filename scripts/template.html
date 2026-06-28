@@ -621,8 +621,9 @@ function daily(){
 }
 function race(){
   const el=document.getElementById("race"), r=DATA.race||{labels:[],series:[]};
-  if(!r.labels||r.labels.length<2){el.innerHTML='<div class="empty">The race chart fills in as points are scored — check back once games kick off.</div>';return;}
+  if(!r.labels||r.labels.length<1){el.innerHTML='<div class="empty">The race chart fills in as points are scored — check back once games kick off.</div>';return;}
   const n=r.labels.length;
+  document.getElementById("raceMeta").textContent = n<2 ? "knockout starting line · updates each game" : "points behind the leader";
   // plot points BEHIND the leader at each snapshot -> the field fans out across the full height
   const leaderAt=i=>{const v=r.series.map(s=>s.points[i]).filter(x=>x!=null); return v.length?Math.max(...v):null;};
   const lead=Array.from({length:n},(_,i)=>leaderAt(i));
@@ -645,7 +646,12 @@ function race(){
     const pts=s.points.map((v,i)=>{const g=gap(v,i); return g==null?null:X(i).toFixed(1)+','+Y(g).toFixed(1);}).filter(Boolean).join(' ');
     return `<polyline fill="none" stroke="${cols[si%cols.length]}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" points="${pts}"/>`;}).join('');
   const dots=r.series.map((s,si)=>{const g=gap(s.points[n-1],n-1); return g==null?'':`<circle cx="${X(n-1).toFixed(1)}" cy="${Y(g).toFixed(1)}" r="3.4" fill="${cols[si%cols.length]}"/>`;}).join('');
-  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">${grid}${paths}${dots}</svg>`+
+  // single starting point -> label each dot with the manager; offset ties so labels don't collide
+  const seen={};
+  const startLabels = n>=2 ? '' : r.series.map((s,si)=>{const g=gap(s.points[0],0); if(g==null)return'';
+    const k=Math.round(Y(g)); const off=seen[k]||0; seen[k]=off+1;
+    return `<text x="${(padL+9+off*150).toFixed(1)}" y="${(Y(g)+3.5).toFixed(1)}" font-size="12" font-weight="700" fill="${cols[si%cols.length]}">${s.name}${g===0?' · lead':' · −'+g}</text>`;}).join('');
+  el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">${grid}${paths}${dots}${startLabels}</svg>`+
     `<div class="race-legend">${r.series.map((s,si)=>{const g=gap(s.points[n-1],n-1); return `<span><i style="background:${cols[si%cols.length]}"></i>${s.name}${g!=null?` <b>${g===0?'lead':'−'+g}</b>`:''}</span>`;}).join('')}</div>`;
 }
 function champ(){
