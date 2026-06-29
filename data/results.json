@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-29T19:04:33.574533Z",
+  "last_fetched_utc": "2026-06-29T23:31:15.081065Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1955,6 +1955,69 @@
           "team": "team1",
           "player": "Gabriel Martinelli",
           "kind": "goal"
+        }
+      ]
+    },
+    "K-74": {
+      "status": "final",
+      "winner": "Paraguay",
+      "team1_goals": 1,
+      "team2_goals": 1,
+      "pens": "3–4 pens",
+      "events": [
+        {
+          "min": "42'",
+          "team": "team2",
+          "player": "Julio Enciso",
+          "kind": "goal"
+        },
+        {
+          "min": "54'",
+          "team": "team1",
+          "player": "Kai Havertz",
+          "kind": "goal"
+        },
+        {
+          "min": "120'",
+          "team": "team2",
+          "player": "Maurício",
+          "kind": "pen"
+        },
+        {
+          "min": "120'",
+          "team": "team1",
+          "player": "Joshua Kimmich",
+          "kind": "pen"
+        },
+        {
+          "min": "120'",
+          "team": "team2",
+          "player": "Gustavo Gómez",
+          "kind": "pen"
+        },
+        {
+          "min": "120'",
+          "team": "team1",
+          "player": "Jamal Musiala",
+          "kind": "pen"
+        },
+        {
+          "min": "120'",
+          "team": "team2",
+          "player": "Matías Galarza",
+          "kind": "pen"
+        },
+        {
+          "min": "120'",
+          "team": "team1",
+          "player": "Nadiem Amiri",
+          "kind": "pen"
+        },
+        {
+          "min": "120'",
+          "team": "team2",
+          "player": "José Canale",
+          "kind": "pen"
         }
       ]
     }
