@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-28T20:57:44.254883Z",
+  "last_fetched_utc": "2026-06-29T19:04:33.574533Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1927,6 +1927,33 @@
           "min": "90'+2'",
           "team": "team2",
           "player": "Stephen Eustáquio",
+          "kind": "goal"
+        }
+      ]
+    },
+    "K-76": {
+      "status": "final",
+      "winner": "Brazil",
+      "team1_goals": 2,
+      "team2_goals": 1,
+      "pens": null,
+      "events": [
+        {
+          "min": "29'",
+          "team": "team2",
+          "player": "Kaishu Sano",
+          "kind": "goal"
+        },
+        {
+          "min": "56'",
+          "team": "team1",
+          "player": "Casemiro",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+5'",
+          "team": "team1",
+          "player": "Gabriel Martinelli",
           "kind": "goal"
         }
       ]
