@@ -701,13 +701,19 @@ def main():
         pl["badges"] = b
 
     # ---- Streaks + wooden spoon ----
-    graded_order = sorted((f for f in fixtures["group_stage"] if M.get(f["id"], {}).get("status") == "final"),
-                          key=lambda f: (f.get("kickoff_utc") or "", f["id"]))
+    # streak = consecutive correct picks counting back from the MOST RECENT game (group + knockout),
+    # so it reflects current form — a missed knockout pick breaks it (not frozen at the group tail).
+    graded_order = [(f, "G") for f in fixtures["group_stage"] if M.get(f["id"], {}).get("status") == "final"]
+    graded_order += [(k, "K") for k in fixtures.get("knockout", []) if M.get(k["id"], {}).get("status") == "final"]
+    graded_order.sort(key=lambda x: (x[0].get("kickoff_utc") or "", x[0]["id"]))
     for pl in players:
-        gpicks = pmap.get(pl["name"], {}).get("group_picks", {}) or {}
+        gpk = pmap.get(pl["name"], {}).get("group_picks", {}) or {}
+        kpk = pmap.get(pl["name"], {}).get("knockout_picks", {}) or {}
         s = 0
-        for f in reversed(graded_order):
-            if gpicks.get(f["id"]) == M[f["id"]].get("outcome"): s += 1
+        for f, kind in reversed(graded_order):
+            res = M[f["id"]]
+            ok = (gpk.get(f["id"]) == res.get("outcome")) if kind == "G" else (kpk.get(f["id"]) == res.get("winner"))
+            if ok: s += 1
             else: break
         pl["streak"] = s
         pl["spoon"] = False
@@ -735,6 +741,18 @@ def main():
                   "champ": (pmap.get(pl["name"], {}).get("knockout_picks", {}) or {}).get("K-104")} for pl in players]
     for c in champions:
         c["alive"] = (c["champ"] not in elim) if c["champ"] else None
+
+    # ---- Each manager's bracket (who they predicted, round by round; eliminated picks flagged) ----
+    def bteam(t): return {"t": t, "out": t in elim} if t else None
+    for pl in players:
+        kp = pmap.get(pl["name"], {}).get("knockout_picks", {}) or {}
+        pl["bracket"] = {
+            "champ": bteam(kp.get("K-104")),
+            "final": [bteam(kp.get("K-101")), bteam(kp.get("K-102"))],
+            "semis": [bteam(kp.get(f"K-{n}")) for n in (97, 98, 99, 100)],
+            "qf":    [bteam(kp.get(f"K-{n}")) for n in range(89, 97)],
+            "r32":   [bteam(kp.get(f"K-{n}")) for n in range(73, 89)],
+        } if pl.get("champ") else None
 
     leader = None
     if rows:

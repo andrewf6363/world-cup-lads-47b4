@@ -301,6 +301,26 @@
   .champ-row.out .ct .flag{opacity:.4;}
   .outtag{font-size:9px;font-weight:800;letter-spacing:.08em;color:#fff;background:var(--red);border-radius:4px;padding:2px 6px;}
   @media(max-width:640px){.champ-grid{grid-template-columns:1fr;}}
+  /* bracket predictions (per-manager) */
+  .bkt{background:var(--paper-2);border:1px solid var(--line);border-radius:11px;margin-bottom:9px;overflow:hidden;}
+  .bkt>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:12px;padding:13px 16px;}
+  .bkt>summary::-webkit-details-marker{display:none;}
+  .bkt .bk-name{font-weight:800;font-size:15px;flex:0 0 auto;}
+  .bkt .bk-sum{display:flex;align-items:center;gap:8px;margin-left:auto;font-size:13.5px;}
+  .bkt .bk-clab{font-size:10px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;color:var(--muted);}
+  .bkt .chev{color:var(--faint);font-weight:800;transition:transform .2s;}
+  .bkt[open]>summary .chev{transform:rotate(90deg);color:var(--gold-deep);}
+  .bkt[open]>summary{border-bottom:1px solid var(--line-2);}
+  .bk-body{padding:12px 16px 15px;display:flex;flex-direction:column;gap:9px;}
+  .bk-row{display:grid;grid-template-columns:64px 1fr;gap:10px;align-items:baseline;}
+  .bk-lab{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:800;color:var(--muted);}
+  .bk-teams{display:flex;flex-wrap:wrap;gap:5px 12px;}
+  .bt{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;font-weight:600;color:var(--ink-soft);}
+  .bt .nm{white-space:nowrap;}
+  .bt.out .nm{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px;color:var(--faint);}
+  .bt.out .flag{opacity:.4;}
+  .bt.tbd{color:var(--faint);}
+  .bk-sum .bt{font-weight:800;color:var(--ink);font-size:13.5px;}
   /* race chart */
   .race svg{width:100%;height:auto;display:block;}
   .race-legend{display:flex;flex-wrap:wrap;gap:9px 16px;margin-top:10px;font-size:11.5px;color:var(--ink-soft);font-weight:700;}
@@ -382,7 +402,7 @@
   <div class="mh-foot" id="foot"></div>
 </div></div>
 <nav class="snav" aria-label="Sections"><div class="snav-in">
-  <a href="#standingsSec">Standings</a><a href="#raceSec">Race</a><a href="#resultsSec">Results</a><a href="#groupsSec">Groups</a><a href="#playersSec">Managers</a><a href="#bracketSec">Bracket</a>
+  <a href="#standingsSec">Standings</a><a href="#raceSec">Race</a><a href="#resultsSec">Results</a><a href="#predSec">Predictions</a><a href="#playersSec">Managers</a><a href="#bracketSec">Bracket</a>
 </div></nav>
 
 <div class="wrap">
@@ -393,9 +413,8 @@
   <div class="daily" id="daily"></div>
   <section class="sec" id="standingsSec"><div class="sec-head"><h2>Standings</h2><span class="meta" id="standMeta"></span></div><div class="board" id="standings"></div></section>
   <section class="sec" id="raceSec"><div class="sec-head"><h2>The Race</h2><span class="meta" id="raceMeta">points behind the leader</span></div><div class="race" id="race"></div></section>
-  <section class="sec" id="champSec"><div class="sec-head"><h2>Champion Watch</h2><span class="meta">predicted cup winners</span></div><div id="champ"></div></section>
+  <section class="sec" id="predSec"><div class="sec-head"><h2>Bracket Predictions</h2><span class="meta">who each manager picked · tap to expand</span></div><div id="brackets"></div></section>
   <section class="sec" id="resultsSec"><div class="sec-head"><h2>Latest Results</h2><span class="meta">Auto-updated</span></div><div id="results"></div></section>
-  <section class="sec" id="groupsSec"><div class="sec-head"><h2>Group Tables</h2><span class="meta" id="gtMeta"></span></div><div class="groups" id="groups"></div></section>
   <section class="sec" id="playersSec"><div class="sec-head"><h2>By the Manager</h2><span class="meta">Tap to expand</span></div><div id="players"></div></section>
   <section class="sec" id="splitsSec"><div class="sec-head"><h2>Where the League Splits</h2><span class="meta">picks: left&nbsp;·&nbsp;draw&nbsp;·&nbsp;right</span></div><div class="splits-wrap" id="splits"></div></section>
   <section class="sec" id="bracketSec"><div class="sec-head"><h2>The Bracket</h2><span class="meta">R32 → Final</span></div><div id="bracketWrap"></div></section>
@@ -579,23 +598,19 @@ function bracket(){
   });
 }
 
-function groups(){
-  const el=document.getElementById("groups"), gs=DATA.groups||[];
-  document.getElementById("gtMeta").textContent = gs.some(g=>g.status!=="predicted") ? "live + predicted" : "predicted from picks";
-  gs.forEach(g=>{
-    const lab=g.status==="final"?"Final":g.status==="live"?"Live":"Predicted";
-    const rows=g.rows.map((r,i)=>{
-      const out=r.adv===false, inq=r.adv===true;              // adv set once the R32 bracket is known
-      const cls=out?'out':(inq||r.through)?'thru':'';
-      const tag=inq?'<span class="qtag q">Q</span>'
-               :out?'<span class="qtag out">Out</span>'
-               :(r.qual==='through'?'<span class="qtag q">Q</span>':r.qual==='third'?'<span class="qtag x">3rd route</span>':'');
-      return `<div class="gtr ${cls}"><span class="pos">${i+1}</span>`+
-        `<span class="tm">${flag(r.team,'flag sm')}<span class="nm">${r.team}</span>${tag}</span><span class="pts">${r.pts}</span></div>`;}).join('');
-    const c=document.createElement("div"); c.className="gt";
-    c.innerHTML=`<div class="gt-h"><span class="g">Group ${g.group}</span><span class="lab ${g.status}">${lab}</span></div>${rows}`;
-    el.appendChild(c);
-  });
+function brackets(){
+  const el=document.getElementById("brackets"), ps=(DATA.players||[]).filter(p=>p.bracket);
+  if(!ps.length){el.innerHTML='<div class="empty">Each manager\'s bracket appears here once their knockout picks are in.</div>';return;}
+  const team=o=> o ? `<span class="bt${o.out?' out':''}">${flag(o.t,'flag sm')}<span class="nm">${o.t}</span></span>` : '<span class="bt tbd">—</span>';
+  const round=(lab,arr)=>`<div class="bk-row"><span class="bk-lab">${lab}</span><span class="bk-teams">${arr.map(team).join('')}</span></div>`;
+  el.innerHTML=ps.map(p=>{const b=p.bracket;
+    return `<details class="bkt" id="bkt-${slug(p.name)}"><summary>
+        <span class="bk-name">${p.name}</span>
+        <span class="bk-sum">${b.champ?`<span class="bk-clab">Champion</span>${team(b.champ)}`:'<span class="bk-clab">No pick</span>'}</span>
+        <span class="chev">›</span></summary>
+      <div class="bk-body">
+        ${round('Final',b.final)}${round('Semis',b.semis)}${round('Quarters',b.qf)}${round('R32',b.r32)}
+      </div></details>`;}).join('');
 }
 function splits(){
   const sec=document.getElementById("splitsSec"), el=document.getElementById("splits"), ss=DATA.splits||[];
@@ -666,13 +681,6 @@ function race(){
     return `<text x="${(padL+9+off*150).toFixed(1)}" y="${(Y(g)+3.5).toFixed(1)}" font-size="12" font-weight="700" fill="${cols[si%cols.length]}">${s.name}${g===0?' · lead':' · −'+g}</text>`;}).join('');
   el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid meet">${grid}${paths}${dots}${startLabels}</svg>`+
     `<div class="race-legend">${r.series.map((s,si)=>{const g=gap(s.points[n-1],n-1); return `<span><i style="background:${cols[si%cols.length]}"></i>${s.name}${g!=null?` <b>${g===0?'lead':'−'+g}</b>`:''}</span>`;}).join('')}</div>`;
-}
-function champ(){
-  const el=document.getElementById("champ"), cs=DATA.champions||[];
-  if(!cs.some(c=>c.champ)){el.innerHTML='<div class="empty">Everyone\'s pick to lift the cup lands here when the knockout bracket opens — June 28. Eliminated champions get struck through as it plays out.</div>';return;}
-  el.innerHTML='<div class="champ-grid">'+cs.filter(c=>c.champ).map(c=>
-    `<div class="champ-row ${c.alive===false?'out':''}"><span class="cn">${c.name}</span>`+
-    `<span class="ct">${flag(c.champ,'flag sm')}<span class="nm">${c.champ}</span>${c.alive===false?'<span class="outtag">Out</span>':''}</span></div>`).join('')+'</div>';
 }
 function slug(s){return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');}
 async function shareCard(name){
@@ -772,7 +780,7 @@ function around(){
     (bk.beat?`<div class="bc-fant">Beating the closing favorite: ${bk.beat}</div>`:'')+
     ((bk.dis&&bk.dis.length)?bk.dis.map(d=>`<div class="bc-odds" style="margin-top:8px">${d}</div>`).join(''):'');
 }
-meta();today();brief();around();daily();spotlight();standings();race();champ();results();groups();players();splits();bracket();enhance();
+meta();today();brief();around();daily();spotlight();standings();race();brackets();results();players();splits();bracket();enhance();
 </script>
 </body>
 </html>
