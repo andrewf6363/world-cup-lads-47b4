@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-30T18:59:51.011379Z",
+  "last_fetched_utc": "2026-06-30T22:55:18.440668Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2095,6 +2095,33 @@
           "min": "86'",
           "team": "team2",
           "player": "Erling Haaland",
+          "kind": "goal"
+        }
+      ]
+    },
+    "K-77": {
+      "status": "final",
+      "winner": "France",
+      "team1_goals": 3,
+      "team2_goals": 0,
+      "pens": null,
+      "events": [
+        {
+          "min": "45'",
+          "team": "team1",
+          "player": "Kylian Mbappé",
+          "kind": "goal"
+        },
+        {
+          "min": "53'",
+          "team": "team1",
+          "player": "Bradley Barcola",
+          "kind": "goal"
+        },
+        {
+          "min": "74'",
+          "team": "team1",
+          "player": "Kylian Mbappé",
           "kind": "goal"
         }
       ]
