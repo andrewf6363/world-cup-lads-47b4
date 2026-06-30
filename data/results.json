@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-30T03:57:15.549277Z",
+  "last_fetched_utc": "2026-06-30T18:59:51.011379Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2069,6 +2069,33 @@
           "team": "team2",
           "player": "Ismael Saibari",
           "kind": "pen"
+        }
+      ]
+    },
+    "K-78": {
+      "status": "final",
+      "winner": "Norway",
+      "team1_goals": 1,
+      "team2_goals": 2,
+      "pens": null,
+      "events": [
+        {
+          "min": "39'",
+          "team": "team2",
+          "player": "Antonio Nusa",
+          "kind": "goal"
+        },
+        {
+          "min": "74'",
+          "team": "team1",
+          "player": "Amad Diallo",
+          "kind": "goal"
+        },
+        {
+          "min": "86'",
+          "team": "team2",
+          "player": "Erling Haaland",
+          "kind": "goal"
         }
       ]
     }
