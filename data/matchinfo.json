@@ -3270,8 +3270,8 @@
   "stats": [
    [
     "Possession",
-    "60.9%",
-    "39.1%"
+    "61%",
+    "39%"
    ],
    [
     "Shots",
@@ -3497,6 +3497,13 @@
    },
    "ou": 1.5
   },
+  "tv": [
+   "FOX",
+   "Telemundo",
+   "FOX One"
+  ]
+ },
+ "K-89": {
   "tv": [
    "FOX",
    "Telemundo",
