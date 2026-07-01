@@ -742,17 +742,30 @@ def main():
     for c in champions:
         c["alive"] = (c["champ"] not in elim) if c["champ"] else None
 
-    # ---- Each manager's bracket (who they predicted, round by round; eliminated picks flagged) ----
+    # ---- Each manager's bracket as a proper tree: per match, the two teams THEY had meeting and
+    #      which side they advanced. Later-round matchups derive from their own earlier picks. ----
+    KO = {k["id"]: k for k in fixtures.get("knockout", [])}
     def bteam(t): return {"t": t, "out": t in elim} if t else None
+    def bracket_tree(kp):
+        part = {}
+        def parts(mid):
+            if mid in part: return part[mid]
+            k = KO[mid]
+            p = (k["team1"], k["team2"]) if k["round"] == "R32" else (kp.get(k["feeds"][0]), kp.get(k["feeds"][1]))
+            part[mid] = p; return p
+        rounds = []
+        for rlabel, nums in [("R32", range(73, 89)), ("R16", range(89, 97)),
+                             ("QF", range(97, 101)), ("SF", (101, 102)), ("Final", (104,))]:
+            ms = []
+            for n in nums:
+                mid = f"K-{n}"; t1, t2 = parts(mid); pk = kp.get(mid)
+                ms.append({"a": bteam(t1), "b": bteam(t2),
+                           "pick": 0 if (pk and pk == t1) else (1 if (pk and pk == t2) else None)})
+            rounds.append({"r": rlabel, "m": ms})
+        return rounds
     for pl in players:
         kp = pmap.get(pl["name"], {}).get("knockout_picks", {}) or {}
-        pl["bracket"] = {
-            "champ": bteam(kp.get("K-104")),
-            "final": [bteam(kp.get("K-101")), bteam(kp.get("K-102"))],
-            "semis": [bteam(kp.get(f"K-{n}")) for n in (97, 98, 99, 100)],
-            "qf":    [bteam(kp.get(f"K-{n}")) for n in range(89, 97)],
-            "r32":   [bteam(kp.get(f"K-{n}")) for n in range(73, 89)],
-        } if pl.get("champ") else None
+        pl["bracket"] = {"champ": bteam(kp.get("K-104")), "rounds": bracket_tree(kp)} if pl.get("champ") else None
 
     leader = None
     if rows:
