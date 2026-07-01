@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-06-30T22:55:18.440668Z",
+  "last_fetched_utc": "2026-07-01T04:05:20.913988Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2123,6 +2123,33 @@
           "team": "team1",
           "player": "Kylian Mbappé",
           "kind": "goal"
+        }
+      ]
+    },
+    "K-79": {
+      "status": "final",
+      "winner": "Mexico",
+      "team1_goals": 2,
+      "team2_goals": 0,
+      "pens": null,
+      "events": [
+        {
+          "min": "22'",
+          "team": "team1",
+          "player": "Julián Quiñones",
+          "kind": "goal"
+        },
+        {
+          "min": "31'",
+          "team": "team1",
+          "player": "Raúl Jiménez",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+5'",
+          "team": "team2",
+          "player": "Piero Hincapié",
+          "kind": "red"
         }
       ]
     }
