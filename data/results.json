@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-07-01T04:05:20.913988Z",
+  "last_fetched_utc": "2026-07-01T18:01:27.463021Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2150,6 +2150,33 @@
           "team": "team2",
           "player": "Piero Hincapié",
           "kind": "red"
+        }
+      ]
+    },
+    "K-80": {
+      "status": "final",
+      "winner": "England",
+      "team1_goals": 2,
+      "team2_goals": 1,
+      "pens": null,
+      "events": [
+        {
+          "min": "7'",
+          "team": "team2",
+          "player": "Brian Cipenga",
+          "kind": "goal"
+        },
+        {
+          "min": "75'",
+          "team": "team1",
+          "player": "Harry Kane",
+          "kind": "goal"
+        },
+        {
+          "min": "86'",
+          "team": "team1",
+          "player": "Harry Kane",
+          "kind": "goal"
         }
       ]
     }
