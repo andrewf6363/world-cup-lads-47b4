@@ -1,14 +1,35 @@
 {
-  "generated_utc": "2026-07-01T22:49:11.424088Z",
+  "generated_utc": "2026-07-01T22:53:14.537398Z",
   "leaderboard": [
     {
       "name": "Luke Clark",
       "grp": 4700,
       "correct": 47,
       "graded": 72,
-      "ko": 600,
+      "ko": 700,
       "rounds": {
-        "R32": 600,
+        "R32": 700,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 5400,
+      "baseline": 0,
+      "ko_only": false,
+      "champ": "France",
+      "final_goals_guess": null,
+      "rank": 1,
+      "move": 0
+    },
+    {
+      "name": "Ryan Sheekley",
+      "grp": 4600,
+      "correct": 46,
+      "graded": 72,
+      "ko": 700,
+      "rounds": {
+        "R32": 700,
         "R16": 0,
         "QF": 0,
         "SF": 0,
@@ -19,7 +40,7 @@
       "ko_only": false,
       "champ": "France",
       "final_goals_guess": null,
-      "rank": 1,
+      "rank": 2,
       "move": 0
     },
     {
@@ -40,17 +61,38 @@
       "ko_only": false,
       "champ": "Argentina",
       "final_goals_guess": null,
-      "rank": 2,
-      "move": 0
+      "rank": 3,
+      "move": -1
     },
     {
-      "name": "Ryan Sheekley",
-      "grp": 4600,
-      "correct": 46,
+      "name": "Andrew Fahey",
+      "grp": 4500,
+      "correct": 45,
       "graded": 72,
-      "ko": 600,
+      "ko": 700,
       "rounds": {
-        "R32": 600,
+        "R32": 700,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 5200,
+      "baseline": 0,
+      "ko_only": false,
+      "champ": "Netherlands",
+      "final_goals_guess": null,
+      "rank": 3,
+      "move": 1
+    },
+    {
+      "name": "John Pappas",
+      "grp": 4500,
+      "correct": 45,
+      "graded": 72,
+      "ko": 700,
+      "rounds": {
+        "R32": 700,
         "R16": 0,
         "QF": 0,
         "SF": 0,
@@ -61,65 +103,23 @@
       "ko_only": false,
       "champ": "France",
       "final_goals_guess": null,
-      "rank": 2,
-      "move": 0
-    },
-    {
-      "name": "Andrew Fahey",
-      "grp": 4500,
-      "correct": 45,
-      "graded": 72,
-      "ko": 600,
-      "rounds": {
-        "R32": 600,
-        "R16": 0,
-        "QF": 0,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 5100,
-      "baseline": 0,
-      "ko_only": false,
-      "champ": "Netherlands",
-      "final_goals_guess": null,
-      "rank": 4,
-      "move": 0
-    },
-    {
-      "name": "John Pappas",
-      "grp": 4500,
-      "correct": 45,
-      "graded": 72,
-      "ko": 600,
-      "rounds": {
-        "R32": 600,
-        "R16": 0,
-        "QF": 0,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 5100,
-      "baseline": 0,
-      "ko_only": false,
-      "champ": "France",
-      "final_goals_guess": null,
-      "rank": 4,
-      "move": 0
+      "rank": 3,
+      "move": 1
     },
     {
       "name": "Karlis Draulis",
       "grp": 4400,
       "correct": 44,
       "graded": 72,
-      "ko": 500,
+      "ko": 600,
       "rounds": {
-        "R32": 500,
+        "R32": 600,
         "R16": 0,
         "QF": 0,
         "SF": 0,
         "Final": 0
       },
-      "total": 4900,
+      "total": 5000,
       "baseline": 0,
       "ko_only": false,
       "champ": "France",
@@ -132,15 +132,15 @@
       "grp": 4300,
       "correct": 43,
       "graded": 72,
-      "ko": 600,
+      "ko": 700,
       "rounds": {
-        "R32": 600,
+        "R32": 700,
         "R16": 0,
         "QF": 0,
         "SF": 0,
         "Final": 0
       },
-      "total": 4900,
+      "total": 5000,
       "baseline": 0,
       "ko_only": false,
       "champ": "England",
@@ -153,15 +153,15 @@
       "grp": 4200,
       "correct": 42,
       "graded": 72,
-      "ko": 600,
+      "ko": 700,
       "rounds": {
-        "R32": 600,
+        "R32": 700,
         "R16": 0,
         "QF": 0,
         "SF": 0,
         "Final": 0
       },
-      "total": 4800,
+      "total": 4900,
       "baseline": 0,
       "ko_only": false,
       "champ": "France",
@@ -174,15 +174,15 @@
       "grp": 3800,
       "correct": 0,
       "graded": 72,
-      "ko": 500,
+      "ko": 600,
       "rounds": {
-        "R32": 500,
+        "R32": 600,
         "R16": 0,
         "QF": 0,
         "SF": 0,
         "Final": 0
       },
-      "total": 4300,
+      "total": 4400,
       "baseline": 3800,
       "ko_only": true,
       "champ": "France",
