@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-07-01T22:53:13.710383Z",
+  "last_fetched_utc": "2026-07-02T02:03:21.879593Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2188,7 +2188,7 @@
       "pens": null,
       "events": [
         {
-          "min": "25'",
+          "min": "24'",
           "team": "team2",
           "player": "Habib Diarra",
           "kind": "goal"
