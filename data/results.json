@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-07-02T02:08:01.665081Z",
+  "last_fetched_utc": "2026-07-02T20:59:45.417615Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2242,6 +2242,33 @@
           "min": "82'",
           "team": "team1",
           "player": "Malik Tillman",
+          "kind": "goal"
+        }
+      ]
+    },
+    "K-84": {
+      "status": "final",
+      "winner": "Spain",
+      "team1_goals": 3,
+      "team2_goals": 0,
+      "pens": null,
+      "events": [
+        {
+          "min": "36'",
+          "team": "team1",
+          "player": "Mikel Oyarzabal",
+          "kind": "goal"
+        },
+        {
+          "min": "66'",
+          "team": "team1",
+          "player": "Pedro Porro",
+          "kind": "goal"
+        },
+        {
+          "min": "89'",
+          "team": "team1",
+          "player": "Mikel Oyarzabal",
           "kind": "goal"
         }
       ]
