@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-07-02T20:59:45.417615Z",
+  "last_fetched_utc": "2026-07-03T01:10:04.532221Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2269,6 +2269,33 @@
           "min": "89'",
           "team": "team1",
           "player": "Mikel Oyarzabal",
+          "kind": "goal"
+        }
+      ]
+    },
+    "K-83": {
+      "status": "final",
+      "winner": "Portugal",
+      "team1_goals": 2,
+      "team2_goals": 1,
+      "pens": null,
+      "events": [
+        {
+          "min": "53'",
+          "team": "team2",
+          "player": "Ivan Perisic",
+          "kind": "goal"
+        },
+        {
+          "min": "68'",
+          "team": "team1",
+          "player": "Cristiano Ronaldo",
+          "kind": "pen"
+        },
+        {
+          "min": "90'+4'",
+          "team": "team1",
+          "player": "Gonçalo Ramos",
           "kind": "goal"
         }
       ]

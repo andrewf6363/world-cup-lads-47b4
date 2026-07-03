@@ -1,20 +1,20 @@
 {
-  "generated_utc": "2026-07-03T01:08:32.552405Z",
+  "generated_utc": "2026-07-03T01:10:05.119782Z",
   "leaderboard": [
     {
       "name": "Luke Clark",
       "grp": 4700,
       "correct": 47,
       "graded": 72,
-      "ko": 900,
+      "ko": 1000,
       "rounds": {
-        "R32": 900,
+        "R32": 1000,
         "R16": 0,
         "QF": 0,
         "SF": 0,
         "Final": 0
       },
-      "total": 5600,
+      "total": 5700,
       "baseline": 0,
       "ko_only": false,
       "champ": "France",
@@ -27,9 +27,51 @@
       "grp": 4600,
       "correct": 46,
       "graded": 72,
-      "ko": 900,
+      "ko": 1000,
       "rounds": {
-        "R32": 900,
+        "R32": 1000,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 5600,
+      "baseline": 0,
+      "ko_only": false,
+      "champ": "France",
+      "final_goals_guess": null,
+      "rank": 2,
+      "move": 0
+    },
+    {
+      "name": "Andrew Fahey",
+      "grp": 4500,
+      "correct": 45,
+      "graded": 72,
+      "ko": 1000,
+      "rounds": {
+        "R32": 1000,
+        "R16": 0,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 5500,
+      "baseline": 0,
+      "ko_only": false,
+      "champ": "Netherlands",
+      "final_goals_guess": null,
+      "rank": 3,
+      "move": 0
+    },
+    {
+      "name": "John Pappas",
+      "grp": 4500,
+      "correct": 45,
+      "graded": 72,
+      "ko": 1000,
+      "rounds": {
+        "R32": 1000,
         "R16": 0,
         "QF": 0,
         "SF": 0,
@@ -40,7 +82,7 @@
       "ko_only": false,
       "champ": "France",
       "final_goals_guess": null,
-      "rank": 2,
+      "rank": 3,
       "move": 0
     },
     {
@@ -61,50 +103,8 @@
       "ko_only": false,
       "champ": "Argentina",
       "final_goals_guess": null,
-      "rank": 3,
-      "move": 0
-    },
-    {
-      "name": "Andrew Fahey",
-      "grp": 4500,
-      "correct": 45,
-      "graded": 72,
-      "ko": 900,
-      "rounds": {
-        "R32": 900,
-        "R16": 0,
-        "QF": 0,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 5400,
-      "baseline": 0,
-      "ko_only": false,
-      "champ": "Netherlands",
-      "final_goals_guess": null,
-      "rank": 3,
-      "move": 0
-    },
-    {
-      "name": "John Pappas",
-      "grp": 4500,
-      "correct": 45,
-      "graded": 72,
-      "ko": 900,
-      "rounds": {
-        "R32": 900,
-        "R16": 0,
-        "QF": 0,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 5400,
-      "baseline": 0,
-      "ko_only": false,
-      "champ": "France",
-      "final_goals_guess": null,
-      "rank": 3,
-      "move": 0
+      "rank": 5,
+      "move": -2
     },
     {
       "name": "Karlis Draulis",
@@ -153,21 +153,21 @@
       "grp": 4200,
       "correct": 42,
       "graded": 72,
-      "ko": 900,
+      "ko": 1000,
       "rounds": {
-        "R32": 900,
+        "R32": 1000,
         "R16": 0,
         "QF": 0,
         "SF": 0,
         "Final": 0
       },
-      "total": 5100,
+      "total": 5200,
       "baseline": 0,
       "ko_only": false,
       "champ": "France",
       "final_goals_guess": null,
-      "rank": 8,
-      "move": 0
+      "rank": 6,
+      "move": 2
     },
     {
       "name": "John Atkins",
