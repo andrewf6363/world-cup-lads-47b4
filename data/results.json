@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-07-03T21:21:31.278828Z",
+  "last_fetched_utc": "2026-07-04T00:45:07.169101Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2375,6 +2375,45 @@
           "team": "team2",
           "player": "Hossam Abdelmaguid",
           "kind": "pen"
+        }
+      ]
+    },
+    "K-86": {
+      "status": "final",
+      "winner": "Argentina",
+      "team1_goals": 3,
+      "team2_goals": 2,
+      "pens": null,
+      "events": [
+        {
+          "min": "29'",
+          "team": "team1",
+          "player": "Lionel Messi",
+          "kind": "goal"
+        },
+        {
+          "min": "59'",
+          "team": "team2",
+          "player": "Deroy Duarte",
+          "kind": "goal"
+        },
+        {
+          "min": "92'",
+          "team": "team1",
+          "player": "Lisandro Martínez",
+          "kind": "goal"
+        },
+        {
+          "min": "103'",
+          "team": "team2",
+          "player": "Sidny Lopes Cabral",
+          "kind": "goal"
+        },
+        {
+          "min": "111'",
+          "team": "team1",
+          "player": "Diney Borges",
+          "kind": "og"
         }
       ]
     }
