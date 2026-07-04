@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-07-04T03:32:57.034664Z",
+  "last_fetched_utc": "2026-07-04T19:05:04.785531Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2428,6 +2428,33 @@
           "min": "14'",
           "team": "team1",
           "player": "Jhon Arias",
+          "kind": "goal"
+        }
+      ]
+    },
+    "K-90": {
+      "status": "final",
+      "winner": "Morocco",
+      "team1_goals": 0,
+      "team2_goals": 3,
+      "pens": null,
+      "events": [
+        {
+          "min": "50'",
+          "team": "team2",
+          "player": "Azzedine Ounahi",
+          "kind": "goal"
+        },
+        {
+          "min": "82'",
+          "team": "team2",
+          "player": "Azzedine Ounahi",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+8'",
+          "team": "team2",
+          "player": "Soufiane Rahimi",
           "kind": "goal"
         }
       ]
