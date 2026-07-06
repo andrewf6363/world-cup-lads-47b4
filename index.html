@@ -333,9 +333,10 @@
   .brm-t .flag{flex:0 0 auto;}
   .brm-t .nm{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
   .brm-t.pk{color:var(--ink);font-weight:800;background:rgba(30,158,74,.09);}
-  .brm-t.pk.out{background:rgba(214,68,44,.08);}
+  .brm-t.pk.out{background:rgba(214,68,44,.1);}
   .brm-t.out .nm{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:1.5px;color:var(--faint);}
-  .brm-t.out .flag{opacity:.4;}
+  .brm-t.pk.out .nm{color:var(--ink-soft);}          /* a busted PICK stays readable so you see the choice */
+  .brm-t.out .flag{opacity:.4;} .brm-t.pk.out .flag{opacity:.7;}
   .brm-t.tbd{color:var(--faint);font-style:italic;}
   .brm-champ{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;height:100%;
     background:linear-gradient(180deg,rgba(227,165,42,.16),rgba(227,165,42,.04));border:1.5px solid var(--gold);border-radius:9px;padding:12px 8px;}

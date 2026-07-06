@@ -746,6 +746,16 @@ def main():
     #      which side they advanced. Later-round matchups derive from their own earlier picks. ----
     KO = {k["id"]: k for k in fixtures.get("knockout", [])}
     def bteam(t): return {"t": t, "out": t in elim} if t else None
+    # bracket top-to-bottom order per round via pre-order traversal from the Final (always feed[0]
+    # above feed[1]) — so each round's matches line up with the midpoint of their two feeder matches.
+    ORDER = {"R32": [], "R16": [], "QF": [], "SF": [], "Final": []}
+    def _visit(mid):
+        k = KO.get(mid)
+        if not k: return
+        ORDER[k["round"]].append(mid)
+        if k.get("feeds"):
+            _visit(k["feeds"][0]); _visit(k["feeds"][1])
+    if KO.get("K-104"): _visit("K-104")
     def bracket_tree(kp):
         part = {}
         def parts(mid):
@@ -754,11 +764,10 @@ def main():
             p = (k["team1"], k["team2"]) if k["round"] == "R32" else (kp.get(k["feeds"][0]), kp.get(k["feeds"][1]))
             part[mid] = p; return p
         rounds = []
-        for rlabel, nums in [("R32", range(73, 89)), ("R16", range(89, 97)),
-                             ("QF", range(97, 101)), ("SF", (101, 102)), ("Final", (104,))]:
+        for rlabel in ("R32", "R16", "QF", "SF", "Final"):
             ms = []
-            for n in nums:
-                mid = f"K-{n}"; t1, t2 = parts(mid); pk = kp.get(mid)
+            for mid in ORDER[rlabel]:
+                t1, t2 = parts(mid); pk = kp.get(mid)
                 ms.append({"a": bteam(t1), "b": bteam(t2),
                            "pick": 0 if (pk and pk == t1) else (1 if (pk and pk == t2) else None)})
             rounds.append({"r": rlabel, "m": ms})
