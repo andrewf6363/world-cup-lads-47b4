@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-07-06T03:09:32.029965Z",
+  "last_fetched_utc": "2026-07-06T21:03:15.565114Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2543,6 +2543,21 @@
           "team": "team1",
           "player": "Raúl Jiménez",
           "kind": "pen"
+        }
+      ]
+    },
+    "K-93": {
+      "status": "final",
+      "winner": "Spain",
+      "team1_goals": 0,
+      "team2_goals": 1,
+      "pens": null,
+      "events": [
+        {
+          "min": "90'+1'",
+          "team": "team2",
+          "player": "Mikel Merino",
+          "kind": "goal"
         }
       ]
     }
