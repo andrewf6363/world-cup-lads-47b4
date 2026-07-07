@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-07-07T02:00:22.301970Z",
+  "last_fetched_utc": "2026-07-07T18:07:20.046943Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2596,6 +2596,45 @@
           "min": "90'+3'",
           "team": "team2",
           "player": "Romelu Lukaku",
+          "kind": "goal"
+        }
+      ]
+    },
+    "K-95": {
+      "status": "final",
+      "winner": "Argentina",
+      "team1_goals": 3,
+      "team2_goals": 2,
+      "pens": null,
+      "events": [
+        {
+          "min": "15'",
+          "team": "team2",
+          "player": "Yasser Ibrahim",
+          "kind": "goal"
+        },
+        {
+          "min": "67'",
+          "team": "team2",
+          "player": "Mostafa Zico",
+          "kind": "goal"
+        },
+        {
+          "min": "79'",
+          "team": "team1",
+          "player": "Cristian Romero",
+          "kind": "goal"
+        },
+        {
+          "min": "83'",
+          "team": "team1",
+          "player": "Lionel Messi",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+2'",
+          "team": "team1",
+          "player": "Enzo Fernández",
           "kind": "goal"
         }
       ]
