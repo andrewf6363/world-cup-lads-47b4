@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-07T23:00:25.689197Z",
+  "generated_utc": "2026-07-07T23:04:28.514556Z",
   "leaderboard": [
     {
       "name": "Luke Clark",
@@ -62,7 +62,7 @@
       "champ": "Netherlands",
       "final_goals_guess": null,
       "rank": 3,
-      "move": 1
+      "move": 0
     },
     {
       "name": "John Pappas",
@@ -104,7 +104,7 @@
       "champ": "Argentina",
       "final_goals_guess": null,
       "rank": 5,
-      "move": -1
+      "move": 0
     },
     {
       "name": "Karlis Draulis",
