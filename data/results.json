@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-07-07T18:07:20.046943Z",
+  "last_fetched_utc": "2026-07-07T23:00:25.219478Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2636,6 +2636,57 @@
           "team": "team1",
           "player": "Enzo Fernández",
           "kind": "goal"
+        }
+      ]
+    },
+    "K-96": {
+      "status": "final",
+      "winner": "Switzerland",
+      "team1_goals": 0,
+      "team2_goals": 0,
+      "pens": "4–3 pens",
+      "events": [
+        {
+          "min": "120'",
+          "team": "team2",
+          "player": "Juan Fernando Quintero",
+          "kind": "pen"
+        },
+        {
+          "min": "120'",
+          "team": "team1",
+          "player": "Granit Xhaka",
+          "kind": "pen"
+        },
+        {
+          "min": "120'",
+          "team": "team1",
+          "player": "Zeki Amdouni",
+          "kind": "pen"
+        },
+        {
+          "min": "120'",
+          "team": "team2",
+          "player": "Jáminton Campaz",
+          "kind": "pen"
+        },
+        {
+          "min": "120'",
+          "team": "team1",
+          "player": "Cedric Itten",
+          "kind": "pen"
+        },
+        {
+          "min": "120'",
+          "team": "team2",
+          "player": "Luis Díaz",
+          "kind": "pen"
+        },
+        {
+          "min": "120'",
+          "team": "team1",
+          "player": "Rubén Vargas",
+          "kind": "pen"
         }
       ]
     }

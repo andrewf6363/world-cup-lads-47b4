@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-07T22:44:20.893104Z",
+  "generated_utc": "2026-07-07T23:00:25.689197Z",
   "leaderboard": [
     {
       "name": "Luke Clark",
@@ -44,6 +44,27 @@
       "move": 0
     },
     {
+      "name": "Andrew Fahey",
+      "grp": 4500,
+      "correct": 45,
+      "graded": 72,
+      "ko": 2300,
+      "rounds": {
+        "R32": 1300,
+        "R16": 1000,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 6800,
+      "baseline": 0,
+      "ko_only": false,
+      "champ": "Netherlands",
+      "final_goals_guess": null,
+      "rank": 3,
+      "move": 1
+    },
+    {
       "name": "John Pappas",
       "grp": 4500,
       "correct": 45,
@@ -82,29 +103,8 @@
       "ko_only": false,
       "champ": "Argentina",
       "final_goals_guess": null,
-      "rank": 4,
-      "move": 0
-    },
-    {
-      "name": "Andrew Fahey",
-      "grp": 4500,
-      "correct": 45,
-      "graded": 72,
-      "ko": 2100,
-      "rounds": {
-        "R32": 1300,
-        "R16": 800,
-        "QF": 0,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 6600,
-      "baseline": 0,
-      "ko_only": false,
-      "champ": "Netherlands",
-      "final_goals_guess": null,
-      "rank": 4,
-      "move": 0
+      "rank": 5,
+      "move": -1
     },
     {
       "name": "Karlis Draulis",
