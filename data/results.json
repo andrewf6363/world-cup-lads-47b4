@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-07-06T21:03:15.565114Z",
+  "last_fetched_utc": "2026-07-07T02:00:22.301970Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2557,6 +2557,45 @@
           "min": "90'+1'",
           "team": "team2",
           "player": "Mikel Merino",
+          "kind": "goal"
+        }
+      ]
+    },
+    "K-94": {
+      "status": "final",
+      "winner": "Belgium",
+      "team1_goals": 1,
+      "team2_goals": 4,
+      "pens": null,
+      "events": [
+        {
+          "min": "9'",
+          "team": "team2",
+          "player": "Charles De Ketelaere",
+          "kind": "goal"
+        },
+        {
+          "min": "31'",
+          "team": "team1",
+          "player": "Malik Tillman",
+          "kind": "goal"
+        },
+        {
+          "min": "33'",
+          "team": "team2",
+          "player": "Charles De Ketelaere",
+          "kind": "goal"
+        },
+        {
+          "min": "57'",
+          "team": "team2",
+          "player": "Hans Vanaken",
+          "kind": "goal"
+        },
+        {
+          "min": "90'+3'",
+          "team": "team2",
+          "player": "Romelu Lukaku",
           "kind": "goal"
         }
       ]

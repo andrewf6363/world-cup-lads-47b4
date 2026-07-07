@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-07T01:58:50.292463Z",
+  "generated_utc": "2026-07-07T02:00:22.937667Z",
   "leaderboard": [
     {
       "name": "Luke Clark",
@@ -44,6 +44,27 @@
       "move": 0
     },
     {
+      "name": "John Pappas",
+      "grp": 4500,
+      "correct": 45,
+      "graded": 72,
+      "ko": 2100,
+      "rounds": {
+        "R32": 1300,
+        "R16": 800,
+        "QF": 0,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 6600,
+      "baseline": 0,
+      "ko_only": false,
+      "champ": "France",
+      "final_goals_guess": null,
+      "rank": 3,
+      "move": 0
+    },
+    {
       "name": "Kyle Williams",
       "grp": 4900,
       "correct": 49,
@@ -61,8 +82,8 @@
       "ko_only": false,
       "champ": "Argentina",
       "final_goals_guess": null,
-      "rank": 3,
-      "move": 0
+      "rank": 4,
+      "move": -1
     },
     {
       "name": "Andrew Fahey",
@@ -82,29 +103,8 @@
       "ko_only": false,
       "champ": "Netherlands",
       "final_goals_guess": null,
-      "rank": 3,
-      "move": 0
-    },
-    {
-      "name": "John Pappas",
-      "grp": 4500,
-      "correct": 45,
-      "graded": 72,
-      "ko": 1900,
-      "rounds": {
-        "R32": 1300,
-        "R16": 600,
-        "QF": 0,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 6400,
-      "baseline": 0,
-      "ko_only": false,
-      "champ": "France",
-      "final_goals_guess": null,
-      "rank": 3,
-      "move": 0
+      "rank": 4,
+      "move": -1
     },
     {
       "name": "Karlis Draulis",
