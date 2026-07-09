@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-07-07T23:00:25.219478Z",
+  "last_fetched_utc": "2026-07-09T22:02:37.345406Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2687,6 +2687,27 @@
           "team": "team1",
           "player": "Rubén Vargas",
           "kind": "pen"
+        }
+      ]
+    },
+    "K-97": {
+      "status": "final",
+      "winner": "France",
+      "team1_goals": 2,
+      "team2_goals": 0,
+      "pens": null,
+      "events": [
+        {
+          "min": "60'",
+          "team": "team1",
+          "player": "Kylian Mbappé",
+          "kind": "goal"
+        },
+        {
+          "min": "66'",
+          "team": "team1",
+          "player": "Ousmane Dembélé",
+          "kind": "goal"
         }
       ]
     }
