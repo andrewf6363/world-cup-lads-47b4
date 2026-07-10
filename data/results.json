@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-07-09T22:02:37.345406Z",
+  "last_fetched_utc": "2026-07-10T21:00:20.813099Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2707,6 +2707,33 @@
           "min": "66'",
           "team": "team1",
           "player": "Ousmane Dembélé",
+          "kind": "goal"
+        }
+      ]
+    },
+    "K-98": {
+      "status": "final",
+      "winner": "Spain",
+      "team1_goals": 2,
+      "team2_goals": 1,
+      "pens": null,
+      "events": [
+        {
+          "min": "30'",
+          "team": "team1",
+          "player": "Fabián Ruiz",
+          "kind": "goal"
+        },
+        {
+          "min": "41'",
+          "team": "team2",
+          "player": "Charles De Ketelaere",
+          "kind": "goal"
+        },
+        {
+          "min": "88'",
+          "team": "team1",
+          "player": "Mikel Merino",
           "kind": "goal"
         }
       ]

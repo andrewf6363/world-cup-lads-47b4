@@ -1,6 +1,48 @@
 {
-  "generated_utc": "2026-07-10T20:58:48.659320Z",
+  "generated_utc": "2026-07-10T21:00:21.408000Z",
   "leaderboard": [
+    {
+      "name": "Ryan Sheekley",
+      "grp": 4600,
+      "correct": 46,
+      "graded": 72,
+      "ko": 3200,
+      "rounds": {
+        "R32": 1400,
+        "R16": 1000,
+        "QF": 800,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 7800,
+      "baseline": 0,
+      "ko_only": false,
+      "champ": "France",
+      "final_goals_guess": null,
+      "rank": 1,
+      "move": 1
+    },
+    {
+      "name": "John Pappas",
+      "grp": 4500,
+      "correct": 45,
+      "graded": 72,
+      "ko": 3100,
+      "rounds": {
+        "R32": 1300,
+        "R16": 1000,
+        "QF": 800,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 7600,
+      "baseline": 0,
+      "ko_only": false,
+      "champ": "France",
+      "final_goals_guess": null,
+      "rank": 2,
+      "move": 1
+    },
     {
       "name": "Luke Clark",
       "grp": 4700,
@@ -19,40 +61,19 @@
       "ko_only": false,
       "champ": "France",
       "final_goals_guess": null,
-      "rank": 1,
-      "move": 0
+      "rank": 3,
+      "move": -2
     },
     {
-      "name": "Ryan Sheekley",
-      "grp": 4600,
-      "correct": 46,
+      "name": "Karlis Draulis",
+      "grp": 4400,
+      "correct": 44,
       "graded": 72,
       "ko": 2800,
       "rounds": {
-        "R32": 1400,
-        "R16": 1000,
-        "QF": 400,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 7400,
-      "baseline": 0,
-      "ko_only": false,
-      "champ": "France",
-      "final_goals_guess": null,
-      "rank": 2,
-      "move": 0
-    },
-    {
-      "name": "John Pappas",
-      "grp": 4500,
-      "correct": 45,
-      "graded": 72,
-      "ko": 2700,
-      "rounds": {
-        "R32": 1300,
-        "R16": 1000,
-        "QF": 400,
+        "R32": 1200,
+        "R16": 800,
+        "QF": 800,
         "SF": 0,
         "Final": 0
       },
@@ -61,7 +82,28 @@
       "ko_only": false,
       "champ": "France",
       "final_goals_guess": null,
-      "rank": 3,
+      "rank": 4,
+      "move": 0
+    },
+    {
+      "name": "Keegan Ball",
+      "grp": 4300,
+      "correct": 43,
+      "graded": 72,
+      "ko": 2900,
+      "rounds": {
+        "R32": 1300,
+        "R16": 800,
+        "QF": 800,
+        "SF": 0,
+        "Final": 0
+      },
+      "total": 7200,
+      "baseline": 0,
+      "ko_only": false,
+      "champ": "England",
+      "final_goals_guess": null,
+      "rank": 4,
       "move": 0
     },
     {
@@ -82,50 +124,8 @@
       "ko_only": false,
       "champ": "Netherlands",
       "final_goals_guess": null,
-      "rank": 4,
-      "move": 0
-    },
-    {
-      "name": "Karlis Draulis",
-      "grp": 4400,
-      "correct": 44,
-      "graded": 72,
-      "ko": 2400,
-      "rounds": {
-        "R32": 1200,
-        "R16": 800,
-        "QF": 400,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 6800,
-      "baseline": 0,
-      "ko_only": false,
-      "champ": "France",
-      "final_goals_guess": null,
-      "rank": 4,
-      "move": 0
-    },
-    {
-      "name": "Keegan Ball",
-      "grp": 4300,
-      "correct": 43,
-      "graded": 72,
-      "ko": 2500,
-      "rounds": {
-        "R32": 1300,
-        "R16": 800,
-        "QF": 400,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 6800,
-      "baseline": 0,
-      "ko_only": false,
-      "champ": "England",
-      "final_goals_guess": null,
-      "rank": 4,
-      "move": 0
+      "rank": 6,
+      "move": -2
     },
     {
       "name": "Brad Bone",
@@ -145,8 +145,8 @@
       "ko_only": false,
       "champ": "France",
       "final_goals_guess": null,
-      "rank": 4,
-      "move": 0
+      "rank": 6,
+      "move": -2
     },
     {
       "name": "Kyle Williams",
@@ -174,21 +174,21 @@
       "grp": 3800,
       "correct": 0,
       "graded": 72,
-      "ko": 2400,
+      "ko": 2800,
       "rounds": {
         "R32": 1200,
         "R16": 800,
-        "QF": 400,
+        "QF": 800,
         "SF": 0,
         "Final": 0
       },
-      "total": 6200,
+      "total": 6600,
       "baseline": 3800,
       "ko_only": true,
       "champ": "France",
       "final_goals_guess": null,
-      "rank": 9,
-      "move": 0
+      "rank": 8,
+      "move": 1
     }
   ]
 }
