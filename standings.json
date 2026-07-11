@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-10T21:00:21.408000Z",
+  "generated_utc": "2026-07-11T00:08:47.743272Z",
   "leaderboard": [
     {
       "name": "Ryan Sheekley",
@@ -20,7 +20,7 @@
       "champ": "France",
       "final_goals_guess": null,
       "rank": 1,
-      "move": 1
+      "move": 0
     },
     {
       "name": "John Pappas",
@@ -41,7 +41,7 @@
       "champ": "France",
       "final_goals_guess": null,
       "rank": 2,
-      "move": 1
+      "move": 0
     },
     {
       "name": "Luke Clark",
@@ -62,7 +62,7 @@
       "champ": "France",
       "final_goals_guess": null,
       "rank": 3,
-      "move": -2
+      "move": 0
     },
     {
       "name": "Karlis Draulis",
@@ -125,7 +125,7 @@
       "champ": "Netherlands",
       "final_goals_guess": null,
       "rank": 6,
-      "move": -2
+      "move": 0
     },
     {
       "name": "Brad Bone",
@@ -146,7 +146,7 @@
       "champ": "France",
       "final_goals_guess": null,
       "rank": 6,
-      "move": -2
+      "move": 0
     },
     {
       "name": "Kyle Williams",
@@ -188,7 +188,7 @@
       "champ": "France",
       "final_goals_guess": null,
       "rank": 8,
-      "move": 1
+      "move": 0
     }
   ]
 }
