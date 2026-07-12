@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-07-11T23:49:33.197829Z",
+  "last_fetched_utc": "2026-07-12T03:48:31.952289Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2761,6 +2761,45 @@
           "min": "93'",
           "team": "team2",
           "player": "Jude Bellingham",
+          "kind": "goal"
+        }
+      ]
+    },
+    "K-100": {
+      "status": "final",
+      "winner": "Argentina",
+      "team1_goals": 3,
+      "team2_goals": 1,
+      "pens": null,
+      "events": [
+        {
+          "min": "10'",
+          "team": "team1",
+          "player": "Alexis Mac Allister",
+          "kind": "goal"
+        },
+        {
+          "min": "67'",
+          "team": "team2",
+          "player": "Dan Ndoye",
+          "kind": "goal"
+        },
+        {
+          "min": "72'",
+          "team": "team2",
+          "player": "Breel Embolo",
+          "kind": "red"
+        },
+        {
+          "min": "112'",
+          "team": "team1",
+          "player": "Julián Álvarez",
+          "kind": "goal"
+        },
+        {
+          "min": "120'+1'",
+          "team": "team1",
+          "player": "Lautaro Martínez",
           "kind": "goal"
         }
       ]
