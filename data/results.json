@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-07-12T03:48:31.952289Z",
+  "last_fetched_utc": "2026-07-14T21:04:16.897294Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -2803,6 +2803,13 @@
           "kind": "goal"
         }
       ]
+    },
+    "K-101": {
+      "status": "final",
+      "winner": "Spain",
+      "team1_goals": 0,
+      "team2_goals": 2,
+      "pens": null
     }
   }
 }
