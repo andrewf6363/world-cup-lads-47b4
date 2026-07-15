@@ -1,20 +1,20 @@
 {
-  "generated_utc": "2026-07-14T21:04:17.336958Z",
+  "generated_utc": "2026-07-15T21:06:24.681969Z",
   "leaderboard": [
     {
       "name": "Luke Clark",
       "grp": 4700,
       "correct": 47,
       "graded": 72,
-      "ko": 3600,
+      "ko": 4400,
       "rounds": {
         "R32": 1400,
         "R16": 1000,
         "QF": 1200,
-        "SF": 0,
+        "SF": 800,
         "Final": 0
       },
-      "total": 8300,
+      "total": 9100,
       "baseline": 0,
       "ko_only": false,
       "champ": "France",
@@ -27,15 +27,15 @@
       "grp": 4600,
       "correct": 46,
       "graded": 72,
-      "ko": 3600,
+      "ko": 4400,
       "rounds": {
         "R32": 1400,
         "R16": 1000,
         "QF": 1200,
-        "SF": 0,
+        "SF": 800,
         "Final": 0
       },
-      "total": 8200,
+      "total": 9000,
       "baseline": 0,
       "ko_only": false,
       "champ": "France",
@@ -48,21 +48,63 @@
       "grp": 4500,
       "correct": 45,
       "graded": 72,
-      "ko": 3500,
+      "ko": 4300,
       "rounds": {
         "R32": 1300,
         "R16": 1000,
         "QF": 1200,
-        "SF": 0,
+        "SF": 800,
         "Final": 0
       },
-      "total": 8000,
+      "total": 8800,
       "baseline": 0,
       "ko_only": false,
       "champ": "France",
       "final_goals_guess": null,
       "rank": 3,
       "move": 0
+    },
+    {
+      "name": "Brad Bone",
+      "grp": 4200,
+      "correct": 42,
+      "graded": 72,
+      "ko": 4200,
+      "rounds": {
+        "R32": 1400,
+        "R16": 800,
+        "QF": 1200,
+        "SF": 800,
+        "Final": 0
+      },
+      "total": 8400,
+      "baseline": 0,
+      "ko_only": false,
+      "champ": "France",
+      "final_goals_guess": null,
+      "rank": 4,
+      "move": 1
+    },
+    {
+      "name": "Andrew Fahey",
+      "grp": 4500,
+      "correct": 45,
+      "graded": 72,
+      "ko": 3500,
+      "rounds": {
+        "R32": 1300,
+        "R16": 1000,
+        "QF": 400,
+        "SF": 800,
+        "Final": 0
+      },
+      "total": 8000,
+      "baseline": 0,
+      "ko_only": false,
+      "champ": "Netherlands",
+      "final_goals_guess": null,
+      "rank": 5,
+      "move": 2
     },
     {
       "name": "Keegan Ball",
@@ -82,8 +124,50 @@
       "ko_only": false,
       "champ": "England",
       "final_goals_guess": null,
-      "rank": 3,
-      "move": 0
+      "rank": 5,
+      "move": -2
+    },
+    {
+      "name": "Kyle Williams",
+      "grp": 4900,
+      "correct": 49,
+      "graded": 72,
+      "ko": 2900,
+      "rounds": {
+        "R32": 900,
+        "R16": 800,
+        "QF": 400,
+        "SF": 800,
+        "Final": 0
+      },
+      "total": 7800,
+      "baseline": 0,
+      "ko_only": false,
+      "champ": "Argentina",
+      "final_goals_guess": null,
+      "rank": 7,
+      "move": 1
+    },
+    {
+      "name": "John Atkins",
+      "grp": 3800,
+      "correct": 0,
+      "graded": 72,
+      "ko": 4000,
+      "rounds": {
+        "R32": 1200,
+        "R16": 800,
+        "QF": 1200,
+        "SF": 800,
+        "Final": 0
+      },
+      "total": 7800,
+      "baseline": 3800,
+      "ko_only": true,
+      "champ": "France",
+      "final_goals_guess": null,
+      "rank": 7,
+      "move": 1
     },
     {
       "name": "Karlis Draulis",
@@ -103,92 +187,8 @@
       "ko_only": false,
       "champ": "France",
       "final_goals_guess": null,
-      "rank": 5,
-      "move": 0
-    },
-    {
-      "name": "Brad Bone",
-      "grp": 4200,
-      "correct": 42,
-      "graded": 72,
-      "ko": 3400,
-      "rounds": {
-        "R32": 1400,
-        "R16": 800,
-        "QF": 1200,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 7600,
-      "baseline": 0,
-      "ko_only": false,
-      "champ": "France",
-      "final_goals_guess": null,
-      "rank": 5,
-      "move": 0
-    },
-    {
-      "name": "Andrew Fahey",
-      "grp": 4500,
-      "correct": 45,
-      "graded": 72,
-      "ko": 2700,
-      "rounds": {
-        "R32": 1300,
-        "R16": 1000,
-        "QF": 400,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 7200,
-      "baseline": 0,
-      "ko_only": false,
-      "champ": "Netherlands",
-      "final_goals_guess": null,
-      "rank": 7,
-      "move": 0
-    },
-    {
-      "name": "Kyle Williams",
-      "grp": 4900,
-      "correct": 49,
-      "graded": 72,
-      "ko": 2100,
-      "rounds": {
-        "R32": 900,
-        "R16": 800,
-        "QF": 400,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 7000,
-      "baseline": 0,
-      "ko_only": false,
-      "champ": "Argentina",
-      "final_goals_guess": null,
-      "rank": 8,
-      "move": 0
-    },
-    {
-      "name": "John Atkins",
-      "grp": 3800,
-      "correct": 0,
-      "graded": 72,
-      "ko": 3200,
-      "rounds": {
-        "R32": 1200,
-        "R16": 800,
-        "QF": 1200,
-        "SF": 0,
-        "Final": 0
-      },
-      "total": 7000,
-      "baseline": 3800,
-      "ko_only": true,
-      "champ": "France",
-      "final_goals_guess": null,
-      "rank": 8,
-      "move": 0
+      "rank": 9,
+      "move": -4
     }
   ]
 }
