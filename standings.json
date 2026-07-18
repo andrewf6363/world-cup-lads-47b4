@@ -1,5 +1,5 @@
 {
-  "generated_utc": "2026-07-15T21:06:24.681969Z",
+  "generated_utc": "2026-07-18T23:08:49.967809Z",
   "leaderboard": [
     {
       "name": "Luke Clark",
@@ -83,7 +83,7 @@
       "champ": "France",
       "final_goals_guess": null,
       "rank": 4,
-      "move": 1
+      "move": 0
     },
     {
       "name": "Andrew Fahey",
@@ -104,7 +104,7 @@
       "champ": "Netherlands",
       "final_goals_guess": null,
       "rank": 5,
-      "move": 2
+      "move": 0
     },
     {
       "name": "Keegan Ball",
@@ -125,7 +125,7 @@
       "champ": "England",
       "final_goals_guess": null,
       "rank": 5,
-      "move": -2
+      "move": 0
     },
     {
       "name": "Kyle Williams",
@@ -146,7 +146,7 @@
       "champ": "Argentina",
       "final_goals_guess": null,
       "rank": 7,
-      "move": 1
+      "move": 0
     },
     {
       "name": "John Atkins",
@@ -167,7 +167,7 @@
       "champ": "France",
       "final_goals_guess": null,
       "rank": 7,
-      "move": 1
+      "move": 0
     },
     {
       "name": "Karlis Draulis",
@@ -188,7 +188,7 @@
       "champ": "France",
       "final_goals_guess": null,
       "rank": 9,
-      "move": -4
+      "move": 0
     }
   ]
 }
