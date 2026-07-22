@@ -1,5 +1,5 @@
 {
-  "last_fetched_utc": "2026-07-20T10:55:51.393398Z",
+  "last_fetched_utc": "2026-07-22T18:01:12.269469Z",
   "source": "openfootball + espn",
   "matches": {
     "G-A-1": {
@@ -1947,7 +1947,7 @@
         {
           "min": "56'",
           "team": "team1",
-          "player": "Casemiro",
+          "player": "Casemiro ",
           "kind": "goal"
         },
         {
